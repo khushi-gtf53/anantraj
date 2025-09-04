@@ -55,7 +55,7 @@ const sectionConfigs = {
       { type: "image", name: "image", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
     ],
-    table: { head: ["Name","Short Description","Image"], header: ["name","short_description","image"] },
+    table: { head: ["Name","Image"], header: ["name","image"] },
     endpoint: "amenities-logo",
     label: "Amenities Logo",
   },
