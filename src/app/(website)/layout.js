@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 
 // Page metadata (can override in individual pages too)
 export const metadata = {
-  title: "My Website",
-  description: "Awesome website built with Next.js",
+  title: "Annat Raj",
+  description: "Annat Raj",
 };
 
 export default function WebsiteLayout({ children }) {

@@ -192,7 +192,6 @@ const CmsSections = () => {
   const { tableData: MetaFields } = slug === "our-team" ? useCrud(api, "team-category") : { tableData: [] };
       
 
-  console.log(editData,"editData");
 
 useEffect(() => {
   if (slug === "our-team") {
