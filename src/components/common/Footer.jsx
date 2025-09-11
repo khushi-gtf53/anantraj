@@ -57,11 +57,7 @@ const Footer = ({showFooter}) => {
   if(currentPathname.includes('township') && !showFooter) return;
 
   return (
-    <footer>
-      
-      <div
-        className="pattern-div lg:py-16 py-1o"
-        style={{ background: "#FBF6F6 url(assets/pattern-bg.png) center center", }}></div>
+    <footer>         
 
       {/* Explore Section */}
       <div className="px-5 lg:px-24 pb-16 lg:pt-14 pt-8">

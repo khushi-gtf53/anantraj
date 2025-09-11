@@ -274,7 +274,7 @@ const LuxuryProperties = () => {
                 >
                   {category}
                   {activeCategory === category && (
-                    <span className="h-[80px] hidden lg:block absolute bottom-[-98px] left-[62%] bg-primaryblue w-[1px]"></span>
+                    <span className="h-[50px] hidden lg:block absolute bottom-[-60px] left-[50%] bg-primaryblue w-[1px]"></span>
                   )}
                 </p>
               )
