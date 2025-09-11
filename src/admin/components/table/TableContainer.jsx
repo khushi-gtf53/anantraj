@@ -14,11 +14,11 @@ import { BASE_URL } from "@/config";
 import Link from "next/link";
 
 const TableContainer = ({ head, pagination, currentPage, handlePageChange, data, onDelete, onEdit }) => {
-  const [modalContent, setModalContent] = useState(null); // for text/image preview
+  const [modalContent, setModalContent] = useState(null);
   const [isImage, setIsImage] = useState(false);
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null); // new state
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null); 
   const itemsPerPage = 10;
-
+  console.log(pagination,'pagination')
   const truncateText = (text, length = 20) => {
     if (!text) return "";
     return text.length > length ? text.slice(0, length) + "..." : text;
@@ -136,7 +136,7 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
 
       <Pagination
         currentPage={currentPage}
-        totalPages={pagination?.pages || 1}
+        totalPages={pagination?.totalPages || 1}
         onPageChange={handlePageChange}
       />
 

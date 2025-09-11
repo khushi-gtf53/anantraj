@@ -10,42 +10,44 @@ export const useCrud = (api, endpoint, tableHeader,autoFetch = true) => {
   const [editData, setEditData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // ✅ Fetch table data with optional page number
+  
+
   const fetchTableData = async (page = 1) => {
-  
-    if (!endpoint) return;
+  if (!endpoint) return;
 
-    try {
-      const response = await get(`${endpoint}?page=${page}&limit=10`);
+  try {
+    const response = await get(`${endpoint}?page=${page}&limit=10`);
 
-      if (response?.data) {
-        let formatted;
+    if (response) {
+      let records = [];
 
-        // If tableHeader exists -> return array rows for table display
-        if (Array.isArray(tableHeader) && tableHeader.length > 0) {
-          formatted = response.data.map((item) => {
-            const row = tableHeader.map((key) => item[key]);
-            // Always push the ID at the end for easy editing/deleting
-            row.push(item.id);
-            return row;
-          });
-        } else {
-          // If no tableHeader -> keep as objects
-          formatted = response.data;
-        }
-
-        setTableData(formatted);
-        setPagination(response?.pagination || {});
+      if (Array.isArray(response.data)) {
+        records = response.data;
+      } else if (Array.isArray(response.data?.data)) {
+        records = response.data.data;
       }
-    } catch (err) {
-      console.log(err,"fetch error");
-      toast.error(err);
-    }
-  };
 
-  // ✅ Run when endpoint or currentPage changes
-  
- // ✅ Run only if autoFetch is true
+      let formatted;
+
+      if (Array.isArray(tableHeader) && tableHeader.length > 0) {
+        formatted = records.map((item) => {
+          const row = tableHeader.map((key) => item[key]);
+          row.push(item.id); 
+          return row;
+        });
+      } else {
+        formatted = records;
+      }
+
+      setTableData(formatted);
+      setPagination(response?.pagination || response?.data?.pagination || {});
+    }
+  } catch (err) {
+    console.log("fetch error", err);
+    toast.error("Failed to fetch records");
+  }
+};
+
 useEffect(() => {
   if (!autoFetch || !endpoint) return;  // 👈 only run when endpoint is valid
   fetchTableData(currentPage);
@@ -63,13 +65,13 @@ useEffect(() => {
 
     try {
       const formData = new FormData();
-      Object.entries(data).forEach(([k, v]) => formData.append(k, v));
+      Object.entries(data).forEach(([k, v]) =>{if (k !== "id") formData.append(k, v);});
 
       if (editData) {
         // Update existing record
-        const response = await update(`${endpoint}/${editData.id}/update`, formData);
+        const response = await update(`${endpoint}/${editData.id}`, formData);
 
-        if (response?.status) {
+        if (response) {
           toast.success("Updated successfully");
           // setEditData(null);
           fetchTableData(currentPage); // refresh list
@@ -78,7 +80,7 @@ useEffect(() => {
         // Add new record
         const response = await post(endpoint, formData);
 
-        if (response?.status) {
+        if (response) {
           toast.success("Added successfully");
           fetchTableData(currentPage); // refresh list
         }

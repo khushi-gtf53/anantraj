@@ -24,17 +24,17 @@ const sectionConfigs = {
   },
   typologies: {
     fields: [
-      { type: "text", name: "typologies", label: "Typologies" },
+      { type: "text", name: "name", label: "Typologies" },
     ],
-    table: { head: ["Typologies","Add Sub Typologies"], header: ["typologies"] },
+    table: { head: ["Typologies","Add Sub Typologies"], header: ["name"] },
     endpoint: "typologies",
     label: "Typologies",
   },
   "sub-typologies": {
     fields: [
-      { type: "text", name: "sub_typologies", label: "Typologies" },
+      { type: "text", name: "name", label: "Typologies" },
     ],
-    table: { head: ["Typologies"], header: ["sub_typologies"] },
+    table: { head: ["Typologies"], header: ["name"] },
     endpoint: "sub-typologies",
     label: "Sub Typologies",
   },
@@ -81,22 +81,36 @@ const sectionConfigs = {
     label: "News",
   },
   blog: {
-    fields: [
-      { type: "image", name: "feature_image", label: "Desktop Image" },
-      { type: "image", name: "mb_image", label: "Mobile Image" },
-      { type: "text", name: "alt", label: "Alt Tag" },
-      { type: "text", name: "heading", label: "Heading" },
-      { type: "text", name: "short_description", label: "Short Description" },
-      { type: "text", name: "meta_title", label: "Meta Title" },
-      { type: "text", name: "meta_keyword", label: "Meta Keywords" },
-      { type: "text", name: "meta_description", label: "Meta Description" },
-      { type: "richtext", name: "description", label: "Description" ,col: "md:col-span-12"},
-    ],
-    table: { head: ["Heading","Short Description","Image",], header: ["heading","short_description","feature_image",] },
-    endpoint: "blog",
-    label: "Blogs",
-    col:12
+  fields: [
+    { type: "text", name: "title", label: "Title" },
+    { type: "text", name: "short_description", label: "Short Description" },
+    { type: "richtext", name: "long_description", label: "Long Description", col: "md:col-span-12" },
+    { type: "image", name: "file", label: "Feature Image" },
+    { type: "text", name: "meta_title", label: "Meta Title" },
+    { type: "text", name: "meta_keywords", label: "Meta Keywords" },
+    { type: "text", name: "meta_description", label: "Meta Description" },
+    { type: "text", name: "seo_tags", label: "SEO Tags" },
+    {
+      type: "dropdown",
+      name: "status",
+      label: "Status",
+      options: [
+        { label: "Active", value: "1" },
+        { label: "Inactive", value: "0" },
+      ],
+      defaultValue: "1",
+    },
+  ],
+  table: {
+    head: ["Title", "Short Description", "Image", "Status"],
+    header: ["title", "short_description", "image", "status"],
   },
+  endpoint: "blog",
+  label: "Blogs",
+  col: 12,
+},
+
+  
   testimonial: {
     fields: [
       { type: "text", name: "name", label: "Name" },

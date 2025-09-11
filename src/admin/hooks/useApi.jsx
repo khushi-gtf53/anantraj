@@ -88,7 +88,7 @@ export function useApi(baseUrl) {
     [request]
   );
   const update = useCallback(
-    (endpoint = "", body, headers = {}) => request(endpoint, "POST", body, headers),
+    (endpoint = "", body, headers = {}) => request(endpoint, "PATCH", body, headers),
     [request]
   );
   const edit = useCallback(

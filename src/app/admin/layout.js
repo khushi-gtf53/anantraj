@@ -16,36 +16,46 @@ export default function AdminLayout({ children }) {
   const isLoginPage = pathname === "/admin/login";
   const hasProjectId = Boolean(params?.id);
 
-  const [checking, setChecking] = useState(!isLoginPage);
+  const [checking, setChecking] = useState(true);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (isLoginPage) return;
+
+  //   const validateToken = async () => {
+  //     const token = localStorage.getItem("adminToken");
+  //     if (!token) {
+  //       router.replace("/admin/login");
+  //       return;
+  //     }
+
+  //     try {
+  //       const res = await fetch(`${BASE_ADMIN}validate-token`, {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+
+  //       if (!res.ok) throw new Error("Invalid token");
+  //       setChecking(false);
+  //     } catch (err) {
+  //       localStorage.removeItem("adminToken");
+  //       router.replace("/admin/login");
+  //     }
+  //   };
+
+  //   validateToken();
+  // }, [isLoginPage, router]);
+
+
+    useEffect(() => {
     if (isLoginPage) return;
 
-    const validateToken = async () => {
-      const token = localStorage.getItem("adminToken");
-      if (!token) {
-        router.replace("/admin/login");
-        return;
-      }
-
-      try {
-        const res = await fetch(`${BASE_ADMIN}validate-token`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!res.ok) throw new Error("Invalid token");
-        setChecking(false);
-      } catch (err) {
-        localStorage.removeItem("adminToken");
-        router.replace("/admin/login");
-      }
-    };
-
-    validateToken();
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      router.replace("/admin/login");
+    }
   }, [isLoginPage, router]);
 
   useEffect(() => {

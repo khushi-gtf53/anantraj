@@ -8,7 +8,7 @@ import CardHeading from "../card/CardHeading";
 import Card from "../card/Card";
 import TextDropdown from "./TextDropdown";
 import RichTextEditor from "./RichTextEditor";
-
+import { useRouter } from "next/navigation"; 
 const DynamicForm = ({
   title,
   data,
@@ -16,10 +16,11 @@ const DynamicForm = ({
   defaultValues,
   className,
   col,
+  isEdit = false,
 }) => {
   const [formData, setFormData] = useState({});
   const [resetCounter, setResetCounter] = useState(0);
-
+ const router = useRouter(); 
   // Prefill when editing
   useEffect(() => {
     setFormData(defaultValues || {});
@@ -29,12 +30,17 @@ const DynamicForm = ({
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e) => {
+ const handleSubmit = (e) => {
     e.preventDefault();
     if (onSubmit) {
       onSubmit(formData);
-      setFormData({});
-      setResetCounter((prev) => prev + 1);
+
+      if (isEdit) {
+        router.back();  
+      } else {
+        setFormData({});
+        setResetCounter((prev) => prev + 1);
+      }
     }
   };
 
@@ -123,6 +129,7 @@ const DynamicForm = ({
           ))}
         </div>
         <div className="text-end mt-[20px]">
+
           <button
             type="submit"
             className="bg-[var(--admin-secondary)] border-none rounded-[5px] text-[#eee] mt-0 font-roboto tracking-[0.4px] px-[25px] py-[7px]"

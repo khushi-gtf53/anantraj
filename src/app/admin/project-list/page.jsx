@@ -13,7 +13,7 @@ const tableHeader = ["name","thumbnail","address", "short_description"];
 const ProjectList = () => {
 
   const api = useApi(BASE_ADMIN);
-  const { tableData ,handleDelete,pagination,currentPage,handlePageChange} = useCrud(api, "project",tableHeader);
+  const { tableData ,handleDelete,pagination,currentPage,handlePageChange} = useCrud(api, "projects",tableHeader);
 
   return (
     <section>
