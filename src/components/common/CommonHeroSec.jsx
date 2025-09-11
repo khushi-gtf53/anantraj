@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
-const CommonHeroSec = ({ ObjData }) => {
-  const [activeTab, setActiveTab] = useState("group");
+const CommonHeroSec = ({ ObjData, activeTab, setActiveTab }) => {
   const [visibleTabs, setVisibleTabs] = useState([0, 1, 2]);
   const { title, heading, subtitle, imgUrl, linkTo, tabs } = ObjData;
 
@@ -28,6 +27,14 @@ const CommonHeroSec = ({ ObjData }) => {
   const isPrevDisabled = visibleTabs[0] === 0;
   const isNextDisabled = visibleTabs[2] === tabs?.length - 1;
 
+  const handleTabClick = (tablink) => {
+    setActiveTab(tablink); // Update the active tab in the parent
+    const element = document.getElementById(tablink);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="group">
       <div className="bg-[#FBF6F6] mt-[40px] px-[20px] lg:p-[100px] pt-[100px] pb-[40px]">
@@ -43,7 +50,7 @@ const CommonHeroSec = ({ ObjData }) => {
             <a
               key={i}
               href={`#${tab.tablink}`}
-              onClick={() => setActiveTab(tab.tablink)}
+              onClick={() => handleTabClick(tab.tablink)}
               className={`${
                 activeTab === tab.tablink
                   ? "text-primaryblue font-semibold opacity-100"
@@ -56,9 +63,14 @@ const CommonHeroSec = ({ ObjData }) => {
         </nav>
 
         {/* Mobile nav */}
-        <nav className="flex sm:hidden border-y py-2 border-black space-x-10">
+        <nav className="flex sm:hidden overflow-x-hidden border-y py-2 border-black space-x-10">
           {tabs?.slice(visibleTabs[0], visibleTabs[2] + 1).map((tab, i) => (
-            <a key={i} href={`#${tab.tablink}`} onClick={() => setActiveTab(tab.tablink)} className="whitespace-nowrap flex-1">
+            <a
+              key={i}
+              href={`#${tab.tablink}`}
+              onClick={() => handleTabClick(tab.tablink)}
+              className=""
+            >
               <button
                 className={`${
                   i === tabs.length - 1 ? "text-right" : ""

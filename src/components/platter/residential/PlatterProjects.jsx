@@ -11,7 +11,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Accordion from "../../common/Accordion";
 
-// ✅ Dynamically import Lightbox to avoid SSR issues
 const Lightbox = dynamic(() => import("yet-another-react-lightbox"), {
   ssr: false,
   loading: () => null,
@@ -19,8 +18,7 @@ const Lightbox = dynamic(() => import("yet-another-react-lightbox"), {
 
 import "yet-another-react-lightbox/styles.css";
 
-const PlatterProjects = ({ tabs = [] }) => {
-  const [activeTab, setActiveTab] = useState(tabs[0]?.key || "");
+const PlatterProjects = ({ tabs = [], activeTab }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxSlides, setLightboxSlides] = useState([]);
   const [openIndex, setOpenIndex] = useState(0);
@@ -62,7 +60,7 @@ const PlatterProjects = ({ tabs = [] }) => {
                     height={500}
                     className="object-cover w-full h-auto"
                     onClick={() => openLightbox([project.image], 0)}
-                    priority={index === 0} // ✅ prioritize first image
+                    priority={index === 0}
                   />
                 </div>
               ) : (
@@ -99,7 +97,6 @@ const PlatterProjects = ({ tabs = [] }) => {
         ))}
       </Swiper>
 
-      {/* Navigation */}
       {projects.length > 1 && (
         <div className="flex justify-end lg:mt-[10px] lg:mb-0 mb-[10px]">
           <IoIosArrowRoundBack
@@ -127,25 +124,27 @@ const PlatterProjects = ({ tabs = [] }) => {
             key={tab.key}
             label={tab.label}
             isOpen={activeTab === tab.key}
-            onClick={() =>
-              setActiveTab(activeTab === tab.key ? "" : tab.key)
-            }
+            onClick={() => {
+              const newTab = activeTab === tab.key ? "" : tab.key;
+              const element = document.getElementById(tab.key);
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
           >
             {renderProject(tab.projects)}
           </Accordion>
         ))}
-        {/* Background Pattern */}
-                      <Image
-                        src="/assets/pattern-bg.png"
-                        alt="pattern-bg"
-                        width={1920}
-                        height={70}
-                        priority
-                        className="h-[70px] bg-[#FBF6F6] absolute left-0 bottom-0 w-full object-cover"
-                      />
+        <Image
+          src="/assets/pattern-bg.png"
+          alt="pattern-bg"
+          width={1920}
+          height={70}
+          priority
+          className="h-[70px] bg-[#FBF6F6] absolute left-0 bottom-0 w-full object-cover"
+        />
       </section>
 
-      {/* Lightbox */}
       {lightboxOpen && (
         <Lightbox
           open={lightboxOpen}

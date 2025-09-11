@@ -26,7 +26,7 @@ export default function Csr() {
     return (
         <div className='bg-[#FBF6F6] relative'>
             <CsrAbout />
-            <div className='wrapper'>
+            <div id='discover' className='wrapper'>
                 <CsrContent contentData={contentData} />
                 <CsrGallery />
             </div>
@@ -37,7 +37,7 @@ export default function Csr() {
                             width={1920}
                             height={70}
                             priority
-                            className="h-[70px] bg-[#FBF6F6] absolute left-0 bottom-0 w-full object-cover"
+                            className="h-[70px] bg-[#FBF6F6] relative sm:absolute left-0 bottom-0 w-full object-cover"
                           />
         </div>
     )
