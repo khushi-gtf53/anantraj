@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import "./styles.css"
-import Image from "next/image";
 import CommonHeading from "../common/CommonHeading";
+import ProjectCard from "./ProjectCard";
 
 const categories = [
   {
@@ -38,49 +38,34 @@ const categories = [
 ];
 
 export default function ProjectsPage() {
-  const [active, setActive] = useState(categories[0]?.title || null)
-
+  const [active, setActive] = useState(categories[0]?.title || null);
   const expendCategory = (catTitle) => {
-    setActive(catTitle === active ? null : catTitle)
-  }
+    setActive(catTitle === active ? null : catTitle);
+  };
 
   return (
     <section className="project-cat">
-      <CommonHeading>Creating Landmark Spaces that Inspire Living, Working, and Beyond.</CommonHeading>
+      <CommonHeading>
+        Creating Landmark Spaces that Inspire Living, Working, and Beyond.
+      </CommonHeading>
+
       <div className="cat_carousel_wrapper pt-8">
-        <div className="flex gap-3 text-current justify-between">
-          {
-            categories && categories.map((item, index) =>
-              <div
-                key={index}
-                onClick={() => expendCategory(item.title)}
-                className={`${active === item.title ? 'active' : 'no-active'} cat_carousel_item lg:h-[500px] overflow-hidden cursor-pointer  transition-all duration-500 ease-in-out`}>
-                <div className="flex justify-between w-full h-full">
-                  <figure className={` w-full ${active === item.title ? "lg:w-[50%]" : "lg:w-[100%]"}`}>
-                    <Image
-                      src={item.bigImage}
-                      className="w-full h-full object-cover"
-                      width={400}
-                      height={400}
-                      alt={item?.alt || item.title}
-                    />
-                  </figure>
-                  {
-                    active === item.title && (
-                      <div className="lg:w-[50%] p-14 w-full grid self-center gap-y-5">
-                        <CommonHeading
-                          customClass={'lg:max-w-[100%] max-w-[100%] text-primaryred'}
-                        >{item.title}</CommonHeading>
-                        <p className="font-lato text-[14px] text-justify font-[400] tracking-[1px] leading-[27px]">{item.description}</p>
-                      </div>
-                    )
-                  }
+        <div className="flex flex-wrap gap-0 text-current justify-between">
+          {categories &&
+            categories.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => expendCategory(item.title)}
+                  className={`${active === item.title ? "active" : "no-active"
+                    } cat_carousel_item 2xl:h-[650px] lg:h-[500px] overflow-hidden cursor-pointer transition-all duration-500 ease-in-out`}
+                >
+                  <ProjectCard item={item} active={active} />
                 </div>
-              </div>
-            )
-          }
+              );
+            })}
         </div>
       </div>
     </section>
-  )
+  );
 }

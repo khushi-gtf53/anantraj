@@ -1,7 +1,7 @@
 import React from 'react'
 import CommonHeroSec from '../common/CommonHeroSec'
 
-const GalleryAbout = () => {
+const GalleryAbout = ({activeTab, setActiveTab}) => {
     const Obj = {
         title: "Gallery",
         heading: "Gallery",
@@ -18,7 +18,7 @@ const GalleryAbout = () => {
         ]
     }
     return (
-        <CommonHeroSec ObjData={Obj} />
+        <CommonHeroSec ObjData={Obj} activeTab={activeTab} setActiveTab={setActiveTab} />
     )
 }
 

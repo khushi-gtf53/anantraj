@@ -88,7 +88,7 @@ const reportFiles = [
 ];
 
 export default function Investors() {
-
+ const [activeTab, setActiveTab] = useState("1"); 
     const [openModal, setOpenModal] = useState(false);
     const [activeReport, setActiveReport] = useState(null);
     const [openAccordion, setOpenAccordion] = useState(1);
@@ -131,7 +131,7 @@ export default function Investors() {
 
     return (
         <>
-            <CommonHeroSec ObjData={Obj} />
+            <CommonHeroSec ObjData={Obj}  activeTab={activeTab} setActiveTab={setActiveTab}  />
             <ReportsSection
                 data={data}
                 reportFiles={reportFiles}
@@ -143,6 +143,7 @@ export default function Investors() {
                 setOpenAccordion={setOpenAccordion}
                 toggleAccordion={toggleAccordion}
                 contentRefs={contentRefs}
+                activeTab={activeTab} setActiveTab={setActiveTab}
             />
         </>
     )

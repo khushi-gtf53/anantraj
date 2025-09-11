@@ -1,11 +1,17 @@
-import PlatterAbout from "@/src/components/platter/residential/PlatterAbout"
-import PlatterProjects from "@/src/components/platter/residential/PlatterProjects"
+"use client";
 
-const page = () => {
+import { useState } from "react";
+import PlatterAbout from "@/src/components/platter/residential/PlatterAbout";
+import PlatterProjects from "@/src/components/platter/residential/PlatterProjects";
+
+const Page = () => {
+  const [activeTab, setActiveTab] = useState("newlaunch"); 
+
   const projectTabs = [
     {
       key: "newlaunch",
       label: "All New Launch Projects",
+      tablink: "newlaunch", 
       projects: [
         {
           name: "Estate Apartments",
@@ -20,6 +26,7 @@ const page = () => {
     {
       key: "underconstruction",
       label: "Under Construction",
+      tablink: "underconstruction",
       projects: [
         {
           name: "The Estate Residencies",
@@ -34,6 +41,7 @@ const page = () => {
     {
       key: "completed",
       label: "Completed",
+      tablink: "completed",
       projects: [
         {
           name: "Ashok Estate - Tower A",
@@ -65,10 +73,10 @@ const page = () => {
 
   return (
     <>
-      <PlatterAbout />
-      <PlatterProjects tabs={projectTabs} />
+      <PlatterAbout tabs={projectTabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <PlatterProjects tabs={projectTabs} activeTab={activeTab} />
     </>
   );
 };
 
-export default page;
+export default Page;

@@ -17,8 +17,7 @@ const Footer = ({showFooter}) => {
       links: [
         { label: "About Us", href: "/aboutus" },
         { label: "Investors", href: "/investors" },
-        // { label: "NRI Corner", href: "/nri-corner", expand: true },
-        // { label: "NRI Investors", href: "/nri-investors", expand: true },
+        { label: "CSR", href: "/csr", expand: true },
       ],
     },
     {
@@ -26,30 +25,24 @@ const Footer = ({showFooter}) => {
       links: [
         { label: "Residential", href: "/residential" },
         { label: "Commercial", href: "/commercial" },
-        // { label: "EMI Calculator", href: "/emi-calculator", expand: true },
-        { label: "CSR", href: "/csr", expand: true },
         { label: "Gallery", href: "/gallery", expand: true },
-        // { label: "Testimonials", href: "/testimonials", expand: true },
       ],
     },
     {
       title: "Projects",
       links: [
         { label: "Blogs", href: "/blogs" },
-        { label: "Contact Us", href: "/contact" },
-        { label: "Career", href: "/career", expand: true },
-        { label: "Media Center", href: "/media-center", expand: true },
-        // { label: "Property Investment", href: "/property-investment", expand: true } 
+        { label: "Contact Us", href: "/contactus" },
+        { label: "Career", href: "/careers", expand: true },
       ],
     },
-
+    
     {
       title: "More",
       links: [
         { label: "Data Centers", href: "/data-centers" },
+        { label: "Media Center", href: "/media-center", expand: true },
         { label: "Hospitality", href: "/hospitality" },
-        // { label: "Home Loans", href: "/home-loans", expand: true },
-        // { label: "Tax Benefits", href: "/tax-benefits", expand: true },
       ],
     },
   ];
@@ -81,7 +74,7 @@ const Footer = ({showFooter}) => {
 
 
         {/* Links */}
-        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-8 text-sm lg:text-base">
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm lg:text-base">
           {exploreLinks.map((section) => (
             <div key={section.title}>
               <div className="flex flex-col space-y-2">
