@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
+import Link from "next/link";
 
 const OurTeam = () => {
   const [activeRole, setActiveRole] = useState("Our Founder");
   const [swiperInstance, setSwiperInstance] = useState(null);
-  const [visibleRoles, setVisibleRoles] = useState([]); 
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   const slides = [
     {
@@ -42,25 +44,11 @@ const OurTeam = () => {
       text: "The Director & COO manages operational excellence and coordination at Anant Raj Limited...",
       role: "Director & COO",
     },
-
   ];
-
-  useEffect(() => {
-    setVisibleRoles(slides.slice(0, Math.min(4, slides.length)).map((s) => s.role));
-  }, []);
 
   const handleSlideChange = (swiper) => {
     const currentIndex = swiper.realIndex;
-    const currentRole = slides[currentIndex].role;
-
-    setVisibleRoles((prev) => {
-      if (!prev.includes(currentRole)) {
-        return [...prev, currentRole];
-      }
-      return prev;
-    });
-
-    setActiveRole(currentRole);
+    setActiveRole(slides[currentIndex].role);
   };
 
   const handleRoleClick = (role) => {
@@ -68,18 +56,8 @@ const OurTeam = () => {
     if (slideIndex !== -1 && swiperInstance) {
       swiperInstance.slideToLoop(slideIndex);
       setActiveRole(role);
-
-      if (!visibleRoles.includes(role)) {
-        setVisibleRoles((prev) => [...prev, role]);
-      }
     }
   };
-
-  useEffect(() => {
-    if (swiperInstance) {
-      swiperInstance.navigation?.update();
-    }
-  }, [swiperInstance]);
 
   return (
     <section
@@ -93,26 +71,31 @@ const OurTeam = () => {
         and excellence
       </h2>
 
-      <div className="container mx-auto lg:px-4">
-        <div className="swiper-container-team overflow-x-hidden">
+      <div className="container mx-auto lg:px-4 relative">
+        <div className="swiper-container-team  overflow-x-hidden">
+          {/* ✅ Swiper only for slides */}
           <Swiper
             modules={[Navigation, EffectFade]}
             spaceBetween={0}
             slidesPerView={1}
             effect="fade"
             fadeEffect={{ crossFade: true }}
-            navigation={{
-              prevEl: ".swiper-prev-team",
-              nextEl: ".swiper-next-team",
-            }}
             loop={true}
             onSlideChange={handleSlideChange}
-            onSwiper={setSwiperInstance}
+            onSwiper={(swiper) => {
+              setSwiperInstance(swiper);
+              setTimeout(() => {
+                swiper.params.navigation.prevEl = prevRef.current;
+                swiper.params.navigation.nextEl = nextRef.current;
+                swiper.navigation.init();
+                swiper.navigation.update();
+              });
+            }}
           >
             {slides.map((slide) => (
               <SwiperSlide key={slide.id}>
-                <div className="flex justify-between flex-wrap items-center">
-                  <div className="basis-full lg:basis-[40%] lg:ml-[4px] relative h-[300px] lg:h-[380px] w-full">
+                <div className="flex justify-between flex-wrap ">
+                  <div className="basis-full lg:basis-[40%] relative h-[300px] lg:h-[380px] w-full">
                     <Image
                       src={slide.image}
                       alt={slide.title}
@@ -122,61 +105,63 @@ const OurTeam = () => {
                     />
                   </div>
                   <div className="basis-full lg:basis-[50%]">
-                    <div className="flex justify-between items-center lg:pb-[30px] py-[25px]">
+                    <div className="flex justify-between items-start lg:pb-[30px] py-[25px]">
                       <h3 className="text-primaryblue uppercase lg:text-[16px] text-[14px] tracking-[1px] font-[600]">
                         {slide.title}
                       </h3>
-                      <div>
-                        <div className="flex">
-                          <button className="swiper-prev-team cursor-pointer rotate-[180deg] mr-[10px]">
-                            <Image
-                              src="/assets/right-arrow.png"
-                              alt="Previous"
-                              width={20}
-                              height={20}
-                              className="object-cover"
-                            />
-                          </button>
-                          <button className="swiper-next-team cursor-pointer">
-                            <Image
-                              src="/assets/right-arrow.png"
-                              alt="Next"
-                              width={20}
-                              height={20}
-                              className="object-cover"
-                            />
-                          </button>
-                        </div>
-                      </div>
+
                     </div>
                     <p className="border-y-[1px] lg:text-start text-center leading-[25px] mb-[25px] border-solid border-black py-[25px] lg:py-[40px] text-[14px] font-lato tracking-[1px]">
                       {slide.text}
                     </p>
-                    <ul className="flex lg:text-start text-center flex-wrap justify-between items-center lg:mb-[35px] my-[25px] tracking-[1px]">
-                      {slides
-                        .filter((s) => visibleRoles.includes(s.role)) 
-                        .map((s) => (
-                          <li
-                            key={s.role}
-                            className={`cursor-pointer lg:text-left lg:text-[13px] lg:mb-0 mb-[10px] lg:basis-auto basis-[50%] ${
-                              activeRole === s.role
-                                ? "text-primaryblue font-[600]"
-                                : ""
-                            }`}
-                            onClick={() => handleRoleClick(s.role)}
-                          >
-                            <span>{s.role}</span>
-                          </li>
-                        ))}
-                    </ul>
-                    <button className="font-[600] text-[14px] lg:mx-0 mx-auto lg:w-auto w-[60%] text-primaryblue text-center mt-[40px] flex justify-center lg:mt-[35px] font-lato border-y-[1px] py-[9px] px-[19px] lg:px-[25px] tracking-[1px] border-primaryblue border-y-solid">
-                      EXPLORE OUR TEAM
-                    </button>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="relative sm:absolute top-0 left-[80%]sm:left-0  sm:right-5 z-10 sm:py-[25px]">
+            <div className="flex justify-center sm:justify-end">
+              <button ref={prevRef} className="swiper-prev-team cursor-pointer rotate-[180deg] mr-[10px]">
+                <Image
+                  src="/assets/right-arrow.png"
+                  alt="Previous"
+                  width={20}
+                  height={20}
+                />
+              </button>
+              <button ref={nextRef} className="swiper-next-team cursor-pointer">
+                <Image
+                  src="/assets/right-arrow.png"
+                  alt="Next"
+                  width={20}
+                  height={20}
+                />
+              </button>
+            </div>
+          </div>
+          <div className="flex sm:absolute left-0 bottom-0 flex-col w-full items-end ">
+            <ul className="flex lg:text-start w-full sm:w-[50%]  text-center flex-wrap justify-between items-center lg:mb-[35px] my-[25px] tracking-[1px]">
+              {slides.map((s) => (
+                <li
+                  key={s.role}
+                  className={`cursor-pointer lg:text-left lg:text-[13px] lg:mb-0 mb-[10px] lg:basis-auto basis-[50%] ${activeRole === s.role ? "text-primaryblue font-[600]" : ""
+                    }`}
+                  onClick={() => handleRoleClick(s.role)}
+                >
+                  <span>{s.role}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="w-full sm:w-[50%]">
+              <Link href="aboutus">
+                <button className="font-[600] text-[14px] lg:mx-0 mx-auto lg:w-auto w-[60%] text-primaryblue text-center mt-[20px] flex justify-center font-lato border-y-[1px] py-[9px] px-[19px] lg:px-[25px] tracking-[1px] border-primaryblue border-y-solid">
+                  EXPLORE OUR TEAM
+                </button>
+              </Link>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import React from 'react'
 import CsrAbout from './CsrAbout'
 import CsrContent from './CsrContent'
 import CsrGallery from './CsrGallery'
+import Image from 'next/image'
 
 const contentData = [
     {
@@ -23,12 +24,21 @@ const contentData = [
 
 export default function Csr() {
     return (
-        <div className='bg-[#FBF6F6]'>
+        <div className='bg-[#FBF6F6] relative'>
             <CsrAbout />
             <div className='wrapper'>
                 <CsrContent contentData={contentData} />
                 <CsrGallery />
             </div>
+            {/* Background Pattern */}
+                          <Image
+                            src="/assets/pattern-bg.png"
+                            alt="pattern-bg"
+                            width={1920}
+                            height={70}
+                            priority
+                            className="h-[70px] bg-[#FBF6F6] absolute left-0 bottom-0 w-full object-cover"
+                          />
         </div>
     )
 }

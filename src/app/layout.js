@@ -15,7 +15,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Page metadata (can override in individual pages too)
 export const metadata = {
   title: "My Website",
   metadataBase: new URL("https://anantrajlimited.netlify.app/"),
@@ -26,16 +25,12 @@ export default function WebsiteLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased flex min-h-screen flex-col">
-        {/* Optional: sanitizer for injected HTML */}
         <HtmlSanitizer />
 
-        {/* Global header */}
         <Header />
 
-        {/* Main content grows to fill space */}
         <main className="flex-1">{children}</main>
 
-        {/* Global footer */}
         <Footer />
       </body>
     </html>

@@ -1,119 +1,120 @@
-  "use client";
+"use client";
 
-  import { useState, useRef, useEffect } from "react";
-  import Image from "next/image";
-  import { Swiper, SwiperSlide } from "swiper/react";
-  import { Navigation, EffectFade } from "swiper/modules";
-  import "swiper/css";
-  import "swiper/css/navigation";
-  import "swiper/css/effect-fade";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/effect-fade";
 
-  const slides = [
-    { year: "1969", image: "/assets/timeline-1.png", text: "Anant Raj was founded in New Delhi, establishing a legacy of quality and ethical business practices." },
-    { year: "1985", image: "/assets/timeline/1985.jpg", text: "Incorporated as Anant Raj Clay Products Ltd., began manufacturing glazed ceramic tiles." },
-    { year: "1989", image: "/assets/timeline/1989.jpg", text: "Launched ceramic tiles under the brand name ‘Romano’." },
-    { year: "1993", image: "/assets/timeline/1993.jpg", text: "Diversified into LPG cylinder manufacturing." },
-    { year: "1995", image: "/assets/timeline/1995.jpg", text: "Name changed to Anant Raj Industries Ltd.; major production expansion." },
-    { year: "1997", image: "/assets/timeline/1997.jpg", text: "Increased tile production capacity to 8,000 sq. mtrs/day." },
-    { year: "2005", image: "/assets/timeline/2005.jpg", text: "Entered real estate development; merged five group companies in hospitality, IT parks, and service apartments." },
-    { year: "2006", image: "/assets/timeline/2006.jpg", text: "Further group company mergers; delisted from Delhi Stock Exchange." },
-    { year: "2007", image: "/assets/timeline/2007.jpg", text: "Merged twelve more group companies; share split from ₹10 to ₹2." },
-    { year: "2010", image: "/assets/timeline/2010.jpg", text: "Acquired Jubilant Software Services and Aakarshak Realtors as wholly owned subsidiaries." },
-    { year: "2011", image: "/assets/timeline/2011.jpg", text: "Launched key residential projects and completed Moments Mall, Kirti Nagar." },
-    { year: "2012", image: "/assets/timeline/2012.jpg", text: "Launch of Anant Raj Estate with sale of plots in pocket A & B. Development commenced in South-West portion of the township." },
-    { year: "2013", image: "/assets/timeline/2013.jpg", text: "Launch of Estate Villas. Possession of Estate Plots." },
-    { year: "2014", image: "/assets/timeline/2014.jpg", text: "Launch of Estate Floors." },
-    { year: "2016", image: "/assets/timeline/2016.jpg", text: "We Handed over our first Estate Villa." },
-    { year: "2017", image: "/assets/timeline/2017.jpg", text: "A mixed-use commercial development “Joy Square” was launched in partnership with AIPL." },
-    { year: "2019", image: "/assets/timeline/2019.jpg", text: "Birla Navya, a joint venture project between Anant Raj Limited and Birla Estates Pvt Ltd, a 800 floors project was launched." },
-    { year: "2020", image: "/assets/timeline/2020.jpg", text: "Development Commenced in North-East portion of the township." },
-    { year: "2022", image: "/assets/timeline/2022.jpg", text: "Launch and Sale of Ashok Estate. Launch of Estate Mansions." },
-    { year: "2024", image: "/assets/timeline/2024.jpg", text: "Launch of our first luxury high rise project, The Estate Residencies." },
-    { year: "2025", image: "/assets/timeline/2025.jpg", text: "Launch of our ready to move in 400sq yd floors The Estate Apartments." },
-  ];
+const slides = [
+  { year: "1969", image: "/assets/timeline-1.png", text: "Anant Raj was founded in New Delhi, establishing a legacy of quality and ethical business practices." },
+  { year: "1985", image: "/assets/timeline/1985.jpg", text: "Incorporated as Anant Raj Clay Products Ltd., began manufacturing glazed ceramic tiles." },
+  { year: "1989", image: "/assets/timeline/1989.jpg", text: "Launched ceramic tiles under the brand name ‘Romano’." },
+  { year: "1993", image: "/assets/timeline/1993.jpg", text: "Diversified into LPG cylinder manufacturing." },
+  { year: "1995", image: "/assets/timeline/1995.jpg", text: "Name changed to Anant Raj Industries Ltd.; major production expansion." },
+  { year: "1997", image: "/assets/timeline/1997.jpg", text: "Increased tile production capacity to 8,000 sq. mtrs/day." },
+  { year: "2005", image: "/assets/timeline/2005.jpg", text: "Entered real estate development; merged five group companies in hospitality, IT parks, and service apartments." },
+  { year: "2006", image: "/assets/timeline/2006.jpg", text: "Further group company mergers; delisted from Delhi Stock Exchange." },
+  { year: "2007", image: "/assets/timeline/2007.jpg", text: "Merged twelve more group companies; share split from ₹10 to ₹2." },
+  { year: "2010", image: "/assets/timeline/2010.jpg", text: "Acquired Jubilant Software Services and Aakarshak Realtors as wholly owned subsidiaries." },
+  { year: "2011", image: "/assets/timeline/2011.jpg", text: "Launched key residential projects and completed Moments Mall, Kirti Nagar." },
+  { year: "2012", image: "/assets/timeline/2012.jpg", text: "Launch of Anant Raj Estate with sale of plots in pocket A & B. Development commenced in South-West portion of the township." },
+  { year: "2013", image: "/assets/timeline/2013.jpg", text: "Launch of Estate Villas. Possession of Estate Plots." },
+  { year: "2014", image: "/assets/timeline/2014.jpg", text: "Launch of Estate Floors." },
+  { year: "2016", image: "/assets/timeline/2016.jpg", text: "We Handed over our first Estate Villa." },
+  { year: "2017", image: "/assets/timeline/2017.jpg", text: "A mixed-use commercial development “Joy Square” was launched in partnership with AIPL." },
+  { year: "2019", image: "/assets/timeline/2019.jpg", text: "Birla Navya, a joint venture project between Anant Raj Limited and Birla Estates Pvt Ltd, a 800 floors project was launched." },
+  { year: "2020", image: "/assets/timeline/2020.jpg", text: "Development Commenced in North-East portion of the township." },
+  { year: "2022", image: "/assets/timeline/2022.jpg", text: "Launch and Sale of Ashok Estate. Launch of Estate Mansions." },
+  { year: "2024", image: "/assets/timeline/2024.jpg", text: "Launch of our first luxury high rise project, The Estate Residencies." },
+  { year: "2025", image: "/assets/timeline/2025.jpg", text: "Launch of our ready to move in 400sq yd floors The Estate Apartments." },
+];
 
-  const Journey = () => {
-    const [activeYear, setActiveYear] = useState("1969");
-    const swiperRef = useRef(null);
-    const yearRefs = useRef({});
-    const yearContainerRef = useRef(null);
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
-    const hasMounted = useRef(false);
-    const isUserInteraction = useRef(false);
+const Journey = () => {
+  const [activeYear, setActiveYear] = useState("1969");
+  const swiperRef = useRef(null);
+  const yearRefs = useRef({});
+  const yearContainerRef = useRef(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const hasMounted = useRef(false);
+  const isUserInteraction = useRef(false);
 
-    useEffect(() => {
-      if (swiperRef.current && prevRef.current && nextRef.current) {
-        swiperRef.current.params.navigation.prevEl = prevRef.current;
-        swiperRef.current.params.navigation.nextEl = nextRef.current;
-        swiperRef.current.navigation.init();
-        swiperRef.current.navigation.update();
+  useEffect(() => {
+    if (swiperRef.current && prevRef.current && nextRef.current) {
+      swiperRef.current.params.navigation.prevEl = prevRef.current;
+      swiperRef.current.params.navigation.nextEl = nextRef.current;
+      swiperRef.current.navigation.init();
+      swiperRef.current.navigation.update();
+    }
+
+    const timer = setTimeout(() => {
+      hasMounted.current = true;
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleSlideChange = (swiper) => {
+    const currentIndex = swiper.realIndex;
+    const newYear = slides[currentIndex].year;
+    setActiveYear(newYear);
+
+    if (hasMounted.current && isUserInteraction.current) {
+      const yearElement = yearRefs.current[newYear];
+      if (yearElement && yearContainerRef.current) {
+        yearElement.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
       }
+    }
 
-      const timer = setTimeout(() => {
-        hasMounted.current = true;
-      }, 500);
-      return () => clearTimeout(timer);
-    }, []);
+    isUserInteraction.current = false;
+  };
 
-    const handleSlideChange = (swiper) => {
-      const currentIndex = swiper.realIndex;
-      const newYear = slides[currentIndex].year;
-      setActiveYear(newYear);
+  const handleYearClick = (year) => {
+    isUserInteraction.current = true;
+    const slideIndex = slides.findIndex((slide) => slide.year === year);
+    if (slideIndex !== -1 && swiperRef.current) {
+      swiperRef.current.slideToLoop(slideIndex);
+      setActiveYear(year);
 
-      if (hasMounted.current && isUserInteraction.current) {
-        const yearElement = yearRefs.current[newYear];
-        if (yearElement && yearContainerRef.current) {
-          yearElement.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        }
+      const yearElement = yearRefs.current[year];
+      if (yearElement && yearContainerRef.current) {
+        yearElement.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
       }
+    }
+  };
 
-      isUserInteraction.current = false;
-    };
+  return (
+    <section className="relative px-[20px] lg:px-[100px] py-[40px] lg:py-[100px] bg-white">
+      <div className="relative z-[3] mx-auto">
+        <h2 className="text-primaryred lg:text-left text-center font-sangbleu mb-[40px] uppercase tracking-[2px] leading-[30px] lg:leading-[40px] text-[13px] lg:text-[20px]">
+          Empowering Dreams: Our Journey to Success
+        </h2>
 
-    const handleYearClick = (year) => {
-      isUserInteraction.current = true;
-      const slideIndex = slides.findIndex((slide) => slide.year === year);
-      if (slideIndex !== -1 && swiperRef.current) {
-        swiperRef.current.slideToLoop(slideIndex);
-        setActiveYear(year);
-
-        const yearElement = yearRefs.current[year];
-        if (yearElement && yearContainerRef.current) {
-          yearElement.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        }
-      }
-    };
-
-    return (
-      <section className="relative px-[20px] lg:px-[100px] py-[40px] lg:py-[100px] bg-white">
-        <div className="relative z-[3] mx-auto">
-          <h2 className="text-primaryred lg:text-left text-center font-sangbleu mb-[40px] uppercase tracking-[2px] leading-[30px] lg:leading-[40px] text-[13px] lg:text-[20px]">
-            Empowering Dreams: Our Journey to Success
-          </h2>
-
-          {/* Navigation */}
-          <div
-            className="flex flex-nowrap overflow-x-auto items-center text-[35px] lg:text-[40px] 
+        {/* Navigation */}
+        <div
+          className="flex flex-nowrap overflow-x-auto items-center text-[35px] lg:text-[40px] 
               tracking-[1px] pt-5 mb-6 text-primaryblue font-sangbleu 
               border-t border-black whitespace-nowrap scrollbar-hide"
-            ref={yearContainerRef}
-          >
-            {slides.map((slide) => (
-              <span
-                key={slide.year}
-                className={`cursor-pointer min-w-[25%] text-center ${activeYear === slide.year ? "text-primaryblue" : "text-gray-400"
-                  }`}
-                onClick={() => handleYearClick(slide.year)}
-                ref={(el) => (yearRefs.current[slide.year] = el)}
-              >
-                {slide.year}
-              </span>
-            ))}
-          </div>
+          ref={yearContainerRef}
+        >
+          {slides.map((slide) => (
+            <span
+              key={slide.year}
+              className={`cursor-pointer min-w-[25%] text-center ${activeYear === slide.year ? "text-primaryblue" : "text-gray-400"
+                }`}
+              onClick={() => handleYearClick(slide.year)}
+              ref={(el) => (yearRefs.current[slide.year] = el)}
+            >
+              {slide.year}
+            </span>
+          ))}
+        </div>
 
 
-          {/* Swiper */}
+        {/* Swiper */}
+        <div className="relative">
           <div className="relative mt-10">
             <Swiper
               modules={[Navigation, EffectFade]}
@@ -122,12 +123,20 @@
               effect="fade"
               fadeEffect={{ crossFade: true }}
               loop={true}
-              navigation={{
-                nextEl: nextRef.current,
-                prevEl: prevRef.current,
-              }}
               onSlideChange={handleSlideChange}
-              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+
+                // ✅ External navigation assign
+                setTimeout(() => {
+                  if (prevRef.current && nextRef.current) {
+                    swiper.params.navigation.prevEl = prevRef.current;
+                    swiper.params.navigation.nextEl = nextRef.current;
+                    swiper.navigation.init();
+                    swiper.navigation.update();
+                  }
+                });
+              }}
               onTouchStart={() => {
                 isUserInteraction.current = true;
               }}
@@ -151,16 +160,6 @@
                       <p className="my-4 tracking-[1px] leading-[26px] text-sm md:text-base">
                         {slide.text}
                       </p>
-
-                      {/* 👇 Buttons ab text ke niche hi h */}
-                      <div className="flex justify-center lg:justify-start items-center gap-2 mt-4">
-                        <button ref={prevRef} className="cursor-pointer swiper-prev-timeline rotate-180">
-                          <Image src="/assets/right-arrow.png" alt="Previous" width={20} height={20} />
-                        </button>
-                        <button ref={nextRef} className="cursor-pointer swiper-next-timeline">
-                          <Image src="/assets/right-arrow.png" alt="Next" width={20} height={20} />
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -168,19 +167,25 @@
             </Swiper>
           </div>
 
-
-          {/* Navigation buttons - OUTSIDE Swiper but just below text */}
-          {/* <div className="flex lg:justify-start justify-center items-center gap-2 mt-6">
-            <button ref={prevRef} className="cursor-pointer swiper-prev-timeline rotate-180">
+          <div className="flex lg:justify-start justify-center absolute right-[35%] z-20 top-[65%] items-center gap-2 mt-6">
+            <button ref={prevRef} className="cursor-pointer rotate-180" onClick={() => {
+              isUserInteraction.current = true;
+              swiperRef.current?.slidePrev();
+            }}>
               <Image src="/assets/right-arrow.png" alt="Previous" width={20} height={20} />
             </button>
-            <button ref={nextRef} className="cursor-pointer swiper-next-timeline">
+            <button ref={nextRef} className="cursor-pointer" onClick={() => {
+              isUserInteraction.current = true;
+              swiperRef.current?.slideNext();
+            }}>
               <Image src="/assets/right-arrow.png" alt="Next" width={20} height={20} />
             </button>
-          </div> */}
+          </div>
         </div>
-      </section>
-    );
-  };
 
-  export default Journey;
+      </div>
+    </section>
+  );
+};
+
+export default Journey;

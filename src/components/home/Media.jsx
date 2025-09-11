@@ -48,7 +48,7 @@ const Media = () => {
 
   return (
     <section className="bg-white pt-16 px-[20px] lg:px-[100px]">
-      <h2 className="font-sangbleu text-center text-primaryred mb-[35px] lg:mb-20 uppercase tracking-widest text-[13px] lg:text-[20px] leading-[30px] lg:leading-[40px] font-medium">
+      <h2 className="font-sangbleu text-start text-primaryred mb-[35px] lg:mb-20 uppercase tracking-widest text-[13px] lg:text-[20px] leading-[30px] lg:leading-[40px] font-medium">
         Press & Media: Stay Informed & Inspired
       </h2>
 

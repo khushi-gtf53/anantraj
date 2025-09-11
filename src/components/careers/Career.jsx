@@ -34,7 +34,7 @@ const careerSlidesData = [
 
 export default function Career() {
     return (
-        <div className='career bg-[#FBF6F6]'>
+        <div className='career relative bg-[#FBF6F6]'>
             <CommonHeroSec ObjData={Obj} />
             <div className='wrapper' id='work-culture'>
                 <div className='content pb-6 mb-14 border-b-2 border-gray-400'>
@@ -77,6 +77,15 @@ export default function Career() {
                 <JobList />
                 <CareerForm />
             </div>
+            {/* Background Pattern */}
+                          <Image
+                            src="/assets/pattern-bg.png"
+                            alt="pattern-bg"
+                            width={1920}
+                            height={70}
+                            priority
+                            className="h-[70px] bg-[#FBF6F6] absolute left-0 bottom-0 w-full object-cover"
+                          />
         </div>
     )
 }
