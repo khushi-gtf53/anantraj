@@ -94,7 +94,7 @@ const Journey = () => {
 
         {/* Navigation */}
         <div
-          className="flex flex-nowrap overflow-x-auto items-center text-[35px] lg:text-[40px] 
+          className="flex flex-nowrap overflow-x-auto items-center text-[25px] lg:text-[40px] 
               tracking-[1px] pt-5 mb-6 text-primaryblue font-sangbleu 
               border-t border-black whitespace-nowrap scrollbar-hide"
           ref={yearContainerRef}
@@ -154,10 +154,10 @@ const Journey = () => {
                       />
                     </div>
                     <div className="w-full lg:text-left text-center md:w-[30%] md:ml-[60px] font-lato">
-                      <h3 className="text-xl md:text-2xl font-normal text-primaryblue mt-4 md:mt-0">
+                      <h3 className="text-xl md:text-2xl font-normal text-primaryblue myt-4 md:my-0">
                         {slide.year}
                       </h3>
-                      <p className="my-4 tracking-[1px] leading-[26px] text-sm md:text-base">
+                      <p className="mb-4 mt-10 sm:my-4  tracking-[1px] leading-[26px] text-sm md:text-base">
                         {slide.text}
                       </p>
                     </div>
@@ -167,7 +167,7 @@ const Journey = () => {
             </Swiper>
           </div>
 
-          <div className="flex lg:justify-start justify-center absolute right-[35%] z-20 top-[65%] items-center gap-2 mt-6">
+          <div className="flex lg:justify-start justify-center absolute right-[42%] sm:right-[35%] z-20 top-[62%] items-center gap-2 mt-6">
             <button ref={prevRef} className="cursor-pointer rotate-180" onClick={() => {
               isUserInteraction.current = true;
               swiperRef.current?.slidePrev();
