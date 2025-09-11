@@ -62,11 +62,11 @@ const sectionConfigs = {
   award: {
     fields: [
       { type: "text", name: "title", label: "Title" },
-      { type: "image", name: "image", label: "Image" },
-      { type: "text", name: "alt", label: "Alt Tag" },
-      { type: "text", name: "short_description", label: "Short Description" },
+      { type: "image", name: "file", label: "Image" },
+      // { type: "text", name: "alt", label: "Alt Tag" },
+      { type: "text", name: "description", label: "Short Description" },
     ],
-    table: { head: ["Title","Short Description","Image", "Alt Tag"], header: ["title","short_description","image", "alt"] },
+    table: { head: ["Title","Short Description","Image", "Alt Tag"], header: ["title","description","file", "alt"] },
     endpoint: "award",
     label: "Awards",
   },

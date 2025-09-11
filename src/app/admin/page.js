@@ -30,8 +30,7 @@ const Dashboard = () => {
   const [totalProject, setTotalProjects] = useState(0);
   
       const api = useApi(BASE_ADMIN);
-      const { tableData : pages, } = useCrud(api, "distinct-all-pages");
-
+      const { tableData : pages, } = useCrud(api, "page");
   return (
     <section className=" grid grid-cols-12 gap-6 body-detail">
       <div className="col-span-8">
