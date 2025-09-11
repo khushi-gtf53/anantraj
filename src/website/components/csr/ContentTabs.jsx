@@ -10,7 +10,7 @@ const ContentTabs = ({ contentData }) => {
   return (
     <section className="contenttab relative bg-[#FBF6F6] w-full">
       {contentData.map((content, i) => (
-        <div key={i} className="grid grid-cols-1  lg:grid-cols-12 py-10 gap-10 border-t first:border-0" id={content.title.replace(" ", "")}>
+        <div  key={i} className="grid grid-cols-1  lg:grid-cols-12 py-10 gap-10 border-t first:border-0" id={content.title.replace(" ", "")}>
           {/* Image */}
           <div
             className={`col-span-6 ${i % 2 === 1 ? "lg:order-last" : "lg:order-first"

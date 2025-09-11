@@ -48,7 +48,7 @@ const Projects = ({ tabs = [] }) => {
     setLightboxImages(lightboxImage)
 
     return (
-      <div>
+      <div id="discover">
         {/* Sub-tabs */}
         {subTabs.length > 0 && (
           <div className="tabs flex gap-15 text-xl mb-10">

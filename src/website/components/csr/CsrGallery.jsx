@@ -29,7 +29,7 @@ const CsrGallery = () => {
 
   return (
     <>
-      <section className="csr_gallery relative bg-[#FBF6F6] w-full">
+      <section id="gallery" className="csr_gallery relative bg-[#FBF6F6] w-full">
           <CommonHeading>a glimpse of our initiatives</CommonHeading>
 
           <div className="gallery pt-20">

@@ -9,7 +9,6 @@ const OurStory = () => {
   const secondBookRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 450, height: 500 });
   const [bookKey, setBookKey] = useState(0);
-  if(typeof window !== 'undefined')return
   const nextPage = (bookRef) => {
     if (bookRef.current) {
       const pageFlip = bookRef.current.pageFlip();

@@ -17,7 +17,7 @@ const CsrAbout = () => {
             { tabname: "Overview", tablink: "overview" },
             { tabname: "Education", tablink: "education" },
             { tabname: "Employment", tablink: "employment" },
-            { tabname: "Rural Development", tablink: "development" },
+            { tabname: "Rural Development", tablink: "ruraldevelopment" },
             { tabname: "Gallery", tablink: "gallery" },
         ]
     }

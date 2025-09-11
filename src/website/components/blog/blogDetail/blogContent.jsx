@@ -50,7 +50,7 @@ export default function BlogContent() {
         <div className='max-w-[1600px] m-auto blogs_container lg:py-[100px] py-[50px] lg:px-[100px] px-[15px]' id='discover-blogs'>
             <div className='blog__detail__head flex justify-between flex-wrap border-b pb-8 mb-8'>
                 <h2 className=" font-sangbleu uppercase lg:max-w-[54%]  w-full tracking-[2px] leading-[30px] lg:leading-[40px] text-[13px] lg:text-[20px]">Anant Raj Manesar: Pioneering Innovation at the Heart of IT Development</h2>
-                <span className='date font-bold lg:text-[18px] text-[16px]'>2025-07-29</span>
+                <span className='date font-bold lg:text-[18px] text-[16px] mt-4 sm:mt-0'>2025-07-29</span>
             </div>
             {/* description */}
             <div className='blog__detail__desc pb-14'>

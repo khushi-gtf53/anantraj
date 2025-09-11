@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import HeaderMenu from "./HeaderMenu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BASE_URL } from "@/config";
 
 const Header = () => {
   const [showHeader, setShowHeader] = useState(true);
@@ -72,14 +73,15 @@ const Header = () => {
     >
       <Link href="/">
         <img
-          src={
-            (isAboutUs || !isAtTop || !showHeader) && !isTownshipPage
-              ? "/assets/footer-logo-1.png"
-              : "/assets/white-anant.png"
-          }
-          alt="Anant Raj Limited Logo"
-          className={`h-[70px] ${isAtTop ? "lg:h-[75px]" : ""}`}
-        />
+  src={`${process.env.NEXT_PUBLIC_BASE_URL}${
+    (isAboutUs || !isAtTop || !showHeader) && !isTownshipPage
+      ? "/assets/footer-logo-1.png"
+      : "/assets/white-anant.png"
+  }`}
+  alt="Anant Raj Limited Logo"
+  className={`h-[70px] ${isAtTop ? "lg:h-[75px]" : ""}`}
+/>
+
       </Link>
 
       <nav className="flex space-x-6 items-center">

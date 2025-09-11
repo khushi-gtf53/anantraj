@@ -10,7 +10,6 @@ const Brands = () => {
   const sliderRef = useRef(null);
   const headerRef = useRef(null);
   const [slidesToShow, setSlidesToShow] = useState(3);
-  if(typeof window !== 'undefined')return
   const sections = [
     {
       title: "LINEAGE-LED",
@@ -41,7 +40,6 @@ const Brands = () => {
       image: "/assets/pillar.webp",
     },
   ];
-  if(typeof window !== 'undefined')return
   useEffect(() => {
     const updateSlidesToShow = () => {
       const width = window.innerWidth;
