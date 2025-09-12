@@ -8,6 +8,7 @@ import ProjectCard from "./ProjectCard";
 const categories = [
   {
     category: "Residential",
+    link :"residential",
     bigImage: "/assets/projects/1.webp",
     title: "Explore All Residential Projects",
     description:
@@ -17,6 +18,7 @@ const categories = [
   {
     category: "Commercial",
     bigImage: "/assets/projects/2.webp",
+    link :"residential",
     title: "Explore All Commercial Projects",
     description:
       "Premium office spaces and commercial hubs designed for businesses to thrive.",
@@ -24,6 +26,7 @@ const categories = [
   {
     category: "Hospitality",
     bigImage: "/assets/projects/3.webp",
+    link :"residential",
     title: "Explore All Hospitality Projects",
     description:
       "Luxury hotels and resorts with a blend of comfort and elegance.",
@@ -31,6 +34,7 @@ const categories = [
   {
     category: "Data Centers",
     bigImage: "/assets/projects/4.webp",
+    link :"residential",
     title: "Explore All Data Center Projects",
     description:
       "High-tech data centers with world-class infrastructure and reliability.",

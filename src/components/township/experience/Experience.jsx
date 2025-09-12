@@ -1,148 +1,118 @@
-"use client";
-import { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CommonHeading from "../../common/CommonHeading";
-import "./experience.css";
+import React, { useEffect } from 'react';
+import CommonHeading from '../../common/CommonHeading';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const images = [
-  "assets/township/experience/image1.jpg",
-  "assets/township/experience/image2.jpg",
-  "assets/township/experience/image3.jpg",
-  "assets/township/experience/image4.jpg",
-  "assets/township/experience/image5.jpg",
-];
-
-const TownshipExperience = () => {
-    if(typeof window !== 'undefined')return
+const Experience = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-  
-    const imageSection = document.querySelector(".images");
-    const projectSections = gsap.utils.toArray(".project_sec");
-  
-    if (!imageSection || projectSections.length === 0) return;
-  
-    // ---- Center image grow animation (same as before) ----
-    const imageHeight = 10;
-    const targetHeight = 100;
-    const heightDifference = targetHeight - imageHeight;
-    const endValue = heightDifference * 50; // aapka multiplier
-  
-    // IMPORTANT: image ko itne lambe time tak pin rakho ki saare projects stack ho saken
-    const extraForProjects = window.innerHeight * projectSections.length + 200; // +buffer
-    const imagePin = gsap.to(".image_col:nth-child(3)", {
-      scrollTrigger: {
-        trigger: imageSection,
-        start: "top top",
-        end: `+=${endValue + window.innerHeight + extraForProjects}`, // 🔴 yahi trick
-        pin: true,
-        scrub: 1,
-        markers: false,
-        anticipatePin: 1,
-      },
-      width: "100vw",
-      height: "100vh",
-      filter: "brightness(0.5)",
-      ease: "none",
-    });
-  
-    // ---- Project sections ko one-by-one stack pin ----
-    projectSections.forEach((section) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: `+=${window.innerHeight}`, // har section ~1 viewport ke liye pin
-        pin: true,
-        pinSpacing: false, // stack effect
-        anticipatePin: 1,
-        // markers: true,
+
+    const expSection = document.querySelectorAll('.experience_sec');
+    const nextSection = document.querySelector('.projects_section'); 
+
+    // Initially hide the next section
+    gsap.set(nextSection, { opacity: 0, pointerEvents: 'none' });
+
+    expSection.forEach((section) => {
+      const img = section.querySelector('.animate_img');
+      const textContent = section.querySelector('.content');
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top -10%',
+          end: '+=1000',
+          scrub: 1, 
+          pin: true, 
+          pinSpacing: true, 
+          onEnter: () => {
+            gsap.to(nextSection, {
+              opacity: 0,
+              pointerEvents: 'none',
+              duration: 0.1,
+            });
+          },
+          onLeave: () => {
+            gsap.to(nextSection, {
+              opacity: 1,
+              pointerEvents: 'auto',
+              duration: 0.5,
+              pin : true,
+              ease: 'power2.out',
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(nextSection, {
+              opacity: 0,
+              pointerEvents: 'none',
+              duration: 0.5,
+              ease: 'power2.out',
+            });
+          },
+        },
       });
+
+      tl.to(img, {
+        width: '100vw',
+        height: '100vh',
+        ease: 'power2.out',
+        objectFit: 'cover',
+        duration: 2, 
+      });
+
+      tl.to(
+        textContent,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+        },
+        '+=1' 
+      );
+
+      tl.to({}, { duration: 1 }); 
     });
-  
-    // Cleanup
+
     return () => {
-      imagePin?.scrollTrigger?.kill();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
-    <>
-      <div className="main_sec">
-        <div className="experience_section pt-[100px] bg-[#FBF6F6]">
-        <div className="container">
-          <div className="content text-center mx-auto leading-[26px] relative">
-            <CommonHeading customClass="mx-auto lg:max-w-[700px]">
-              Experience Excellence In Our Premier Properties
-            </CommonHeading>
-            <div className="images flex justify-center gap-[20px] py-[80px]">
-              {images.map((item, index) => (
-                <div
-                  className="image_col relative overflow-hidden w-full flex-shrink-0"
-                  key={index}
-                  style={{ backgroundImage: `url(${item})` }}
-                ></div>
-              ))}
-            </div>
-            <div className="image_content absolute bottom-[80px] text-center mx-auto leading-[26px] mx-auto left-[50%] translate-x-[-50%]">
-              <h5 className="text-white text-[30px] uppercase text-center tracking-[1px] font-sangbleu">
-                The Estate Residences
-              </h5>
-              <p className="text-white text-[16px] mt-[15px] uppercase text-center tracking-[2px] font-sangbleu color-[#ffffffe6]">
-                Sector 63A, Gurugram, Haryana
-              </p>
-            </div>
-          </div>
-        </div>
+    <section className="experience_sec w-full bg-[#FBF6F6]">
+      <div className="wrapper">
+        <CommonHeading>
+          Experience Excellence In Our Premier Properties
+        </CommonHeading>
       </div>
-
-      <div className="township_projects_section relative">
-        <div className="project_sec relative">
+      <div className="slides pb-40">
+        <div className="flex gap-4 justify-center items-center">
+          <img src="assets/township/experience/image1.jpg" alt="" />
+          <img src="assets/township/experience/image2.jpg" alt="" />
           <img
             src="assets/township/projects/project.webp"
-            alt="experience image 1"
-            className="img-fluid w-full bg_img"
+            alt=""
+            className="animate_img w-[400px] h-[550px] object-cover"
           />
-          <div className="container">
-            <div className="content absolute bottom-[80px] text-center mx-auto leading-[26px] mx-auto left-[50%] translate-x-[-50%]">
-              <h5 className="text-white text-[30px] uppercase text-center tracking-[1px] font-sangbleu">
-                The Estate Residences
-              </h5>
-              <p className="text-white text-[16px] mt-[15px] uppercase text-center tracking-[2px] font-sangbleu color-[#ffffffe6]">
-                Sector 63A, Gurugram, Haryana
-              </p>
-            </div>
-          </div>
+          <img src="assets/township/experience/image4.jpg" alt="" />
+          <img src="assets/township/experience/image5.jpg" alt="" />
         </div>
+      </div>
 
-        <div className="project_sec relative">
-          <img
-            src="assets/township/projects/project2.jpg"
-            alt="experience image 1"
-            className="img-fluid w-full bg_img"
-          />
-          <div className="container">
-            <div className="content absolute bottom-[80px] text-center mx-auto leading-[26px] mx-auto left-[50%] translate-x-[-50%]">
-              <h5 className="text-white text-[30px] uppercase text-center tracking-[1px] font-sangbleu">
-                The Estate Residences
-              </h5>
-              <p className="text-white text-[16px] mt-[15px] uppercase text-center tracking-[2px] font-sangbleu color-[#ffffffe6]">
-                Sector 63A, Gurugram, Haryana
-              </p>
-            </div>
-          </div>
+      {/* Hidden text initially, will fade in after image animation completes */}
+      <div className="container">
+        <div className="content absolute bottom-[80px] text-center leading-[26px] mx-auto left-[50%] translate-x-[-50%] opacity-0">
+          <h5 className="text-white text-[30px] uppercase text-center tracking-[1px] font-sangbleu">
+            The Estate Residences
+          </h5>
+          <p className="text-white text-[16px] mt-[15px] uppercase text-center tracking-[2px] font-sangbleu color-[#ffffffe6]">
+            Sector 63A, Gurugram, Haryana
+          </p>
         </div>
-
-        <ul className="dots">
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
       </div>
-      </div>
-    </>
+    </section>
   );
 };
 
-export default TownshipExperience;
+export default Experience;

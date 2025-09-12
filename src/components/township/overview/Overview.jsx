@@ -31,7 +31,7 @@ const TownshipOverview = ()=>{
   return(
     <div className='overview_section py-[150px]'>
         <div className="container">
-          <div className="content text-center max-w-[750px] mx-auto leading-[26px]">
+          <div className="content text-center max-w-[35%] mx-auto leading-[26px]">
             <p>Founded in 1969, Anant Raj Limited established itself as a symbol of unparalleled quality and ethical business practices, earning recognition as one of the foremost construction and development firms of the 1970s and 1980s. During this time, the Anant Raj Limited successfully built nearly 30,000 homes across Delhi and the NCR region.</p>
           </div>
         </div>

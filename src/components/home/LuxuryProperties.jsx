@@ -6,6 +6,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import gsap from "gsap";
+import Link from "next/link";
 
 const slides = [
   {
@@ -354,9 +355,10 @@ const LuxuryProperties = () => {
 
         {/* Navigation Buttons */}
         <div className="flex justify-start lg:flex-nowrap flex-wrap lg:flex-row flex-col-reverse w-full  lg:mt-[2.5rem] ">
-          <button className="font-[600] mx-auto w-[70%] lg:w-[350px] text-[14px] text-primaryblue text-center lg:mt-0  font-lato border-y-[1px] py-[9px] px-[25px] tracking-[1px] border-primaryblue border-y-solid">
+         <Link href="projects"> <button className="font-[600] mx-auto w-[70%] lg:w-[350px] text-[14px] text-primaryblue text-center lg:mt-0  font-lato border-y-[1px] py-[9px] px-[25px] tracking-[1px] border-primaryblue border-y-solid">
             EXPLORE ALL PROJECTS
           </button>
+          </Link>
 
           {/* Desktop Arrows */}
           <div className="lg:flex hidden justify-start lg:justify-end w-full mb-0 lg:mt-2">

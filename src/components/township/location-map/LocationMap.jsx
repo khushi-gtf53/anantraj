@@ -20,17 +20,17 @@ const TownshipLocationmap = () => {
       const mainSection = document.querySelector('.township_location_advantage_section');
       const sections = gsap.utils.toArray(".flex-point");
       const pinTriggers = [];
-  
+
       sections.forEach((sec, i) => {
         const texts = sec.querySelectorAll("p");
         const circle = sec.querySelector(".round");
         const targets = [...texts, circle].filter(Boolean);
         const nextSec = sections[i + 1];
-      
+
         // initial state
-        gsap.set(targets, { opacity: 0.1, willChange: "opacity, transform" });
+        gsap.set(targets, { opacity: 1, willChange: "opacity, transform" });
         if (circle) gsap.set(circle, { scale: 0.96 });
-      
+
         // FADE-IN (same as before, but ek saath targets par)
         if (targets.length) {
           gsap.to(targets, {
@@ -60,7 +60,7 @@ const TownshipLocationmap = () => {
             },
           });
         }
-      
+
         // ✅ FADE-OUT CURRENT as NEXT arrives (use .to, not .fromTo)
         if (nextSec && targets.length) {
           gsap.fromTo(
@@ -80,7 +80,7 @@ const TownshipLocationmap = () => {
             }
           );
         }
-      
+
         // pinning (as-is)
         const pinST = ScrollTrigger.create({
           trigger: sec,
@@ -99,20 +99,20 @@ const TownshipLocationmap = () => {
       ScrollTrigger.create({
         trigger: mainSection,
         start: "top top",
-        end: "bottom 80%",         // jab mainSection ka bottom viewport ke 80% par aata hai
-        onLeave: () => {           // scrolling DOWN past end
-          pinTriggers.forEach(st => st.disable()); // unpin all
+        end: "bottom 80%",
+        onLeave: () => {
+          pinTriggers.forEach(st => st.disable());
         },
-        onEnterBack: () => {       // scrolling UP back into the section
-          pinTriggers.forEach(st => st.enable());  // re-pin all
+        onEnterBack: () => {
+          pinTriggers.forEach(st => st.enable());
         },
         // markers: true,
       });
     });
-  
+
     return () => ctx.revert();
   }, []);
-  
+
 
   return (
     <div className="township_location_advantage_section relative bg-[#FBF6F6]">
@@ -124,9 +124,11 @@ const TownshipLocationmap = () => {
 
       <div className="container">
         <div className="advantages py-[100px]">
+          <div className="sticky-heading">
           <CommonHeading customClass="mx-auto lg:max-w-[700px] text-center">
             Strategic Location Advantages
           </CommonHeading>
+          </div>
 
           <div className="points pt-[100px]">
             {location_advantages.map((item, index) => {
@@ -136,7 +138,7 @@ const TownshipLocationmap = () => {
                     className={`flex-point md:flex gap-[80px] ${index !== location_advantages.length - 1 ? "mb-[60px] md:mb-[100px]" : ""}`} // ${index !== 0 ? "mt-[100px]" : ""}
                     key={index}
                   >
-                    <div className="col order-2">
+                    <div className="col order-2 relative">
                       <div className="round border h-[150px] md:h-[300px] md:w-[300px] w-[150px] rounded-full flex items-center justify-center flex-col bg-[#fbf6f6] mx-auto">
                         <h4 className="font-sangbleu text-[18px] md:text-[24px] uppercase">
                           {item.distance}
@@ -145,6 +147,10 @@ const TownshipLocationmap = () => {
                           ({item.time})
                         </h4>
                       </div>
+                      {index !== location_advantages.length - 1 && (
+                        <div className="line absolute left-[50%] h-40 w-[1px] bg-black"></div>
+                      )}
+
                     </div>
 
                     <div className="col flex flex-1 justify-center flex-col md:mt-0 mt-3">
@@ -158,7 +164,7 @@ const TownshipLocationmap = () => {
                       ))}
                     </div>
 
-                    
+
 
                     <div className="col order-3 flex-1" />
                   </div>

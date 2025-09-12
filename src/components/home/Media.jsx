@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import Link from "next/link";
 
 const mediaArticles = [
   {
@@ -85,9 +86,10 @@ const Media = () => {
 
       {/* Bottom controls */}
       <div className="flex lg:flex-row flex-col-reverse justify-between lg:items-center">
-        <button className="text-primaryblue mx-auto lg:mx-0 font-semibold lg:mt-0 mt-[25px] lg:w-auto w-[80%] text-sm border-t border-b border-primaryblue px-6 tracking-[2px] py-[10px] hover:bg-primaryblue hover:text-white transition">
+        <Link href="media-center"><button className="text-primaryblue mx-auto lg:mx-0 font-semibold lg:mt-0 mt-[25px] lg:w-auto w-[80%] text-sm border-t border-b border-primaryblue px-6 tracking-[2px] py-[10px] hover:bg-primaryblue hover:text-white transition">
           EXPLORE MORE NEWS
         </button>
+        </Link>
 
         <div className="flex lg:justify-start justify-center">
           <button

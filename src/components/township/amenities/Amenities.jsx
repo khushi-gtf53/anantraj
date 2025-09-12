@@ -35,7 +35,7 @@ const TownshipAmenities = () => {
       gsap.fromTo(
         image,
         {
-          opacity: 0, // Initially hidden
+          opacity: 0.5, // Initially hidden
         },
         {
           scrollTrigger: {
@@ -97,11 +97,13 @@ const TownshipAmenities = () => {
         <CommonHeading customClass="mx-auto lg:max-w-[600px] text-center">
           Stunning Luxury Prime Residences, Designed For Life
         </CommonHeading>
-        <ul className="flex points justify-center items-center mt-[50px] mb-[100px]">
+        <ul className="flex gap-4 points justify-center items-center mt-[50px] mb-[100px]">
           {am_points.map((item, index) => (
             <div key={index}>
+              <div className="flex gap-2">
               <li className="tracking-[1px]">{item}</li>
-              {index !== am_points.length - 1 && <span className="divider"></span>}
+              {index !== am_points.length - 1 && <span className="divider"> | </span>}
+              </div>
             </div>
           ))}
         </ul>

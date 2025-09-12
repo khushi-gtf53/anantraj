@@ -85,7 +85,7 @@ const PlatterProjects = ({ tabs = [], activeTab }) => {
                   </div>
                   {project.link && (
                     <div className="download py-2 mt-5 border-y text-center uppercase text-primaryblue font-bold">
-                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      <a href={project.link} rel="noopener noreferrer">
                         Explore Project
                       </a>
                     </div>

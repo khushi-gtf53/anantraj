@@ -41,8 +41,8 @@ const Footer = ({showFooter}) => {
       title: "More",
       links: [
         { label: "Data Centers", href: "/data-centers" },
-        { label: "Media Center", href: "/media-center", expand: true },
         { label: "Hospitality", href: "/hospitality" },
+        { label: "Media Center", href: "/media-center", expand: true },
       ],
     },
   ];
@@ -99,7 +99,7 @@ const Footer = ({showFooter}) => {
             src="/assets/footer-logo-1.png"
             width={200}
             height={100}
-            className="h-[60px] lg:h-[100px] object-contain"
+            className="w-[100px] md:w-[150px] object-cover"
             alt="Anant Raj Logo"
           />
 
@@ -109,7 +109,7 @@ const Footer = ({showFooter}) => {
               width={200}
               height={157}
               alt="Portrait"
-              className="h-[130px] object-contain grayscale"
+              className="w-[150px] object-cover grayscale"
             />
           </div>
 
@@ -128,7 +128,7 @@ const Footer = ({showFooter}) => {
               width={200}
               height={157}
               alt="Portrait"
-              className="h-[157px] object-contain grayscale"
+              className="w-[100px] md:w-[150px] object-cover grayscale"
             />
           </div>
         </div>

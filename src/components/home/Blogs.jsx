@@ -113,7 +113,7 @@ const Blogs = () => {
                       {slide.title}
                     </p>
 
-                    <div className="lg:mx-0 mx-auto mt-[40px]">
+                    <div className="lg:mx-0 z-10 mx-auto mt-[40px]">
                     <Link href="/blogs">  <button className="text-primaryblue font-semibold w-[100%] lg:w-auto text-sm border-t border-b border-primaryblue px-6 tracking-[2px] py-[10px] hover:bg-primaryblue hover:text-white transition">
                         EXPLORE BLOGS & NEWS
                       </button></Link>

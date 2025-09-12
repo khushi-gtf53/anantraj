@@ -152,7 +152,7 @@ const OurTeam = () => {
                 </li>
               ))}
             </ul>
-            <div className="w-full sm:w-[50%]">
+            <div className="w-full z-10 sm:w-[50%]">
               <Link href="aboutus">
                 <button className="font-[600] text-[14px] lg:mx-0 mx-auto lg:w-auto w-[60%] text-primaryblue text-center mt-[20px] flex justify-center font-lato border-y-[1px] py-[9px] px-[19px] lg:px-[25px] tracking-[1px] border-primaryblue border-y-solid">
                   EXPLORE OUR TEAM

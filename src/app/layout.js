@@ -19,6 +19,11 @@ export const metadata = {
   title: "My Website",
   metadataBase: new URL("https://anantrajlimited.netlify.app/"),
   description: "Awesome website built with Next.js",
+  icons: {
+    icon: "/favicon.ico", 
+    shortcut: "/favicon.ico", 
+    apple: "/favicon.ico", 
+  },
 };
 
 export default function WebsiteLayout({ children }) {

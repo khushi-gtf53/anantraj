@@ -16,22 +16,11 @@ const TownshipProjects = ()=>{
       gsap.to(section, {
         scrollTrigger: {
           trigger: section, 
-          start: 'top top', // When top of section hits center of viewport
-          end: 'bottom top', // When bottom of section hits center of viewport
-          scrub: true, // Smooth scroll effect
-          pin: true, // Pin the section during the scroll
-          pinSpacing: false, // Prevent extra space after pinning
-          // When a section has been pinned, allow the next one to come over it
-          // onEnter: () => {
-          //   if (index > 0) {
-          //     gsap.to(projectSections[index - 1], { opacity: 0 }) // Fade previous section out
-          //   }
-          // },
-          // onLeaveBack: () => {
-          //   if (index > 0) {
-          //     gsap.to(projectSections[index - 1], { opacity: 1 }) // Fade previous section back in when scrolling up
-          //   }
-          // }
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true, 
+          pin: true, 
+          pinSpacing: false,         
         }
       })
     })
