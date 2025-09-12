@@ -9,14 +9,14 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "./projects.css";
 
-const Projects = ({ tabs = [], activeTab }) => {
-  const [activeTab2, setActiveTab2] = useState(tabs[0]?.key || "");
+const Projects = ({ tabs = [] }) => {
+  const [activeTab, setActiveTab] = useState(tabs[0]?.key || "");
   const [currentPage, setCurrentPage] = useState(1);
   const [index, setIndex] = useState(-1);
   const imagesPerPage = 6;
 
   // 🔹 Active gallery data
-  const activeTabObj = tabs.find((t) => t.key === activeTab2);
+  const activeTabObj = tabs.find((t) => t.key === activeTab);
   const gallery = activeTabObj?.images || [];
 
   const totalPages = Math.ceil(gallery.length / imagesPerPage);
@@ -69,7 +69,7 @@ const Projects = ({ tabs = [], activeTab }) => {
           <div className="pagination gap-2 flex justify-end items-center mt-5">
             {Array.from({ length: totalPages }, (_, i) => (
               <React.Fragment key={i}>
-                <Link href={`#${activeTab2}`}>
+                <Link href={`#${activeTab}`}>
                   <button
                     onClick={() => setCurrentPage(i + 1)}
                     className={`cursor-pointer ${
@@ -88,7 +88,7 @@ const Projects = ({ tabs = [], activeTab }) => {
         )}
       </div>
     );
-  }, [visibleImages, currentPage, totalPages, activeTab2, startIndex]);
+  }, [visibleImages, currentPage, totalPages, activeTab, startIndex]);
 
   return (
     <>
@@ -102,17 +102,14 @@ const Projects = ({ tabs = [], activeTab }) => {
 
           {tabs.map((tab) => (
             <Accordion
-              id={tab.key}
               key={tab.key}
               label={tab.label}
               isOpen={activeTab === tab.key}
               onClick={() =>
-                setActiveTab2(activeTab2 === tab.key ? "" : tab.key)
+                setActiveTab(activeTab === tab.key ? "" : tab.key)
               }
             >
-              <div id={tab.key} className=" md:mb-10">
-                {activeTab2 === tab.key && renderProject}
-              </div>
+              <div id={tab.key} className=" md:mb-10">{renderProject}</div>
             </Accordion>
           ))}
         </div>
