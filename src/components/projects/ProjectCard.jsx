@@ -43,7 +43,7 @@ export default function ProjectCard({ item, active }) {
             )}
             {/* Desktop category text */}
             {windowWidth >= 767 && (
-                <CategoryText category={item.category} item={item} title={item.title} active={active} />
+                <CategoryText category={item.category} title={item.title} active={active} />
             )}
         </div>
     )
