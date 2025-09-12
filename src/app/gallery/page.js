@@ -5,7 +5,6 @@ import Image from 'next/image';
 import React, { useState } from 'react'
 
 const page = () => {
-  const [activeTab, setActiveTab] = useState("allprojects");
   const tabs = [
     {
       key: "allprojects",
