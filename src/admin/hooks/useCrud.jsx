@@ -21,12 +21,14 @@ export const useCrud = (api, endpoint, tableHeader,autoFetch = true) => {
     if (response) {
       let records = [];
 
-      if (Array.isArray(response.data)) {
-        records = response.data;
-      } else if (Array.isArray(response.data?.data)) {
-        records = response.data.data;
-      }
-
+if (Array.isArray(response.data)) {
+  records = response.data;
+} else if (Array.isArray(response.data?.data)) {
+  records = response.data.data;
+} else if (response.data && typeof response.data === "object") {
+  // wrap single object in array
+  records = [response.data];
+}
       let formatted;
 
       if (Array.isArray(tableHeader) && tableHeader.length > 0) {
@@ -60,7 +62,7 @@ useEffect(() => {
   };
 
   // ✅ Add or update
-  const handleAddOrUpdate = async (data) => {
+  const handleAddOrUpdate = async (data,skipFetch = false) => {
     if (!endpoint) return;
 
     try {
@@ -82,7 +84,7 @@ useEffect(() => {
 
         if (response) {
           toast.success("Added successfully");
-          fetchTableData(currentPage); // refresh list
+         if (!skipFetch) fetchTableData(currentPage);
         }
       }
     } catch (error) {

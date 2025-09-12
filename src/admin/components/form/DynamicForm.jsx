@@ -9,6 +9,7 @@ import Card from "../card/Card";
 import TextDropdown from "./TextDropdown";
 import RichTextEditor from "./RichTextEditor";
 import { useRouter } from "next/navigation"; 
+import ArrayField from "./ArrayField";
 const DynamicForm = ({
   title,
   data,
@@ -100,7 +101,14 @@ const DynamicForm = ({
             onChange={(fieldName, file) => handleChange(fieldName, file)}
           />
         );
-
+      case "array":
+        return (
+          <ArrayField
+            field={field}
+            value={formData[field.name]}
+            setFormData={setFormData}
+          />
+        );
       case "video":
         return (
           <VideoUpload
