@@ -1,5 +1,5 @@
 "use client";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CommonHeading from "../../common/CommonHeading";
@@ -15,6 +15,7 @@ const location_advantages = [
 ];
 
 const TownshipLocationmap = () => {
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const mainSection = document.querySelector('.township_location_advantage_section');
@@ -31,7 +32,6 @@ const TownshipLocationmap = () => {
         gsap.set(targets, { opacity: 1, willChange: "opacity, transform" });
         if (circle) gsap.set(circle, { scale: 0.96 });
 
-        // FADE-IN (same as before, but ek saath targets par)
         if (targets.length) {
           gsap.to(targets, {
             opacity: 1,
@@ -61,7 +61,6 @@ const TownshipLocationmap = () => {
           });
         }
 
-        // ✅ FADE-OUT CURRENT as NEXT arrives (use .to, not .fromTo)
         if (nextSec && targets.length) {
           gsap.fromTo(
             targets,
@@ -69,7 +68,7 @@ const TownshipLocationmap = () => {
             {
               opacity: 0,
               ease: "none",
-              immediateRender: false,   // ⬅️ critical
+              immediateRender: false,
               scrollTrigger: {
                 trigger: nextSec,
                 start: "top 70%",
@@ -106,24 +105,34 @@ const TownshipLocationmap = () => {
         onEnterBack: () => {
           pinTriggers.forEach(st => st.enable());
         },
-        // markers: true,
       });
     });
 
     return () => ctx.revert();
   }, []);
 
+useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const heading = document.querySelector(".sticky-heading");
+
+  if (heading) {
+    ScrollTrigger.create({
+      trigger: ".advantages",
+      start: "top top",
+      end: "bottom bottom",
+      pin: heading,
+      pinSpacing: false, 
+    });
+  }
+}, []);
 
   return (
     <div className="township_location_advantage_section relative bg-[#FBF6F6]">
-      <img
-        src="assets/township/location/map.webp"
-        alt="Location map"
-        className="img-fluid w-full"
-      />
+      <img src="assets/township/location/map.webp" alt="Location map" className="img-fluid w-full" />
 
       <div className="container">
-        <div className="advantages py-[100px]">
+        <div className="advantages relative py-[100px]">
           <div className="sticky-heading">
           <CommonHeading customClass="mx-auto lg:max-w-[700px] text-center">
             Strategic Location Advantages
@@ -150,7 +159,6 @@ const TownshipLocationmap = () => {
                       {index !== location_advantages.length - 1 && (
                         <div className="line absolute left-[50%] h-40 w-[1px] bg-black"></div>
                       )}
-
                     </div>
 
                     <div className="col flex flex-1 justify-center flex-col md:mt-0 mt-3">
@@ -163,9 +171,6 @@ const TownshipLocationmap = () => {
                         </p>
                       ))}
                     </div>
-
-
-
                     <div className="col order-3 flex-1" />
                   </div>
                 );

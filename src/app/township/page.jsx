@@ -1,18 +1,21 @@
 "use client";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import TownshipExperience from "@/src/components/township/experience/Experience";
 import TownshipHero from "@/src/components/township/hero/Hero";
 import TownshipOverview from "@/src/components/township/overview/Overview";
-// import TownshipProjects from "@/src/components/township/projects/Projects";
+import TownshipProjects from "@/src/components/township/projects/Projects";
 import TownshipAmenities from "@/src/components/township/amenities/Amenities";
 import TownshipLocationmap from "@/src/components/township/location-map/LocationMap";
 import Footer from "@/src/components/common/Footer";
-import TownshipProjects from "@/src/components/township/projects/Projects";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 const Township = () => {
   // Refs to the wrapper and content divs
   const wrapperRef = useRef(null);
   const contentRef = useRef(null);
+
+
 
   useLayoutEffect(()=>{
     let smoother;

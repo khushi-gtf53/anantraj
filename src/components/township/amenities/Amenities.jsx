@@ -1,124 +1,165 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CommonHeading from "../../common/CommonHeading";
 import './amenities.css';
 
 const am_points = [
-  "Club house",
-  "Green Areas",
-  "Parks",
-  "Kids Play Area",
-  "Wide Roads",
-  "Gated Community",
-  "Security"
+  {
+    img: "assets/township/amenities/clubhouse.jpg",
+    headng: "Club house",
+  },
+  {
+    img: "assets/township/amenities/clubhouse.jpg",
+    headng: "Green Areas",
+  },
+  {
+    img: "assets/township/amenities/clubhouse.jpg",
+    headng: "Parks",
+  },
+  {
+    img: "assets/township/amenities/clubhouse.jpg",
+    headng: "Kids Play Area",
+  },
+  {
+    img: "assets/township/amenities/clubhouse.jpg",
+    headng: "Wide Roads",
+  },
+  {
+    img: "assets/township/amenities/clubhouse.jpg",
+    headng: "Gated Community",
+  },
+  {
+    img: "assets/township/amenities/clubhouse.jpg",
+    headng: "Security",
+  },
 ];
 
 const TownshipAmenities = () => {
+  const containerRef = useRef(null);
+  const titlesRef = useRef([]);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Pinning and animation for each `.single_am` element
-    gsap.utils.toArray('.single_am').forEach((section, index) => {
-      const title = section.querySelector('h4');
-      const image = section.querySelector('img');
-      const allImages = document.querySelectorAll('.single_am img'); // All images in the section
+    const heading = document.querySelector(".topsec");
+    if (heading) {
+      ScrollTrigger.create({
+        trigger: ".township_amenities_section",
+        start: "top top",
+        end: "bottom bottom",
+        pin: heading,
+        pinSpacing: false,
+      });
+    }
 
-      // Get the height of the section for dynamic centering
-      const sectionHeight = section.offsetHeight;
+    const sections = gsap.utils.toArray(".single_am");
+    if (sections.length === 0) return;
 
-      // Set initial opacity for all images to 0 when the page loads
-      gsap.set(allImages, { opacity: 0 });
+    sections.forEach((sec, i) => {
+      const img = sec.querySelector("img");
+      const title = sec.querySelector(".title");
+      titlesRef.current[i] = title;
 
-      // Image fade-in effect for current image (when section enters view)
-      gsap.fromTo(
-        image,
-        {
-          opacity: 0.5, // Initially hidden
-        },
-        {
+      gsap.set(img, { y: 400, opacity: 0.5 });
+      gsap.set(title, { color: "#000000", opacity: i === 0 ? 1 : 0 });
+    });
+
+    sections.forEach((sec, i) => {
+      const img = sec.querySelector("img");
+      const title = titlesRef.current[i];
+
+      const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: section,
-            start: `top+=${sectionHeight / 2} center`, // Image starts fading in after scroll (dynamic offset)
-            end: 'bottom center', // Pin the section and keep it active until the bottom reaches center
-            scrub: true, // Smooth scroll-based animation
-            pin: true, // Pin the section while it's in view
-            markers: false, // Set to true if you want to debug
-          },
-          opacity: 1, // Fade the current image in
-        }
-      );
+          trigger: sec,
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
+          pin: true,
+          pinSpacing: false,
+        },
+      });
 
-      // Fade out the previous image once the new image starts fading in
-      // if (index > 0) {
-      //   gsap.fromTo(
-      //     allImages[index - 1], // The previous image (if any)
-      //     {
-      //       opacity: 1, // Initially visible
-      //     },
-      //     {
-      //       scrollTrigger: {
-      //         trigger: section,
-      //         start: `top+=${sectionHeight / 2} center`, // Start fading out when the current section starts appearing
-      //         end: 'bottom+=100px center', // Fades out as the current section continues scrolling
-      //         scrub: true, // Smooth scroll-based animation
-      //         markers: false, // Set to true if you want to debug
-      //       },
-      //       opacity: 0, // Fade out the previous image
-      //     }
-      //   );
-      // }
+      if (i > 0) {
+        tl.to(title, {
+          opacity: 1,
+          color: "#000000",
+          ease: "power2.out",
+          duration: 0.2,
+        });
+      }
 
-      // Title color change effect (separate from pinning)
-      gsap.fromTo(
+      tl.to(img, {
+        y: 0,
+        opacity: 1,
+        ease: "power2.out",
+        duration: 0.8,
+      }, "+=0.1") 
+      .to(
         title,
         {
-          color: 'black', // Initial color
+          color: "#FFFFFF",
+          ease: "none",
+          duration: 0.5,
         },
+        "<" 
+      )
+     
+      .to(img, {
+        opacity: 0,
+        ease: "power2.out",
+        duration: 0.3,
+      }, "+=0.2")
+      .to(
+        title,
         {
-          scrollTrigger: {
-            trigger: section,
-            start: `top+=${sectionHeight / 2} center`, // Title color change happens when section is centered
-            end: 'bottom center', // Keep color change until the section scrolls out
-            scrub: true,
-            pin: false, // Ensure the title color change does not interfere with the pin
-            markers: false, // Set to true if you want to debug
-          },
-          color: 'white', // Change color to white as the image fades in
-        }
+          opacity: 0,
+          ease: "power2.out",
+          duration: 0.3,
+        },
+        "<"
       );
     });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
   }, []);
 
   return (
-    <div className='township_amenities_section relative py-[100px] bg-[#FBF6F6]'>
+    <div className="township_amenities_section relative py-[100px] bg-[#FBF6F6]">
       <div className="container">
-        <CommonHeading customClass="mx-auto lg:max-w-[600px] text-center">
-          Stunning Luxury Prime Residences, Designed For Life
-        </CommonHeading>
-        <ul className="flex gap-4 points justify-center items-center mt-[50px] mb-[100px]">
+        <div className="topsec mb-40">
+          <CommonHeading customClass="mx-auto lg:max-w-[600px] text-center">
+            Stunning Luxury Prime Residences, Designed For Life
+          </CommonHeading>
+          <ul className="flex gap-4 points justify-center items-center mt-[50px] mb-[100px]">
+            {am_points.map((item, index) => (
+              <li key={index} className="flex gap-2 tracking-[1px] items-center">
+                {item.headng}
+                {index !== am_points.length - 1 && <span className="divider"> | </span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="am_content relative" ref={containerRef}>
           {am_points.map((item, index) => (
-            <div key={index}>
-              <div className="flex gap-2">
-              <li className="tracking-[1px]">{item}</li>
-              {index !== am_points.length - 1 && <span className="divider"> | </span>}
-              </div>
-            </div>
-          ))}
-        </ul>
-
-        <div className="am_content">
-          {am_points.map((item, index) => (
-            <div className="single_am max-w-[50%] mx-auto relative" key={index}>
-              <img 
-                src={`assets/township/amenities/clubhouse.jpg`} 
-                alt={`${item} image`} 
-                className="img-fluid w-full" 
-              />
-              <h4 className="title absolute font-sangbleu text-[40px] top-[50%] left-[50%] translate-[-50%]">
-                {item}
+            <div
+              className="single_am my-20 max-w-[50%] mx-auto relative"
+              key={index}
+            >
+              <h4 
+                className="title absolute font-sangbleu text-[40px] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-[10]"
+                ref={(el) => (titlesRef.current[index] = el)}
+              >
+                {item.headng}
               </h4>
+              <img
+                src={item.img}
+                alt={item.headng}
+                className="img-fluid w-full z-[5]"
+              />
             </div>
           ))}
         </div>
