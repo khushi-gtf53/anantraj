@@ -1,14 +1,9 @@
 
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "next/navigation";
-import { toast } from "react-toastify";
-import Card from "@/src/admin/components/card/Card";
-import CardHeading from "@/src/admin/components/card/CardHeading";
-import DynamicForm from "@/src/admin/components/form/DynamicForm";
 import { BASE_ADMIN } from "@/config";
 import { useApi } from "@/src/admin/hooks/useApi";
-import { useCrud } from "@/src/admin/hooks/useCrud";
 import SectionForm from "@/src/admin/components/form/SectionForm";
 
 // Page section configuration
