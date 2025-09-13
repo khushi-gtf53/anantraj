@@ -25,7 +25,7 @@ export const metadata = {
     title: "Our Projects | Anant Raj",
     description:
       "Take a look at the projects that define Anant Raj's dedication and expertise.",
-    images: ["https://yourdomain.com/images/projects-og.jpg"], // 🔄 replace with real preview image
+    images: ["https://yourdomain.com/images/projects-og.jpg"],
   },
   alternates: {
     canonical: "https://yourdomain.com/projects",

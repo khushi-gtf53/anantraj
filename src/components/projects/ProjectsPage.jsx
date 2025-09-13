@@ -48,7 +48,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <section className="project-cat">
+    <section id="discover" className="project-cat">
       <CommonHeading>
         Creating Landmark Spaces that Inspire Living, Working, and Beyond.
       </CommonHeading>

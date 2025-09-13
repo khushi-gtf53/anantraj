@@ -5,53 +5,53 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Experience = () => {
   useEffect(() => {
-  gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
-  const expSections = document.querySelectorAll(".experience_sec");
+    const expSections = document.querySelectorAll(".experience_sec");
 
-  expSections.forEach((section) => {
-    const img = section.querySelector(".animate_img");
-    const textContent = section.querySelector(".content");
+    expSections.forEach((section) => {
+      const img = section.querySelector(".animate_img");
+      const textContent = section.querySelector(".content");
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top -15%",
-        end: "+=1500",
-        scrub: 1,
-        pin: true,
-        pinSpacing: false,            
-      },
-    });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top -15%",
+          end: "+=1500",
+          scrub: 1,
+          pin: true,
+          pinSpacing: false,
+        },
+      });
 
-    // image expand
-    tl.to(img, {
-      width: "100vw",
-      height: "100vh",
-      ease: "power2.out",
-      objectFit: "cover",
-      duration: 3,
-    });
-
-    
-    tl.to(
-      textContent,
-      {
-        opacity: 1,
-        duration: 1.5,
+      // image expand
+      tl.to(img, {
+        width: "100vw",
+        height: "100vh",
         ease: "power2.out",
-      },
-      "<"
-    );
+        objectFit: "cover",
+        duration: 3,
+      });
 
-    // small pause before exit
-    tl.to({}, { duration: 0.2});
-  });
 
-  return () => {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  };
-}, []);
+      tl.to(
+        textContent,
+        {
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.out",
+        },
+        "<"
+      );
+
+      // small pause before exit
+      tl.to({}, { duration: 0.2 });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <section className="experience_sec w-full bg-[#FBF6F6]">
@@ -74,19 +74,16 @@ const Experience = () => {
         </div>
       </div>
 
-      {/* Hidden text initially, will fade in after image animation completes */}
-    <div className="container relative z-30">
-  <div className="content absolute bottom-80 left-1/2 -translate-x-1/2 text-center leading-[26px] opacity-0 z-30">
-    <h5 className="text-white text-[30px] uppercase tracking-[1px] font-sangbleu">
-      The Estate Residences
-    </h5>
-    <p className="text-white/90 text-[16px] mt-[15px] uppercase tracking-[2px] font-sangbleu">
-      Sector 63A, Gurugram, Haryana
-    </p>
-  </div>
-</div>
-
-
+      <div className="container relative z-30">
+        <div className="content absolute bottom-80 left-1/2 -translate-x-1/2 text-center leading-[26px] opacity-0 z-30">
+          <h5 className="text-white text-[30px] uppercase tracking-[1px] font-sangbleu">
+            The Estate Residences
+          </h5>
+          <p className="text-white/90 text-[16px] mt-[15px] uppercase tracking-[2px] font-sangbleu">
+            Sector 63A, Gurugram, Haryana
+          </p>
+        </div>
+      </div>
 
       <div className="project_sec  relative">
         <img src="assets/township/projects/project2.jpg" alt="experience image 1" className="img-fluid w-full bg_img" />
