@@ -38,10 +38,10 @@ const Experience = () => {
       textContent,
       {
         opacity: 1,
-        duration: 0.2,
+        duration: 1.5,
         ease: "power2.out",
       },
-      "+=1"
+      "<"
     );
 
     // small pause before exit
@@ -75,16 +75,18 @@ const Experience = () => {
       </div>
 
       {/* Hidden text initially, will fade in after image animation completes */}
-      <div className="container">
-        <div className="content absolute bottom-[80px] text-center leading-[26px] mx-auto left-[50%] translate-x-[-50%] opacity-0">
-          <h5 className="text-white text-[30px] uppercase text-center tracking-[1px] font-sangbleu">
-            The Estate Residences
-          </h5>
-          <p className="text-white text-[16px] mt-[15px] uppercase text-center tracking-[2px] font-sangbleu color-[#ffffffe6]">
-            Sector 63A, Gurugram, Haryana
-          </p>
-        </div>
-      </div>
+    <div className="container relative z-30">
+  <div className="content absolute bottom-80 left-1/2 -translate-x-1/2 text-center leading-[26px] opacity-0 z-30">
+    <h5 className="text-white text-[30px] uppercase tracking-[1px] font-sangbleu">
+      The Estate Residences
+    </h5>
+    <p className="text-white/90 text-[16px] mt-[15px] uppercase tracking-[2px] font-sangbleu">
+      Sector 63A, Gurugram, Haryana
+    </p>
+  </div>
+</div>
+
+
 
       <div className="project_sec  relative">
         <img src="assets/township/projects/project2.jpg" alt="experience image 1" className="img-fluid w-full bg_img" />
