@@ -158,24 +158,28 @@ const sectionConfigs = {
   },
   meta: {
     fields: [
+      { type: "text", name: "name", label: "Name" },
+      { type: "image", name: "file", label: "Image" },
       {
         type: "dropdown",
-        name: "page_id",
-        label: "Select Page",
-        options: [],
-        // required: true,
+        name: "status",
+        label: "Status",
+        options: [
+        { label: "Active", value: "1" },
+        { label: "Inactive", value: "0" },
+        ],
+        defaultValue:"1"
       },
       { type: "text", name: "meta_title", label: "Title" },
-      { type: "text", name: "meta_keyword", label: "Keywords" },
+      { type: "text", name: "meta_keywords", label: "Keywords" },
       { type: "text", name: "meta_description", label: "Description" },
-      { type: "textarea", name: "head_data", label: "Head Data" },
-      { type: "textarea", name: "footer_data", label: "Footer Data" },
+      { type: "textarea", name: "seo_tags", label: "Seo tag" },
     ],
     table: {
-      head: ["Heading", "Keywords", "Description", "Head Data", "Footer Data"],
-      header: ["meta_title","meta_keyword","meta_description","head_data","footer_data",],
+      head: ["Name","Image","Title", "Keywords", "Description"],
+      header: ["name","image","meta_title","meta_keywords","meta_description"],
     },
-    endpoint: "page-meta",
+    endpoint: "page",
     label: "Meta Page",
   },
 };
@@ -206,7 +210,6 @@ const CmsSections = () => {
   const { tableData: MetaFields } = slug === "our-team" ? useCrud(api, "team-category") : { tableData: [] };
       
 
-  console.log(editData,"editData");
 
 useEffect(() => {
   if (slug === "our-team") {
@@ -234,6 +237,19 @@ useEffect(() => {
 }, [slug, MetaFields, editData]);
 
 
+const normalizeApiResponse = (apiData, fields) => {
+  let normalized = { ...apiData };
+
+  const fieldNames = fields.map((f) => f.name);
+  
+  Object.keys(normalized).forEach((key) => {
+    if (!fieldNames.includes(key)) delete normalized[key];
+  });
+
+  return normalized;
+};
+
+
   return <>
     <section key={slug}>
       <div className="grid grid-cols-12 gap-[20px]">
@@ -242,7 +258,7 @@ useEffect(() => {
             title={editData ? `Edit ${config.label}` : `Add ${config.label}`}
             data={dynamicFields}
             onSubmit={handleAddOrUpdate}
-            defaultValues={editData}
+            defaultValues={normalizeApiResponse(editData, dynamicFields)}
             col={12}
           />
         </div>
