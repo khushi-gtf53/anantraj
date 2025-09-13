@@ -44,8 +44,11 @@ const categories = [
 export default function ProjectsPage() {
   const [active, setActive] = useState(categories[0]?.title || null);
   const expendCategory = (catTitle) => {
-    setActive(catTitle === active ? null : catTitle);
+    if (catTitle !== active) {
+      setActive(catTitle);
+    }
   };
+
 
   return (
     <section id="discover" className="project-cat">
