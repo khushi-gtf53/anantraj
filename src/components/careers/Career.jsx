@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -11,6 +11,11 @@ import CommonHeroSec from '@/src/components/common/CommonHeroSec';
 import CommonHeading from '@/src/components/common/CommonHeading';
 import JobList from './JobList';
 import CareerForm from './CareerForm';
+
+
+
+export default function Career() {
+     const [activeTab, setActiveTab] = useState("work-culture"); 
 
 const Obj = {
     title: "Career",
@@ -31,11 +36,9 @@ const careerSlidesData = [
     { img: "/assets/careers/c-1.webp", imgSm: "/assets/careers/c-1.webp", alt: "careers img", title: "careers img" },
     { img: "/assets/careers/c-2.webp", imgSm: "/assets/careers/c-2.webp", alt: "careers img", title: "careers img" },
 ]
-
-export default function Career() {
     return (
         <div className='career relative bg-[#FBF6F6]'>
-            <CommonHeroSec ObjData={Obj} />
+            <CommonHeroSec ObjData={Obj} activeTab={activeTab} setActiveTab={setActiveTab} />
             <div className='wrapper' id='work-culture'>
                 <div className='content pb-6 mb-14 border-b-2 border-gray-400'>
                     <CommonHeading>Why Anant Raj? Building Trust, Crafting Excellence.</CommonHeading>

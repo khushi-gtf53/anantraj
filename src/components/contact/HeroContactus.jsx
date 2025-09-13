@@ -1,8 +1,10 @@
-import React from 'react'
+
+"use client";
+import React, { useState } from 'react'
 import CommonHeroSec from '../common/CommonHeroSec'
 
 const HeroContactus = () => {
-
+const [activeTab, setActiveTab] = useState("contactDetails"); 
     const Obj = {
         title: "Contact Us",
         heading: "Contact Us",
@@ -16,7 +18,7 @@ const HeroContactus = () => {
         ]
     }
     return (
-        <CommonHeroSec ObjData={Obj} />
+        <CommonHeroSec ObjData={Obj}  activeTab={activeTab} setActiveTab={setActiveTab}  />
     )
 }
 

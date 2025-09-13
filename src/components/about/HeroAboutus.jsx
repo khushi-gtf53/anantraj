@@ -1,7 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import CommonHeroSec from "../common/CommonHeroSec";
 
+
+
+const HeroAboutus = () => {
+  const [activeTab, setActiveTab] = useState("group"); 
 const Obj = {
   title: "About Us",
   heading: "Our Group",
@@ -22,11 +27,8 @@ const Obj = {
     { tabname: "testimonials", tablink: "testimonials" },
   ],
 };
-
-
-const HeroAboutus = () => {
   return (
-   <CommonHeroSec ObjData={Obj}/>
+   <CommonHeroSec ObjData={Obj} activeTab={activeTab} setActiveTab={setActiveTab}/>
   );
 };
 

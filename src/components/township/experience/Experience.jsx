@@ -5,79 +5,54 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Experience = () => {
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 
-    const expSection = document.querySelectorAll('.experience_sec');
-    const nextSection = document.querySelector('.projects_section'); 
+  const expSections = document.querySelectorAll(".experience_sec");
 
-    // Initially hide the next section
-    gsap.set(nextSection, { opacity: 0, pointerEvents: 'none' });
+  expSections.forEach((section) => {
+    const img = section.querySelector(".animate_img");
+    const textContent = section.querySelector(".content");
 
-    expSection.forEach((section) => {
-      const img = section.querySelector('.animate_img');
-      const textContent = section.querySelector('.content');
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top -10%',
-          end: '+=1000',
-          scrub: 1, 
-          pin: true, 
-          pinSpacing: true, 
-          onEnter: () => {
-            gsap.to(nextSection, {
-              opacity: 0,
-              pointerEvents: 'none',
-              duration: 0.1,
-            });
-          },
-          onLeave: () => {
-            gsap.to(nextSection, {
-              opacity: 1,
-              pointerEvents: 'auto',
-              duration: 0.5,
-              pin : true,
-              ease: 'power2.out',
-            });
-          },
-          onEnterBack: () => {
-            gsap.to(nextSection, {
-              opacity: 0,
-              pointerEvents: 'none',
-              duration: 0.5,
-              ease: 'power2.out',
-            });
-          },
-        },
-      });
-
-      tl.to(img, {
-        width: '100vw',
-        height: '100vh',
-        ease: 'power2.out',
-        objectFit: 'cover',
-        duration: 2, 
-      });
-
-      tl.to(
-        textContent,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power2.out',
-        },
-        '+=1' 
-      );
-
-      tl.to({}, { duration: 1 }); 
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top -10%",
+        end: "+=1500",
+        scrub: 1,
+        pin: true,
+        pinSpacing: true,            
+      },
     });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+    // image expand
+    tl.to(img, {
+      width: "100vw",
+      height: "100vh",
+      ease: "power2.out",
+      objectFit: "cover",
+      duration: 3,
+    });
+
+    
+    tl.to(
+      textContent,
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      },
+      "+=1"
+    );
+
+    // small pause before exit
+    tl.to({}, { duration: 1 });
+  });
+
+  return () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  };
+}, []);
 
   return (
     <section className="experience_sec w-full bg-[#FBF6F6]">

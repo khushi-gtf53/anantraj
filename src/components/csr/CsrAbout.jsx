@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import CommonHeroSec from "../common/CommonHeroSec";
 
 
 const CsrAbout = () => {
+     const [activeTab, setActiveTab] = useState("overview"); 
     const Obj = {
         title: "CSR",
         heading: "CSR",
@@ -22,7 +24,7 @@ const CsrAbout = () => {
         ]
     }
     return (
-        <CommonHeroSec ObjData={Obj} />
+        <CommonHeroSec ObjData={Obj}  activeTab={activeTab} setActiveTab={setActiveTab}  />
     )
 }
 

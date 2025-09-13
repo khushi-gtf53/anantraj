@@ -18,10 +18,12 @@ const Lightbox = dynamic(() => import("yet-another-react-lightbox"), {
 
 import "yet-another-react-lightbox/styles.css";
 
-const PlatterProjects = ({ tabs = [], activeTab }) => {
+const PlatterProjects = ({ tabs = [] }) => {
+  
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxSlides, setLightboxSlides] = useState([]);
   const [openIndex, setOpenIndex] = useState(0);
+   const [activeTab, setActiveTab] = useState(tabs[0]?.key || "");
 
   const openLightbox = (images, index) => {
     setLightboxSlides(images.map((src) => ({ src })));
@@ -119,18 +121,20 @@ const PlatterProjects = ({ tabs = [], activeTab }) => {
         className="platter_projects relative w-full wrapper bg-[#FBF6F6]"
       >
         {tabs.map((tab) => (
+          
           <Accordion
             id={tab.key}
             key={tab.key}
             label={tab.label}
             isOpen={activeTab === tab.key}
-            onClick={() => {
-              const newTab = activeTab === tab.key ? "" : tab.key;
-              const element = document.getElementById(tab.key);
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
+            // onClick={() => {
+            //   const newTab = activeTab === tab.key ? "" : tab.key;
+            //   const element = document.getElementById(tab.key);
+            //   if (element) {  
+            //     element.scrollIntoView({ behavior: "smooth" });
+            //   }
+            // }}
+             onClick={() => setActiveTab(activeTab === tab.key ? "" : tab.key)}
           >
             {renderProject(tab.projects)}
           </Accordion>

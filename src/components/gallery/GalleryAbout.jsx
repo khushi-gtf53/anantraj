@@ -1,7 +1,9 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react'
 import CommonHeroSec from '../common/CommonHeroSec'
 
-const GalleryAbout = ({activeTab, setActiveTab}) => {
+const GalleryAbout = () => {
+      const [activeTab, setActiveTab] = useState("allprojects"); 
     const Obj = {
         title: "Gallery",
         heading: "Gallery",

@@ -69,7 +69,7 @@ const Projects = ({ tabs = [] }) => {
           <div className="pagination gap-2 flex justify-end items-center mt-5">
             {Array.from({ length: totalPages }, (_, i) => (
               <React.Fragment key={i}>
-                <Link href={`#${activeTab2}`}>
+                <Link href={`#${activeTab}`}>
                   <button
                     onClick={() => setCurrentPage(i + 1)}
                     className={`cursor-pointer ${
@@ -107,11 +107,11 @@ const Projects = ({ tabs = [] }) => {
               label={tab.label}
               isOpen={activeTab === tab.key}
               onClick={() =>
-                setActiveTab2(activeTab2 === tab.key ? "" : tab.key)
+                setActiveTab(activeTab === tab.key ? "" : tab.key)
               }
             >
               <div id={tab.key} className=" md:mb-10">
-                {activeTab2 === tab.key && renderProject}
+                {activeTab === tab.key && renderProject}
               </div>
             </Accordion>
           ))}

@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import gsap from "gsap";
 
-const Accordion = ({ label, children, isOpen, onClick, id }) => {
+const Accordion = ({ label, children, isOpen, onClick }) => {
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Accordion = ({ label, children, isOpen, onClick, id }) => {
   }, [isOpen]);
 
   return (
-    <div className="lg:mb-10 mb-[30px]" id={id}>
+    <div className="lg:mb-10 mb-[30px]">
       {/* Accordion Header */}
       <div
         className="top_nav cursor-pointer py-[00px] lg:py-5 flex lg:gap-[50px] gap-[15px] font-sangbleu uppercase items-center "

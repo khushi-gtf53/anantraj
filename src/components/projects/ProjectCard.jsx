@@ -18,7 +18,6 @@ export default function ProjectCard({ item, active }) {
                 className={`w-full lg:pb-0 pb-4 ${active === item.title ? "lg:w-[50%]" : "lg:w-[100%]"
                     }`}
             >
-                <Link href={item.link}>
                 <Image
                     src={item.bigImage}
                     className="w-full h-full object-cover"
@@ -26,18 +25,20 @@ export default function ProjectCard({ item, active }) {
                     height={400}
                     alt={item?.alt || item.title}
                 />
-            </Link>
             </figure>
 
             {(windowWidth <= 767 || active === item.title) && (
                 <div className="lg:w-[50%] lg:p-14 w-full grid self-center lg:gap-y-5">
-                    <Link href={item.link}>
                     <CommonHeading customClass="lg:max-w-[100%] max-w-[100%] text-primaryred">
                         {item.title}
                     </CommonHeading>
                     <p className="font-lato text-[14px] text-justify font-[400] tracking-[1px] leading-[27px] lg:pt-0 pt-4">
                         {item.description}
                     </p>
+                    <Link href={item.link}>
+                    <div className="py-2 mt-5 border-y text-center uppercase text-primaryblue font-bold">
+                        Explore Project
+                    </div>
                     </Link>
                 </div>
             )}

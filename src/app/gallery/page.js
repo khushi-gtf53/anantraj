@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React, { useState } from 'react'
 
 const page = () => {
+
   const tabs = [
     {
       key: "allprojects",
@@ -41,8 +42,8 @@ const page = () => {
 
   return (
     <div className="bg-[#FBF6F6] relative w-full">
-      <GalleryAbout activeTab={activeTab} setActiveTab={setActiveTab} />
-      <Projects tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab}/>
+      <GalleryAbout  />
+      <Projects tabs={tabs} />
       <Image
         src="/assets/pattern-bg.png"
         alt="pattern background"
