@@ -13,7 +13,7 @@ const Footer = () => {
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "/about" },
+        { label: "About Us", href: "/aboutus" },
         { label: "Investors", href: "/investors" },
         // { label: "NRI Corner", href: "/nri-corner", expand: true },
         // { label: "NRI Investors", href: "/nri-investors", expand: true },
@@ -34,7 +34,7 @@ const Footer = () => {
       title: "Projects",
       links: [
         { label: "Blogs", href: "/blogs" },
-        { label: "Contact Us", href: "/contact" },
+        { label: "Contact Us", href: "/contactus" },
         { label: "Career", href: "/career", expand: true },
         // { label: "Property Investment", href: "/property-investment", expand: true } 
       ],

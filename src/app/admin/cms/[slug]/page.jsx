@@ -46,7 +46,7 @@ const sectionConfigs = {
       { type: "text", name: "short_description", label: "Short Description" },
     ],
     table: { head: ["Year","Short Description","Image", "Alt Tag"], header: ["year","short_description","image", "alt"] },
-    endpoint: "journey",
+    endpoint: "timeline",
     label: "Timeline",
   },
   "amenities-logo": {
@@ -122,7 +122,7 @@ const sectionConfigs = {
       head: ["Name", "Description"],
       header: ["name", "short_description"],
     },
-    endpoint: "testimonials",
+    endpoint: "testimonial",
     label: "Testimonial",
   },
   pillar: {
@@ -131,7 +131,7 @@ const sectionConfigs = {
       { type: "text", name: "short_description", label: "Description" },
     ],
     table: { head: ["Title", "Description"], header: ["title", "short_description"] },
-    endpoint: "pillar",
+    endpoint: "brandpillar",
     label: "Pillars",
   },
   "our-team": {
