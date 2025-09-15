@@ -75,8 +75,8 @@ useEffect(() => {
 
         if (response) {
           toast.success("Updated successfully");
-          // setEditData(null);
-          fetchTableData(currentPage); // refresh list
+          setEditData(null);
+          fetchTableData(currentPage);
         }
       } else {
         // Add new record

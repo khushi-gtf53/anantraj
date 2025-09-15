@@ -21,8 +21,8 @@ const RightSidebar = ({projectId,activeSlug}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0); // default: Basic is active
     const api = useApi(BASE_ADMIN);
-    const { tableData } = useCrud(api, "project-section-list");
-
+    const { tableData } = useCrud(api, "projects/all-sections");
+  console.log(tableData,"sections")
   return (
     <div
       className={`fixed top-0 right-0 h-screen bg-[#13131d] text-white shadow-md z-50 transition-all duration-500 
@@ -67,7 +67,7 @@ const RightSidebar = ({projectId,activeSlug}) => {
 
         {/* for banner */}
         
-        <li
+        {/* <li
         
             data-tooltip-id="right-sidebar-tooltip"
             data-tooltip-content="Banner"
@@ -81,18 +81,18 @@ const RightSidebar = ({projectId,activeSlug}) => {
             </span>
             <span className="title whitespace-nowrap">Banner</span>
           </Link>
-        </li>
+        </li> */}
            {/* Dynamic items from API */}
         {tableData?.map((item, index) => (
           <li
             key={index}
             data-tooltip-id="right-sidebar-tooltip"
-            data-tooltip-content={item?.slug}
+            data-tooltip-content={item?.name}
             className={`h-[60px] group transition-all duration-300 flex items-center cursor-pointer 
-              ${item?.slug === activeSlug ? "bg-[var(--admin-secondary)] text-white" : "hover:bg-[var(--admin-secondary)] text-[#717177] hover:text-white"}`}
+              ${item?.name === activeSlug ? "bg-[var(--admin-secondary)] text-white" : "hover:bg-[var(--admin-secondary)] text-[#717177] hover:text-white"}`}
             onClick={() => setActiveIndex(index + 2)}
           >
-            <Link href={`/admin/project/${projectId}/${item?.slug}`} className="flex p-[30px] items-center gap-[35px] w-full h-full">
+            <Link href={`/admin/project/${projectId}/${item?.name}`} className="flex p-[30px] items-center gap-[35px] w-full h-full">
               <span className="icon text-xl flex justify-center">
                 {menuItems[index] || <IoDocumentTextOutline />}
               </span>
