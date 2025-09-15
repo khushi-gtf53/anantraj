@@ -9,6 +9,7 @@ import DynamicForm from "@/src/admin/components/form/DynamicForm";
 import Card from "@/src/admin/components/card/Card";
 import CardHeading from "@/src/admin/components/card/CardHeading";
 import TableContainer from "@/src/admin/components/table/TableContainer";
+import { formatFormData } from "@/src/admin/utils/formatFormData";
 
 const sectionConfigs = {
   platter: {
@@ -332,7 +333,10 @@ const normalizeApiResponse = (apiData, fields) => {
           <DynamicForm
             title={editData ? `Edit ${config.label}` : `Add ${config.label}`}
             data={dynamicFields}
-            onSubmit={handleAddOrUpdate}
+          onSubmit={(formData) => {
+  const formattedData = formatFormData(formData, dynamicFields);
+  handleAddOrUpdate(formattedData);
+}}
             defaultValues={normalizeApiResponse(editData, dynamicFields)}
             col={12}
           />

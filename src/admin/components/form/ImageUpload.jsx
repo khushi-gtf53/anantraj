@@ -51,9 +51,13 @@ const ImageUpload = ({ label, name, value, onChange, required = false, reset }) 
         className="flex items-center gap-3 cursor-pointer w-full h-[50px] px-4 py-2 border border-[#45464f] rounded-[10px] bg-transparent text-[#eee] text-[12px] hover:border-[#666]"
       >
         <FaUpload className="text-[#ccc] font-[13px]" />
-        <span className="block text-[15px] text-[var(--admin-primary)] tracking-[0.8px] font-roboto">
-          {fileName || preview || "Upload File"}
-        </span>
+        <span
+  className="block text-[15px] text-[var(--admin-primary)] tracking-[0.8px] font-roboto 
+             truncate overflow-hidden whitespace-nowrap max-w-[200px]"
+>
+  {fileName || preview || "Upload File"}
+</span>
+
         <input
           type="file"
           accept="image/*"

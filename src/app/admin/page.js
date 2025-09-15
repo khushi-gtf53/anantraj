@@ -13,7 +13,8 @@ import ProjectList from "@/src/admin/components/card/ProjectList";
 const pages=[
   {name:"Home",slug:"home"},
   {name:"About",slug:"about"},
-  {name:"Contact",slug:"contact"}
+  {name:"Contact",slug:"contact"},
+  {name:"CSR",slug:"csr"}
 ]
 
 const ProjectsPages=[

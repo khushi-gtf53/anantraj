@@ -17,6 +17,23 @@ export const pageSectionConfigs = {
         // { type: "text", name: "alt_text", label: "Alt Tag" },
       ],
     },
+    overview: {
+      type: "home_page_overview",
+      fields: [
+        {
+          type: "array",
+          name: "other",
+          label: "Overview",
+          col:"md:col-span-12",
+          multiple: false,
+          fields: [
+        { type: "text", name: "heading", label: "Heading" },
+            { type: "text", name: "short_description", label: "Short Description" },
+            { type: "text", name: "year", label: "Year" },
+          ],
+        },
+      ],
+    },
     counter: {
       type: "home_page_counter",
       fields: [
@@ -35,34 +52,27 @@ export const pageSectionConfigs = {
         },
       ],
     },
-    // awards: {
-    //   type: "home_page_awards",
-    //   fields: [
-    //     {
-    //       type: "array",
-    //       name: "other",
-    //       label: "Awards",
-    //       col:"md:col-span-12",
-    //       fields: [
-    //         { type: "number", name: "number", label: "Number" },
-    //         { type: "text", name: "header", label: "Header" },
-    //         { type: "text", name: "icon", label: "Icon" },
-    //       ],
-    //     },
-    //   ],
-    // },
   },
   about: {
-    hero: {
-      type: "home_page_hero",
+    overview: {
+      type: "about_us_overview",
       // endpoint: "/api/v1/home/hero",
       fields: [
-        { type: "text", name: "heading", label: "Heading" },
-        { type: "textarea", name: "description", label: "Description" },
+        { type: "text", name: "title", label: "Heading" },
+        { type: "text", name: "description", label: "Description" },
+        {
+          type: "array",
+          name: "other",
+          label: "Counter Items",
+          multiple:false,
+          fields: [
+            { type: "text", name: "short_description", label: "Short Descriptoin" },
+          ],
+        },
       ],
     },
-    news: {
-      type: "home_page_counter",
+    vision_mision: {
+      type: "vison_and_mission",
       // endpoint: "/api/v1/home/counter",
       fields: [
         { type: "image", name: "desktop_file", label: "Desktop Image" },
@@ -71,12 +81,41 @@ export const pageSectionConfigs = {
           type: "array",
           name: "other",
           label: "Counter Items",
+          col:"md:col-span-12",
           fields: [
             { type: "text", name: "heading", label: "Heading" },
             { type: "text", name: "description", label: "Descriptoin" },
-            { type: "text", name: "icon", label: "Icon" },
           ],
         },
+      ],
+    },
+  },
+  contact: {
+    contact_info: {
+      type: "contact_info",
+      // endpoint: "/api/v1/home/counter",
+      fields: [
+        {
+          type: "array",
+          name: "other",
+          label: "Contact Info",
+          col:"md:col-span-12",
+          fields: [
+            { type: "text", name: "title", label: "Heading" },
+            { type: "text", name: "mail", label: "Mail" },
+            { type: "text", name: "number", label: "Phone Number" },
+          ],
+        },
+      ],
+    },
+  },
+  csr: {
+    csr_overview: {
+      type: "csr_overview",
+      // endpoint: "/api/v1/home/counter",
+      fields: [
+        { type: "text", name: "title", label: "Heading" },
+        { type: "text", name: "description", label: "Description" },
       ],
     },
   },
