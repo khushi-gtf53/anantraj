@@ -93,10 +93,20 @@ const sectionConfigs = {
   "amenities-logo": {
     fields: [
       { type: "text", name: "name", label: "Name" },
-      { type: "image", name: "image", label: "Image" },
+      { type: "image", name: "logo", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
+       {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
-    table: { head: ["Name","Short Description","Image"], header: ["name","short_description","image"] },
+    table: { head: ["Name","Short Description","Image"], header: ["name","alt","logoUrl"] },
     endpoint: "amenities-logo",
     label: "Amenities Logo",
   },
@@ -155,7 +165,7 @@ const sectionConfigs = {
     { type: "text", name: "seo_tags", label: "SEO Tags" },
     {
       type: "dropdown",
-      name: "status",
+      name: "status", 
       label: "Status",
       options: [
         { label: "Active", value: "1" },
@@ -165,8 +175,8 @@ const sectionConfigs = {
     },
   ],
   table: {
-    head: ["Title", "Short Description", "Image", "Status"],
-    header: ["title", "short_description", "image", "status"],
+    head: ["Title", "Short Description", "Image"],
+    header: ["title", "short_description", "image"],
   },
   endpoint: "blog",
   label: "Blogs",
@@ -180,6 +190,16 @@ const sectionConfigs = {
       { type: "text", name: "short_description", label: "Description" },
       { type: "image", name: "image", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
+      {
+        type: "dropdown",
+        name: "status",
+        label: "Status",
+        options: [
+        { label: "Active", value: "1" },
+        { label: "Inactive", value: "0" },
+        ],
+        defaultValue:"1"
+      },
     ],
     table: {
       head: ["Name", "Description"],
@@ -256,6 +276,29 @@ const sectionConfigs = {
     },
     endpoint: "page",
     label: "Meta Page",
+  },
+  "csr-list": {
+    fields: [
+      { type: "text", name: "title", label: "Title" },
+      { type: "text", name: "description", label: "Description" },
+      { type: "image", name: "file", label: "Image" },
+      { type: "text", name: "alt_txt", label: "Alt" }
+
+    ],
+    table: { head: ["Title", "Description","Image"], header: ["title", "description","file"] },
+    endpoint: "csr-list",
+    label: "Csr List",
+  },
+  "csr-gallery": {
+    fields: [
+      { type: "text", name: "year", label: "Year" },
+      { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "alt", label: "Alt" }
+
+    ],
+    table: { head: ["Year", "Image","Alt"], header: ["year", "image","alt"] },
+    endpoint: "csr-galleries",
+    label: "Csr Gallery",
   },
 };
 

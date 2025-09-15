@@ -23,7 +23,7 @@ const staticSectionConfigs = {
     endpoint: "banner",
     label: "Banner",
   },
-  highlights: {
+  highlight: {
     fields: [
       { type: "text", name: "title", label: "Title" },
       { type: "image", name: "image", label: "Image" },
@@ -69,17 +69,17 @@ const ProjectDetails = () => {
     ...staticSectionConfigs,
     amenities: {
       fields: [
-        { type: "dropdown", name: "icon_id", label: "Amenities Logo", options: amenitiesLogoOptions },
-        { type: "text", name: "name", label: "Title" },
+        { type: "dropdown", name: "logo_id", label: "Amenities Logo", options: amenitiesLogoOptions },
+        { type: "text", name: "title", label: "Title" },
         { type: "text", name: "short_description", label: "Description" },
         { type: "image", name: "image", label: "Icon" },
         { type: "text", name: "alt", label: "Alt Tag" },
       ],
       table: {
         head: ["Title", "Description", "Icon", "Alt Tag"],
-        header: ["name", "short_description", "image", "alt"],
+        header: ["title", "short_description", "image", "alt"],
       },
-      endpoint: "amenities",
+      endpoint: "project-amenities",
       label: "Amenities",
     },
     "floor-plan": {
@@ -96,6 +96,29 @@ const ProjectDetails = () => {
       endpoint: "floor-plan",
       label: "Floor Plan",
     },
+  overview: {
+    fields: [
+      { type: "text", name: "title", label: "Title" },
+      { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "alt", label: "Alt Tag" },
+    ],
+    table: { head: ["Title","Image","Alt Tag"], header: ["title","image","alt"] },
+    endpoint: "overview",
+    label: "Overview",
+  },
+  
+ 
+  
+  location_advantage: {
+    fields: [
+      { type: "text", name: "title", label: "Title" },
+      { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "alt", label: "Alt Tag" },
+    ],
+    table: { head: ["Title","Image","Alt Tag"], header: ["title","image","alt"] },
+    endpoint: "location_advantage",
+    label: "Location advantage",
+  },
   };
 
 
@@ -115,10 +138,10 @@ const ProjectDetails = () => {
 
   // Hook for CRUD operations
   const { tableData, pagination,currentPage,handlePageChange,fetchTableData } =
-    useCrud(api, isEditableSection ? `project/${id}/${config.endpoint}` : null,config.table.header || [],);
+    useCrud(api, isEditableSection ? `projects/${config.endpoint}` : null,config.table.header || [],);
 
     const {  editData, handleAddOrUpdate, handleDelete, handleEdit} =
-    useCrud(api, isEditableSection ? `project-${config.endpoint}` : null,config.table.header || [], true);
+    useCrud(api, isEditableSection ? `projects/${config.endpoint}` : null,config.table.header || [], true);
 
 const handleAddOrUpdateWithRefresh = async (formData) => {
   await handleAddOrUpdate(formData);
@@ -137,7 +160,7 @@ const handleDeleteWithRefresh = async (id) => {
           title={slug}
           project_id={id}
           project_slug={slug}
-          endpoint="project-section"
+          endpoint="projects/section"
         />
       )}
 

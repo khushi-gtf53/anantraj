@@ -32,6 +32,8 @@ const CMSPages=[
   {name:"Testimonial",slug:"testimonial"},
   {name:"Brand Pillars",slug:"pillar"},
   {name:"Meta",slug:"meta",},
+  {name:"Csr List",slug:"csr-list"},
+  {name:"Csr Gallery",slug:"csr-gallery"},
 ];
 const Dashboard = () => {
   const [totalProject, setTotalProjects] = useState(0);

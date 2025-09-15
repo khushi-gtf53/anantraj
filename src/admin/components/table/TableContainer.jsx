@@ -65,7 +65,7 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
                         {isCellImage ? (
                           <div className="w-full h-full flex justify-center">
                             <img
-                              src={`${BASE_URL}${cell}`}
+                              src={`${cell}`}
                               alt="img"
                               className="w-12 h-12 object-cover rounded cursor-pointer"
                               onClick={() => {
@@ -158,7 +158,7 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
             </button>
             {isImage ? (
               <img
-                src={`${BASE_URL}${modalContent}`}
+                src={`${modalContent}`}
                 alt="modal"
                 className="object-contain max-h-[80vh] w-full"
               />

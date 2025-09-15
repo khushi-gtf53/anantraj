@@ -19,25 +19,30 @@ import DynamicForm from "../form/DynamicForm";
     { type: "text", name: "sub_heading", label: "Description" },
   ],
   amenities: [
-    { type: "text", name: "heading", label: "Heading" },
-    { type: "text", name: "sub_heading", label: "Description" },
+    { type: "text", name: "title", label: "Title" },
   ],
   "location-map": [
     { type: "text", name: "heading", label: "Heading" },
     { type: "text", name: "sub_heading", label: "Description" },
     { type: "text", name: "description", label: "Location Map" },
   ],
+  overview: [
+    { type: "text", name: "title", label: "Title" },
+    { type: "text", name: "description", label: "Description" },
+    { type: "array", name: "other", label: "Other" ,col:"md:col-span-12",
+          fields: [
+            { type: "text", name: "heading", label: "Heading" },
+            { type: "text", name: "number", label: "Number" },
+            { type: "text", name: "icon", label: "Icon" },
+          ],},
+  ],
 };
 
 
-  
-
 const ProjectSection = ({endpoint,project_id,project_slug,title}) => {
   const api = useApi(BASE_ADMIN);
-  const {handleAddOrUpdate} = useCrud(api, endpoint,null, false);
-  const [projectSectionEditData, setProjectSectionEditData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const {handleAddOrUpdate} = useCrud(api, endpoint,[], false);
+  const {tableData:amenitiesHeading} = useCrud(api,`projects/section/${project_slug}`);
 
 // pick config
 const fieldConfig = fieldConfigs[project_slug] || fieldConfigs.gallery;
@@ -47,44 +52,25 @@ const fieldConfig = fieldConfigs[project_slug] || fieldConfigs.gallery;
 
     const payload = {
       ...formData,
-      project_id: project_id,
-      section_type: project_slug, // slug goes here
+      type: project_slug, // slug goes here
     };
     handleAddOrUpdate(payload);
   };
+console.log(amenitiesHeading,"amenitiesHeading")
+
+// normalize helper
+const normalizeApiResponse = (apiData, fields) => {
+  let normalized = { ...apiData };
+
+  const fieldNames = fields.map((f) => f.name);
+  Object.keys(normalized).forEach((key) => {
+    if (!fieldNames.includes(key)) delete normalized[key];
+  });
+
+  return normalized;
+};
 
 
-  // for section data prefilled
-
-useEffect(() => {
-  if (!project_id || !project_slug) return;
-
-  setProjectSectionEditData({});
-  setLoading(true);
-  setError(null);
-
-  api.post("show-by-project-with-sectionType", {
-    project_id,
-    section_type: project_slug,
-  })
-    .then((res) => {
-      if (res.data) {
-        setProjectSectionEditData(res.data);
-      } else {
-        setProjectSectionEditData({});
-      }
-    })
-    .catch((err) => {
-      console.error("Error fetching section data:", err);
-      toast.error(err)
-      setProjectSectionEditData({});
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-}, [project_id, project_slug]);
-
-if (loading) return <p>Loading section data...</p>;
   return (
     <section className="mb-[20px]">
           <DynamicForm
@@ -92,7 +78,7 @@ if (loading) return <p>Loading section data...</p>;
             title={title}
             data={fieldConfig}
             onSubmit={handleSubmit}
-            defaultValues={projectSectionEditData}
+            defaultValues={normalizeApiResponse(amenitiesHeading[0], fieldConfig)}
             col={12}
           />
     </section>

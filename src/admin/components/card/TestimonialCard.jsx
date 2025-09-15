@@ -9,25 +9,26 @@ import CardHeading from "./CardHeading";
 
 const TestimonialCard = () => {
   const api = useApi(BASE_ADMIN);
-  const { tableData : testimonial } = useCrud(api, "testimonials");
+  const { tableData : testimonial } = useCrud(api, "testimonial");
 
   return (
     <Card>
         <CardHeading icon={FaAddressCard} className="!mb-[5px]">Testimonial</CardHeading>
-      <div className="h-[122px] overflow-auto ">
+      <div className="h-[122px] overflow-auto scrollbar-thin scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scrollbar-track-transparent">
         {testimonial?.length > 0 ?
         testimonial.map((item,i) => (
         <div key={i} className="flex gap-[15px] 2xl:gap-[20px] relative mb-[10px] pb-[20px] pt-[20px] border-b border-[#45464f]">
-        <p className="absolute right-[10px] top-[-4px] text-[14px] flex items-center gap-[5px] text-[var(--admin-yellow)]">{new Date(item?.created_at).toLocaleDateString("en-GB")}<FaCalendar className="text-white"/>  </p>
+        <p className="absolute right-[10px] top-[-4px] text-[14px] flex items-center gap-[5px] text-[var(--admin-yellow)]">{new Date(item?.createdAt).toLocaleDateString("en-GB")}<FaCalendar className="text-white"/>  </p>
           <div>
             {" "}
             <h1 className="bg-[var(--admin-primary)] uppercase rounded-[50px] p-[10px] font-roboto text-[40px] block text-center text-[#181a26] w-[80px] h-[80px]">
-              {item?.name?.[0]}
+              {item?.name?.trim().slice(0, 1)}
+
             </h1>
           </div>
           <div>
             <p className="text-white font-robotoLight capitalize text-[18px] 2xl:text-[22px] border-b border-[#45464f] pb-[12px]">
-              {item?.name}{item?.designation}
+              {item?.name}
             </p>
 
             <div className="flex justify-start gap-[10px] mt-[10px] w-full">
