@@ -47,12 +47,12 @@ const HighlightsSpecifications = ({ sectionTitle, highlights = [], specification
         onMouseLeave={handleMouseLeaveOrUp}
         onMouseUp={handleMouseLeaveOrUp}
         onMouseMove={handleMouseMove}
-        className="lg:flex gap-5 lg:overflow-x-auto scroll-smooth scrollable-content cursor-grab active:cursor-grabbing"
+        className="flex gap-5 overflow-x-auto scroll-smooth scrollable-content cursor-grab active:cursor-grabbing"
       >
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="highlight mb-5 lg:min-w-[350px] lg:border-r lg:border-b-0 border-b border-black/30 lg:p-10 p-4 flex flex-col justify-between"
+            className="highlight mb-5 min-w-[350px] border-r border-black/30 p-10 flex flex-col justify-between self-center"
           >
             <div className="title font-sangbleu capitalize lg:text-[20px] text-[16px]">
               {item.title}
@@ -111,7 +111,7 @@ const HighlightsSpecifications = ({ sectionTitle, highlights = [], specification
     return (
       <div className="lg:mb-10">
         <div
-          className="top_nav cursor-pointer lg:py-5 pb-5 flex items-center text-primaryred font-sangbleu uppercase"
+          className="top_nav cursor-pointer py-5 flex items-center text-primaryred font-sangbleu uppercase"
           onClick={() => {
             if (!isOpen) {
               setActiveTab(key);
@@ -124,14 +124,16 @@ const HighlightsSpecifications = ({ sectionTitle, highlights = [], specification
             <h3>{label}</h3>
           </div>
           <div className="w-[25%] hidden sm:block h-[1px] bg-[#b3162f]" />
-          <div className="w-[10%] hidden sm:flex justify-center">
-            {isOpen ? <SlArrowUp size={30} /> : <SlArrowDown size={30} />}
+          <div className="w-[10%] flex justify-center">
+            {isOpen ? <SlArrowUp className="lg:text-[30px] text-[20px]" /> : <SlArrowDown className="lg:text-[30px] text-[20px]" />}
           </div>
           <div className="w-[25%] hidden sm:block h-[1px] bg-[#b3162f]" />
-          <div className="w-[45%] hidden sm:block sm:w-[20%] text-end cursor-pointer">
+          <div className="w-[45%] sm:w-[20%] text-end cursor-pointer">
             <h3>{isOpen ? "close" : "explore more"}</h3>
           </div>
         </div>
+
+
 
         {/* collapsible container */}
         <div
@@ -141,14 +143,14 @@ const HighlightsSpecifications = ({ sectionTitle, highlights = [], specification
         >
           {renderItems(items)}
         </div>
-      </div>
+      </div >
     );
   };
 
   return (
     <>
       <section className="highlights_specifications w-full wrapper bg-white">
-        <div className="heading lg:mb-10 mb-8">
+        <div className="heading lg:mb-10 mb-0">
           <CommonHeading customClass={`text-[16px] lg:text-[20px]`}>{sectionTitle}</CommonHeading>
         </div>
         {renderTab("highlights", "highlights", highlights)}
