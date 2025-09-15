@@ -17,6 +17,16 @@ const sectionConfigs = {
       { type: "image", name: "image", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
       { type: "text", name: "short_description", label: "Short Description" },
+      {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
     table: { head: ["Name","Short Description","Image", "Alt Tag"], header: ["name","short_description","image", "alt"] },
     endpoint: "platter",
@@ -25,6 +35,16 @@ const sectionConfigs = {
   typologies: {
     fields: [
       { type: "text", name: "name", label: "Typologies" },
+        {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
     table: { head: ["Typologies","Add Sub Typologies"], header: ["name"] },
     endpoint: "typologies",
@@ -32,7 +52,17 @@ const sectionConfigs = {
   },
   "sub-typologies": {
     fields: [
-      { type: "text", name: "name", label: "Typologies" },
+      { type: "text", name: "name", label: "Sub Typologies" },
+        {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
     table: { head: ["Typologies"], header: ["name"] },
     endpoint: "sub-typologies",
@@ -44,6 +74,16 @@ const sectionConfigs = {
       { type: "image", name: "image", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
       { type: "text", name: "short_description", label: "Short Description" },
+       {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
     table: { head: ["Year","Short Description","Image", "Alt Tag"], header: ["year","short_description","image", "alt"] },
     endpoint: "timeline",
@@ -64,19 +104,41 @@ const sectionConfigs = {
       { type: "text", name: "title", label: "Title" },
       { type: "image", name: "file", label: "Image" },
       { type: "text", name: "alt_txt", label: "Alt Tag" },
+      { type: "text", name: "year", label: "Year" },
       { type: "text", name: "description", label: "Short Description" },
+      {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
-    table: { head: ["Title","Short Description","Image", "Alt Tag"], header: ["title","description","file", "alt_txt"] },
+    table: { head: ["Title","Short Description","Year","Image", "Alt Tag"], header: ["title","description","year","file", "alt_txt"] },
     endpoint: "award",
     label: "Awards",
   },
   news: {
     fields: [
-      { type: "image", name: "image", label: "Logo" },
+      { type: "image", name: "logo", label: "Logo" },
+      { type: "image", name: "image", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
       { type: "text", name: "short_description", label: "Short Description" },
+      {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
-    table: { head: ["Short Description","Logo", "Alt Tag"], header: ["short_description","image", "alt"] },
+    table: { head: ["Short Description","Logo","Image" ,"Alt Tag"], header: ["short_description","logo","image", "alt"] },
     endpoint: "news",
     label: "News",
   },
@@ -138,7 +200,7 @@ const sectionConfigs = {
     fields: [
       {
         type: "dropdown",
-        name: "category_id",
+        name: "is_team_board",
         label: "Select Page",
         options: [],
         // required: true,
@@ -148,6 +210,16 @@ const sectionConfigs = {
       { type: "text", name: "alt", label: "Alt Tag" },
       { type: "text", name: "designation", label: "Designation" },
       { type: "text", name: "short_description", label: "Description" },
+      {
+      type: "dropdown",
+      name: "status",
+      label: "Active Status",
+      options: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+      defaultValue: 1,
+    },
     ],
     table: {
       head: ["Name", "Image", "Alt Tag", "Designation"],
@@ -170,6 +242,8 @@ const sectionConfigs = {
         ],
         defaultValue:"1"
       },
+      
+
       { type: "text", name: "meta_title", label: "Title" },
       { type: "text", name: "meta_keywords", label: "Keywords" },
       { type: "text", name: "meta_description", label: "Description" },
@@ -207,24 +281,25 @@ const CmsSections = () => {
   
       // const {tableData : MetaFields}=useCrud(api,"distinct-pages");
         // 👇 Only call distinct-pages API when slug === "meta"
-  const { tableData: MetaFields } = slug === "our-team" ? useCrud(api, "team-category") : { tableData: [] };
+  const { tableData: MetaFields } = slug === "our-team" ? useCrud(api, "team/categories") : { tableData: [] };
       
 
 
 useEffect(() => {
   if (slug === "our-team") {
-    const options = MetaFields?.map((item) => ({
-      label: item.name,
-      value: item.id,
-    }));
+  const options =
+      MetaFields?.[0]?.rows?.map((item) => ({
+        label: item.title,
+        value: item.id,
+      })) || [];
 
     const updatedFields = config.fields.map((f) => {
-      if (f.type === "dropdown" && f.name === "category_id") {
+      if (f.type === "dropdown" && f.name === "is_team_board") {
         return {
           ...f,
           options,
           // ✅ Preselect the correct page if editing
-          defaultValue: editData?.category_id || "",
+          defaultValue: editData?.is_team_board || "",
         };
       }
       return f;
@@ -237,11 +312,11 @@ useEffect(() => {
 }, [slug, MetaFields, editData]);
 
 
+// normalize helper
 const normalizeApiResponse = (apiData, fields) => {
   let normalized = { ...apiData };
 
   const fieldNames = fields.map((f) => f.name);
-  
   Object.keys(normalized).forEach((key) => {
     if (!fieldNames.includes(key)) delete normalized[key];
   });
