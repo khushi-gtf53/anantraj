@@ -2,96 +2,127 @@ import React, { useEffect } from 'react';
 import CommonHeading from '../../common/CommonHeading';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-const Experience = () => {
-  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const expSections = document.querySelectorAll(".experience_sec");
+const Experience = () => {
 
-    expSections.forEach((section) => {
-      const img = section.querySelector(".animate_img");
-      const textContent = section.querySelector(".content");
+useEffect(() => {
+    const expSections = document.querySelector(".experience_sec");
+    const img = document.querySelector(".animate_img");
+    const textContent = document.querySelector(".content_new");
+    const projectSections = gsap.utils.toArray(".project_sec");
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top -15%",
-          end: "+=1500",
-          scrub: 1,
-          pin: true,
-          pinSpacing: false,
+    gsap.defaults({ ease: "slow(0.5, 0.8, true)" });
+
+   const sectionHeight = expSections.offsetHeight || window.innerHeight; // Fallback to viewport height
+  const endValue = `+=${sectionHeight}px`; // Dynamic end based on section height
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: expSections,
+      start: "top top",
+      end: endValue, // Dynamic end
+      scrub: 2, // Smoothly ties height to scroll
+      pin: true,
+      anticipatePin: 1,
+      
+    },
+  });
+    tl.to(img, {
+      flex: "0 0 100vw",
+      height: "100vh",
+      duration: 1.5, 
+      delay: 0.1,
+ease: "slow(0.5, 0.8, true)"    });
+
+    tl.to(
+      textContent,
+      {
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.2,
+      },
+      "-=0.5"
+    );
+
+    const pins = projectSections.map((section, i) =>
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: "+=100%",
+        pin: true,
+        scrub: 0.2,
+        pinSpacing: false,
+        enabled: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        snap: {
+          snapTo: [0, 1],
+          duration: 0.5,
+          ease: "power2.inOut",
         },
-      });
+        id: `proj-pin-${i}`,
+      })
+    );
 
-      // image expand
-      tl.to(img, {
-        width: "100vw",
-        height: "100vh",
-        ease: "power2.out",
-        objectFit: "cover",
-        duration: 3,
-      });
-
-
+    projectSections.forEach((section, i) => {
       tl.to(
-        textContent,
+        section,
         {
-          opacity: 1,
-          duration: 1.5,
-          ease: "power2.out",
+          y: "-100vh",
+          zIndex: 10 + i, 
+          duration: 1.2, 
+          delay: 0.4, 
         },
-        "<"
+        ">"
       );
 
-      // small pause before exit
-      tl.to({}, { duration: 0.2 });
+      tl.add(() => {
+        pins[i].enable();
+        ScrollTrigger.refresh();
+      });
+
+      tl.to({}, { duration: 0.5 }); 
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      tl.scrollTrigger?.kill();
+      tl.kill();
+      pins.forEach((p) => p.kill());
     };
   }, []);
 
+
   return (
-    <section className="experience_sec w-full bg-[#FBF6F6]">
-      <div className="wrapper">
-        <CommonHeading>
+    <section className=" w-full bg-[#FBF6F6]">
+      <div className="wrapper  !pb-0">
+        <CommonHeading customClass={'text-center mx-[auto] !max-w-[60%]'}>
           Experience Excellence In Our Premier Properties
         </CommonHeading>
       </div>
-      <div className="slides pb-40">
+      <div className=' experience_sec flex justify-center h-[100vh] flex-col'>
+      <div className="slides">
         <div className="flex gap-4 justify-center items-center">
           <img src="assets/township/experience/image1.jpg" alt="" />
           <img src="assets/township/experience/image2.jpg" alt="" />
+          <div className='relative animate_img  basis-[400px] h-[550px] '>
           <img
             src="assets/township/projects/project.webp"
             alt=""
-            className="animate_img w-[400px] h-[550px] object-cover"
+            className="object-cover h-[100%] w-[100%]"
           />
+                  <div className="content content_new absolute bottom-[60px] left-1/2 -translate-x-1/2 text-center leading-[26px] opacity-0 z-30">
+                  <h5 className="text-white text-[30px] uppercase tracking-[1px] font-sangbleu">
+                  The Estate Residences
+                  </h5>
+                  <p className="text-white/90 text-[16px] mt-[15px] uppercase tracking-[2px] font-sangbleu">
+                  Sector 63A, Gurugram, Haryana
+                  </p>
+                  </div>
+          </div>
           <img src="assets/township/experience/image4.jpg" alt="" />
           <img src="assets/township/experience/image5.jpg" alt="" />
         </div>
-      </div>
-
-      <div className="container relative z-30">
-        <div className="content absolute bottom-80 left-1/2 -translate-x-1/2 text-center leading-[26px] opacity-0 z-30">
-          <h5 className="text-white text-[30px] uppercase tracking-[1px] font-sangbleu">
-            The Estate Residences
-          </h5>
-          <p className="text-white/90 text-[16px] mt-[15px] uppercase tracking-[2px] font-sangbleu">
-            Sector 63A, Gurugram, Haryana
-          </p>
-        </div>
-      </div>
-
-      <div className="project_sec  relative">
-        <img src="assets/township/projects/project2.jpg" alt="experience image 1" className="img-fluid w-full bg_img" />
-        <div className="container">
-          <div className="content absolute bottom-[80px] text-center leading-[26px] mx-auto left-[50%] translate-x-[-50%]">
-            <h5 className='text-white text-[30px] uppercase text-center tracking-[1px] font-sangbleu'>The Estate Residences</h5>
-            <p className='text-white text-[16px] mt-[15px] uppercase text-center tracking-[2px] font-sangbleu color-[#ffffffe6]'>Sector 63A, Gurugram, Haryana</p>
-          </div>
         </div>
       </div>
     </section>

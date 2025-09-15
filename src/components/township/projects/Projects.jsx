@@ -6,25 +6,25 @@ import './projects.css'
 
 const TownshipProjects = ()=>{
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+  // useEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger)
 
-    const projectSections = document.querySelectorAll('.project_sec')
+  //   const projectSections = document.querySelectorAll('.project_sec')
 
-    projectSections.forEach((section, index) => {
-      gsap.to(section, {
-        scrollTrigger: {
-          trigger: section, 
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true, 
-          pin: true, 
-          pinSpacing: false,         
-        }
-      })
-    })
+  //   projectSections.forEach((section, index) => {
+  //     gsap.to(section, {
+  //       scrollTrigger: {
+  //         trigger: section, 
+  //         start: 'top top',
+  //         end: 'bottom top',
+  //         scrub: true, 
+  //         pin: true, 
+  //         pinSpacing: false,         
+  //       }
+  //     })
+  //   })
 
-  }, [])
+  // }, [])
 
   return(
     <div className='township_projects_section relative'>

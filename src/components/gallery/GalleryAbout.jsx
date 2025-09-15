@@ -8,8 +8,7 @@ const GalleryAbout = () => {
         title: "Gallery",
         heading: "Gallery",
         subtitle: <>
-            Explore our journey through images – from landmark constructions to vibrant{" "}
-            <span className="lg:block hidden"></span>events, CSR initiatives, and world-class residential & commercial spaces.
+            Explore our journey through images – from landmark constructions to vibrant
         </>,
         imgUrl: "/assets/gallery/about.webp",
         linkTo: "discover",
