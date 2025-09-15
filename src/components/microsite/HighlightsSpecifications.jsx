@@ -14,67 +14,67 @@ const HighlightsSpecifications = ({ sectionTitle, highlights = [], specification
   const [lightboxSlides, setLightboxSlides] = useState([]);
   const [openIndex, setOpenIndex] = useState(0);
 
-const renderItems = (items) => {
-  const containerRef = useRef(null);
-  const isDown = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const renderItems = (items) => {
+    const containerRef = useRef(null);
+    const isDown = useRef(false);
+    const startX = useRef(0);
+    const scrollLeft = useRef(0);
 
-  const handleMouseDown = (e) => {
-    isDown.current = true;
-    startX.current = e.pageX - containerRef.current.offsetLeft;
-    scrollLeft.current = containerRef.current.scrollLeft;
-    containerRef.current.classList.add("dragging");
-  };
+    const handleMouseDown = (e) => {
+      isDown.current = true;
+      startX.current = e.pageX - containerRef.current.offsetLeft;
+      scrollLeft.current = containerRef.current.scrollLeft;
+      containerRef.current.classList.add("dragging");
+    };
 
-  const handleMouseLeaveOrUp = () => {
-    isDown.current = false;
-    containerRef.current.classList.remove("dragging");
-  };
+    const handleMouseLeaveOrUp = () => {
+      isDown.current = false;
+      containerRef.current.classList.remove("dragging");
+    };
 
-  const handleMouseMove = (e) => {
-    if (!isDown.current) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1; // multiplier = scroll speed
-    containerRef.current.scrollLeft = scrollLeft.current - walk;
-  };
+    const handleMouseMove = (e) => {
+      if (!isDown.current) return;
+      e.preventDefault();
+      const x = e.pageX - containerRef.current.offsetLeft;
+      const walk = (x - startX.current) * 1; // multiplier = scroll speed
+      containerRef.current.scrollLeft = scrollLeft.current - walk;
+    };
 
-  return (
-    <div
-      ref={containerRef}
-      onMouseDown={handleMouseDown}
-      onMouseLeave={handleMouseLeaveOrUp}
-      onMouseUp={handleMouseLeaveOrUp}
-      onMouseMove={handleMouseMove}
-      className="flex gap-5 overflow-x-auto scroll-smooth scrollable-content cursor-grab active:cursor-grabbing"
-    >
-      {items.map((item, idx) => (
-        <div
-          key={idx}
-          className="highlight mb-5 min-w-[350px] border-r border-black/30 p-10 flex flex-col justify-between"
-        >
-          <div className="title font-sangbleu capitalize text-[20px]">
-            {item.title}
-          </div>
-
-          {item.imgSrc && (
-            <div
-              className="view uppercase tracking-wider mt-10 text-[14px] cursor-pointer"
-              onClick={() => {
-                setLightboxSlides(items.map((i) => ({ src: i.imgSrc })));
-                setOpenIndex(idx);
-                setLightboxOpen(true);
-              }}
-            >
-              view image
+    return (
+      <div
+        ref={containerRef}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeaveOrUp}
+        onMouseUp={handleMouseLeaveOrUp}
+        onMouseMove={handleMouseMove}
+        className="lg:flex gap-5 lg:overflow-x-auto scroll-smooth scrollable-content cursor-grab active:cursor-grabbing"
+      >
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className="highlight mb-5 lg:min-w-[350px] lg:border-r lg:border-b-0 border-b border-black/30 lg:p-10 p-4 flex flex-col justify-between"
+          >
+            <div className="title font-sangbleu capitalize lg:text-[20px] text-[16px]">
+              {item.title}
             </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-};
+
+            {item.imgSrc && (
+              <div
+                className="view lg:uppercase capitalize tracking-wider lg:mt-10 mt-4 lg:text-[14px] text-[13px] cursor-pointer"
+                onClick={() => {
+                  setLightboxSlides(items.map((i) => ({ src: i.imgSrc })));
+                  setOpenIndex(idx);
+                  setLightboxOpen(true);
+                }}
+              >
+                view image
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
 
   const renderTab = (key, label, items) => {
@@ -109,9 +109,9 @@ const renderItems = (items) => {
     }, [isOpen]);
 
     return (
-      <div className="mb-10">
+      <div className="lg:mb-10">
         <div
-          className="top_nav cursor-pointer py-5 flex items-center text-primaryred font-sangbleu uppercase"
+          className="top_nav cursor-pointer lg:py-5 pb-5 flex items-center text-primaryred font-sangbleu uppercase"
           onClick={() => {
             if (!isOpen) {
               setActiveTab(key);
@@ -124,11 +124,11 @@ const renderItems = (items) => {
             <h3>{label}</h3>
           </div>
           <div className="w-[25%] hidden sm:block h-[1px] bg-[#b3162f]" />
-          <div className="w-[10%] flex justify-center">
+          <div className="w-[10%] hidden sm:flex justify-center">
             {isOpen ? <SlArrowUp size={30} /> : <SlArrowDown size={30} />}
           </div>
           <div className="w-[25%] hidden sm:block h-[1px] bg-[#b3162f]" />
-          <div className="w-[45%] sm:w-[20%] text-end cursor-pointer">
+          <div className="w-[45%] hidden sm:block sm:w-[20%] text-end cursor-pointer">
             <h3>{isOpen ? "close" : "explore more"}</h3>
           </div>
         </div>
@@ -148,8 +148,8 @@ const renderItems = (items) => {
   return (
     <>
       <section className="highlights_specifications w-full wrapper bg-white">
-        <div className="heading mb-10">         
-          <CommonHeading>{sectionTitle}</CommonHeading>
+        <div className="heading lg:mb-10 mb-8">
+          <CommonHeading customClass={`text-[16px] lg:text-[20px]`}>{sectionTitle}</CommonHeading>
         </div>
         {renderTab("highlights", "highlights", highlights)}
         {/* {renderTab("specs", "specifications", specifications)} */}

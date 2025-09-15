@@ -106,7 +106,7 @@ const LocationAdvantages = ({ tabsData, title, locationMap }) => {
                       <IoIosArrowRoundForward size={40} />
                     </div>
                   </div>
-                  <div className="plan_detail uppercase font-sangbleu tracking-wider sm:text-xl leading-[35px] max-w-[300px]">
+                  <div className="plan_detail uppercase font-sangbleu tracking-wider sm:text-xl text-[14px] lg:leading-[35px] leading-[30px] lg:max-w-[300px]">
                     {slides[currentIndex]?.description}
                   </div>
                 </div>

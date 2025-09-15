@@ -1,4 +1,3 @@
-import ProjectAbout from "@/src/components/projects/ProjectAbout"
 import Projects from "@/src/components/projects/projects"
 
 // ✅ SEO metadata for Projects page

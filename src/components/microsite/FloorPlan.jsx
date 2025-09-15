@@ -108,7 +108,7 @@ const FloorPlan = ({ heading, floorPlans, masterPlan }) => {
                         priority={index === 0} // first image prioritized
                       />
                     </div>
-                    <div className="plan_detail uppercase mt-5 sm:mt-0 font-sangbleu sm:text-lg lg:text-xl leading-relaxed max-w-[300px]">
+                    <div className="plan_detail uppercase mt-5 sm:mt-0 font-sangbleu text-[14px] lg:text-left text-center lg:text-xl leading-relaxed max-w-[300px]">
                       {slide.title}
                     </div>
                   </div>

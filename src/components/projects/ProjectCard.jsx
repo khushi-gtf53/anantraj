@@ -9,7 +9,7 @@ export default function ProjectCard({ item, active }) {
     const { width: windowWidth } = useWindowWidth()
 
     return (
-        <div className="flex justify-between lg:flex-nowrap flex-wrap w-full h-full relative lg:pb-12 lg:py-0 py-4">
+        <div className="flex justify-between lg:flex-nowrap flex-wrap w-full h-full relative lg:pb-12 lg:py-0 py-8">
             {/* Mobile category */}
             {windowWidth < 767 && (
                 <CategoryText category={item.category} title={item.title} active={active} />

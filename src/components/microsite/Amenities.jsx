@@ -109,12 +109,12 @@ const Amenities = ({ data = [], heading = "", baseIconPath = "" }) => {
                 </button>
               </div>
               <div className="amenities-counter font-sangbleu mt-4 sm:mt-0">
-                <div className="counter text-2xl sm:text-4xl mb-2 flex gap-2 items-end">
+                <div className="counter text-[20px] sm:text-4xl mb-2 flex gap-2 items-end">
                   {String(activeIndex + 1).padStart(2, "0")}
                   <span>-</span>
                   <span className="sm:text-2xl">{data.length}</span>
                 </div>
-                <div className="title uppercase tracking-wide sm:text-xl">
+                <div className="title uppercase tracking-wide sm:text-xl text-[16px]">
                   Exclusive Amenities
                 </div>
               </div>

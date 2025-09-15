@@ -56,7 +56,7 @@ export default function ProjectsPage() {
         Creating Landmark Spaces that Inspire Living, Working, and Beyond.
       </CommonHeading>
 
-      <div className="cat_carousel_wrapper pt-8">
+      <div className="cat_carousel_wrapper lg:pt-8">
         <div className="flex flex-wrap gap-0 text-current justify-between">
           {categories &&
             categories.map((item, index) => {
