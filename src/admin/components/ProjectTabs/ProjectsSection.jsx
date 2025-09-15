@@ -6,6 +6,7 @@ import { BASE_ADMIN } from "@/config";
 import { useApi } from "../../hooks/useApi";
 import { useCrud } from "../../hooks/useCrud";
 import DynamicForm from "../form/DynamicForm";
+import { formatFormData } from "../../utils/formatFormData";
 
   const fieldConfigs = {
   "key-highlight": [
@@ -48,15 +49,15 @@ const ProjectSection = ({endpoint,project_id,project_slug,title}) => {
 const fieldConfig = fieldConfigs[project_slug] || fieldConfigs.gallery;
 
  // Wrapper for form submit → include project_id & section_type
-  const handleSubmit = (formData) => {
+//   const handleSubmit = (formData) => {
 
-    const payload = {
-      ...formData,
-      type: project_slug, // slug goes here
-    };
-    handleAddOrUpdate(payload);
-  };
-console.log(amenitiesHeading,"amenitiesHeading")
+//     const payload = {
+//       ...formData,
+//       type: project_slug, // slug goes here
+//     };
+//     handleAddOrUpdate(payload);
+//   };
+// console.log(amenitiesHeading,"amenitiesHeading")
 
 // normalize helper
 const normalizeApiResponse = (apiData, fields) => {
@@ -77,7 +78,15 @@ const normalizeApiResponse = (apiData, fields) => {
             key={project_slug}
             title={title}
             data={fieldConfig}
-            onSubmit={handleSubmit}
+                      onSubmit={(formData) => {
+                        const formattedData = formatFormData(
+                          formData,
+                          fieldConfig,
+                          project_slug
+                        );
+                        handleAddOrUpdate(formattedData, true);
+                      }}
+            // onSubmit={handleSubmit}
             defaultValues={normalizeApiResponse(amenitiesHeading[0], fieldConfig)}
             col={12}
           />
