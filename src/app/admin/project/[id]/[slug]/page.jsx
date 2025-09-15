@@ -90,7 +90,7 @@ const ProjectDetails = () => {
       endpoint: "project-amenities",
       label: "Amenities",
     },
-    "floor-plan": {
+    "floor_plan": {
       fields: [
         {
           type: "dropdown",
@@ -215,12 +215,12 @@ const ProjectDetails = () => {
     let payload = { ...formattedData };
 
     if (!editData) {
-      payload.project_id = id; // only on add
+      payload.project_id = id; 
     } else {
-      delete payload.project_id; // make sure it's not sent on edit
+      delete payload.project_id; 
     }
 
-    handleAddOrUpdateWithRefresh(payload); // ✅ send correct object
+    handleAddOrUpdateWithRefresh(payload); 
   }}
   defaultValues={normalizeApiResponse(editData, config.fields)}
   col={6}

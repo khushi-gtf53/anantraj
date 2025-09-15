@@ -34,6 +34,9 @@ import { formatFormData } from "../../utils/formatFormData";
             { type: "text", name: "icon", label: "Icon" },
           ],},
   ],
+  "floor_plan": [
+    { type: "text", name: "title", label: "Title" },
+  ]
 };
 
 
