@@ -208,21 +208,24 @@ const ProjectDetails = () => {
         <div className="grid grid-cols-12 gap-[20px]">
           <div className="col-span-12">
             <DynamicForm
-              title={editData ? `Edit ${config.label}` : `Add ${config.label}`}
-              data={config.fields}
-              onSubmit={(formData) => {
-                const formattedData = formatFormData(formData, config.fields);
-                let payload = { ...formattedData };
-              if (!editData ) {
-  payload.project_id = id; 
-}
+  title={editData ? `Edit ${config.label}` : `Add ${config.label}`}
+  data={config.fields}
+  onSubmit={(formData) => {
+    const formattedData = formatFormData(formData, config.fields);
+    let payload = { ...formattedData };
 
+    if (!editData) {
+      payload.project_id = id; // only on add
+    } else {
+      delete payload.project_id; // make sure it's not sent on edit
+    }
 
-                handleAddOrUpdateWithRefresh(formattedData);
-              }}
-              defaultValues={normalizeApiResponse(editData, config.fields)}
-              col={6}
-            />
+    handleAddOrUpdateWithRefresh(payload); // ✅ send correct object
+  }}
+  defaultValues={normalizeApiResponse(editData, config.fields)}
+  col={6}
+/>
+
           </div>
 
           <div className="col-span-12">
