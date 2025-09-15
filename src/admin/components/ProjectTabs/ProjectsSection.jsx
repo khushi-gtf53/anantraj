@@ -9,11 +9,8 @@ import DynamicForm from "../form/DynamicForm";
 import { formatFormData } from "../../utils/formatFormData";
 
   const fieldConfigs = {
-  "key-highlight": [
-    { type: "text", name: "heading", label: "Heading" },
-    { type: "text", name: "sub_heading", label: "Description" },
-    { type: "image", name: "image", label: "Image" },
-    { type: "text", name: "alt", label: "Alt Tag" },
+  "highlight": [
+    { type: "text", name: "title", label: "Title" },
   ],
   gallery: [
     { type: "text", name: "heading", label: "Heading" },
