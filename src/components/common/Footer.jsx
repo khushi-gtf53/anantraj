@@ -33,7 +33,8 @@ const Footer = ({showFooter}) => {
       links: [
         { label: "Blogs", href: "/blogs" },
         { label: "Contact Us", href: "/contactus" },
-        { label: "Career", href: "/careers", expand: true },
+        { label: "Career", href: "/career", expand: true },
+        // { label: "Property Investment", href: "/property-investment", expand: true } 
       ],
     },
     
