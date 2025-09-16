@@ -1,14 +1,12 @@
 @import "tailwindcss";
 
 @import "tailwindcss";
-
 :root {
-  /* admin root */
-  --admin-primary: #53c5cf;
-  --admin-secondary: #d74e34;
-  --admin-yellow: #f7ab5d;
+    /* admin root */
+    --admin-primary: #53c5cf;     
+    --admin-secondary: #d74e34;   
+    --admin-yellow: #f7ab5d;
 }
-
 html {
   scroll-behavior: smooth;
 }
@@ -19,25 +17,14 @@ body {
   margin: 0;
   position: relative;
 }
-
-body.admin-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden !important;
-  background-image: linear-gradient(#181a26 1px, transparent 1px), linear-gradient(to right, #181a26 1px, #292b37 1px);
-  background-size: 3px 3px;
-}
-
+body.admin-body{margin: 0;padding: 0;box-sizing: border-box;overflow-x: hidden!important;
+background-image:  linear-gradient(#181a26 1px, transparent 1px), linear-gradient(to right, #181a26 1px, #292b37 1px);
+background-size: 3px 3px;}
 /* CKEditor dark mode overrides */
 .ck.ck-editor__editable_inline {
-  background: transparent !important;
-  color: #fff !important;
-  min-height: 250px;
-}
-
-img {
-  max-width: 100%;
+  background: transparent !important; 
+  color: #fff !important; 
+  min-height: 250px;                 
 }
 
 button,
@@ -46,9 +33,9 @@ select {
   cursor: pointer;
 }
 
-.container {
+.container{
   margin-left: auto;
-  margin-right: auto;
+  margin-right:auto;
 }
 
 .swiper-container {
@@ -189,10 +176,6 @@ select {
   bottom: -30px;
 }
 
-.common_font{
-  font-size:  14px;
-}
-
 @media (width >=64rem
   /* 1024px */
 ) {
@@ -204,8 +187,5 @@ select {
   .wrapper2 {
     padding-inline: 100px;
     padding-top: 100px;
-  }
-  .common_font{
-    font-size: 16px;
   }
 }
