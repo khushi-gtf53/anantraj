@@ -1,0 +1,54 @@
+.experience_section .images{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  /* gap:25px; */
+  --size-factor: 1.25;
+  --item-height: 20vh;
+}
+
+.experience_section .image_col{
+  width: auto;
+  aspect-ratio: 2 / 3;
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: none;
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.experience_section .image_col:nth-child(1){
+  background-image: url(https://www.zecchinon.com/img/homepage/zecchinon-cucine-img1-L.webp);
+}
+
+.experience_section .image_col:nth-child(2){
+  background-image: url(https://www.zecchinon.com/img/homepage/zecchinon-cucine-img2-L.webp);
+}
+
+.experience_section .image_col:nth-child(3){
+  background-image: url(https://www.zecchinon.com/img/homepage/zecchinon-cucine-img3-L.webp);
+  height: calc(var(--size-factor) * 3 * var(--item-height));
+}
+
+.experience_section .image_col:nth-child(4){
+  background-image: url(https://www.zecchinon.com/img/homepage/zecchinon-cucine-img4-L.webp);
+}
+
+.experience_section .image_col:nth-child(5){
+  background-image: url(https://www.zecchinon.com/img/homepage/zecchinon-cucine-img5-L.webp);
+}
+
+.experience_section .image_col:nth-child(1),
+.experience_section .image_col:nth-child(5){
+  height: calc(var(--size-factor) * var(--item-height));
+}
+
+.experience_section .image_col:nth-child(2),
+.experience_section .image_col:nth-child(4){
+  height: calc(var(--size-factor) * 2 * var(--item-height));
+}
+
+/* .experience_section .image_col:nth-child(3){
+  flex-grow:3
+} */  
