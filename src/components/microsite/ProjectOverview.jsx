@@ -44,11 +44,11 @@ const ProjectOverview = ({
 
             {/* Details */}
             <div className="project-details uppercase tracking-wider flex flex-col sm:flex-row gap-3 sm:gap-0 items-start lg:py-0 pt-8 pb-5 sm:items-center lg:justify-between justify-center">
-              <div className="apartment text-sm sm:text-lg">{apartmentTypes}</div>
-              <div className="w-[1px] hidden sm:block h-full bg-black/50" />
-              <div className="status text-sm sm:text-lg">{status}</div>
-              <div className="w-[1px] hidden sm:block h-full bg-black/50" />
-              <div className="rera flex gap-2 items-center text-sm sm:text-lg">
+              <div className="lg:mb-4 apartment text-sm sm:text-lg">{apartmentTypes}</div>
+              <div className="lg:mb-4 w-[1px] hidden sm:block h-full bg-black/50" />
+              <div className="lg:mb-4 status text-sm sm:text-lg">{status}</div>
+              <div className="lg:mb-4 w-[1px] hidden sm:block h-full bg-black/50" />
+              <div className="lg:mb-4 rera flex gap-2 items-center text-sm sm:text-lg">
                 {reraId}
                 {reraLogoSrc && (
                   <Image

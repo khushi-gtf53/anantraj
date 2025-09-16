@@ -73,7 +73,7 @@ const Header = () => {
     >
       <Link href="/">
         <img
-  src={`${process.env.NEXT_PUBLIC_BASE_URL}${
+  src={`${BASE_URL}${
     (isAboutUs || !isAtTop || !showHeader) && !isTownshipPage
       ? "/assets/footer-logo-1.png"
       : "/assets/white-anant.png"
