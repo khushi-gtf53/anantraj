@@ -43,7 +43,7 @@ const ProjectOverview = ({
             </div>
 
             {/* Details */}
-            <div className="project-details uppercase tracking-wider flex flex-col sm:flex-row gap-3 sm:gap-0 items-start lg:py-4 pt-8 pb-5 sm:items-center lg:justify-between justify-center">
+            <div className="project-details uppercase tracking-wider flex flex-col sm:flex-row gap-3 sm:gap-0 items-start lg:py-0 pt-8 pb-5 sm:items-center lg:justify-between justify-center">
               <div className="apartment text-sm sm:text-lg">{apartmentTypes}</div>
               <div className="w-[1px] hidden sm:block h-full bg-black/50" />
               <div className="status text-sm sm:text-lg">{status}</div>
