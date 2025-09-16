@@ -15,8 +15,6 @@ const Township = () => {
   const wrapperRef = useRef(null);
   const contentRef = useRef(null);
 
-
-
   useLayoutEffect(()=>{
     let smoother;
 
@@ -54,10 +52,10 @@ const Township = () => {
       <div id="smooth-content" ref={contentRef}>
         <TownshipHero />
         <TownshipOverview />
-        {/* <TownshipExperience /> */}
-        {/* <TownshipProjects /> */}
+        <TownshipExperience />
+        <TownshipProjects />
         <TownshipAmenities />
-        {/* <TownshipLocationmap /> */}
+        <TownshipLocationmap />
         <Footer showFooter={true} />
       </div>
     </div>
