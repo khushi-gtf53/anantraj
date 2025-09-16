@@ -1,0 +1,8 @@
+
+.township_amenities_section .points .divider{
+  display:block;
+  height:15px;
+  width:1px;
+  background:#000;
+  margin:0 10px;
+}
