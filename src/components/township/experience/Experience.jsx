@@ -14,15 +14,15 @@ useEffect(() => {
 
     gsap.defaults({ ease: "slow(0.5, 0.8, true)" });
 
-   const sectionHeight = expSections.offsetHeight || window.innerHeight; // Fallback to viewport height
-  const endValue = `+=${sectionHeight}px`; // Dynamic end based on section height
+   const sectionHeight = expSections.offsetHeight || window.innerHeight; 
+  const endValue = `+=${sectionHeight}px`;
 
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: expSections,
       start: "top top",
-      end: endValue, // Dynamic end
-      scrub: 2, // Smoothly ties height to scroll
+      end: endValue,
+      scrub: 2, 
       pin: true,
       anticipatePin: 1,
       
@@ -33,7 +33,8 @@ useEffect(() => {
       height: "100vh",
       duration: 1.5, 
       delay: 0.1,
-ease: "slow(0.5, 0.8, true)"    });
+      ease: "slow(0.5, 0.8, true)"
+    });
 
     tl.to(
       textContent,
