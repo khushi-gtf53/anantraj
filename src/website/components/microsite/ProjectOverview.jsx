@@ -1,50 +1,81 @@
 "use client";
 
-const ProjectOverview = ({ logoSrc, projectName, location, apartmentTypes, status, reraId, reraLogoSrc, patternBgSrc = './assets/pattern-bg.png'}) => {
-    return (
-        <section
-       
-        className="project_overview relative bg-[#FBF6F6] w-full sm:h-[50vh]">
-            <div className="grid grid-cols-12 border-y border-black w-full sm:h-[25vh]">
-                <div className="col-span-12 sm:col-span-3 border-r border-black ">
-                    <div className="project-logo flex justify-center py-5 sm:py-0 items-center h-full">
-                        <img src={logoSrc} alt="project logo" className="w-[80%]" />
-                    </div>
-                </div>
-                <div className="col-span-12 sm:col-span-9 px-10 sm:py-5">
-                    <div className="sm:w-[95%] py-3 sm:py-0 h-full flex flex-col justify-between">
-                        <div className="project_info">
-                            <div className="project_name">
-                                <h1 className="uppercase tracking-wide mb-2 text-xl sm:text-2xl font-sangbleu">
-                                    {projectName}
-                                </h1>
-                            </div>
-                            <div className="project_location uppercase tracking-wide">
-                                {location}
-                            </div>
-                        </div>
-                        <div className="project-details  uppercase tracking-wider flex flex-col sm:flex-row gap-3 sm:gap-0 items-start py-4  sm:items-center justify-between">
-                            <div className="apartment text-sm sm:text-lg">{apartmentTypes}</div>
-                            <div className="w-[1px] hidden sm:block  h-full bg-black/50"/>
-                            <div className="status text-sm sm:text-lg">{status}</div>
-                            <div className="w-[1px]  hidden sm:block h-full bg-black/50"/>
-                            <div className="rera flex gap-2 items-center text-sm sm:text-lg">
-                                {reraId}
-                                <span>
-                                    <img src={reraLogoSrc} alt="RERA logo" />
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+import Image from "next/image";
+
+const ProjectOverview = ({
+  logoSrc,
+  projectName,
+  location,
+  apartmentTypes,
+  status,
+  reraId,
+  reraLogoSrc,
+  patternBgSrc = "/assets/pattern-bg.png",
+}) => {
+  return (
+    <section className="project_overview relative bg-[#FBF6F6] w-full sm:h-[50vh]">
+      <div className="grid grid-cols-12 border-t lg:border-y lg:border-black border-gray-300 w-full h-auto sm:h-[25vh]">
+        {/* Left: Logo */}
+        <div className="col-span-12 sm:col-span-3 lg:border-r border-black">
+          <div className="project-logo lg:flex justify-center py-5 sm:py-0 items-center h-full">
+            <Image
+              src={logoSrc}
+              alt="Project logo"
+              width={400}
+              height={200}
+              className="lg:w-[80%] w-[52%] h-auto object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Right: Project Info */}
+        <div className="col-span-12 sm:col-span-9 px-10">
+          <div className="sm:w-[95%] py-3 sm:py-0 h-full flex flex-col justify-between">
+            {/* Project Name + Location */}
+            <div className="project_info sm:pt-5">
+              <h1 className="uppercase tracking-wide mb-2 text-xl sm:text-2xl font-sangbleu">
+                {projectName}
+              </h1>
+              <p className="project_location uppercase tracking-wide">
+                {location}
+              </p>
             </div>
-           <img
-        src="/assets/pattern-bg.png"
-        alt="pattern-bg"
-        className="h-[70px] bg-[#FBF6F6] absolute left-0 bottom-0 w-full object-cover"
+
+            {/* Details */}
+            <div className="project-details uppercase tracking-wider flex flex-col sm:flex-row gap-3 sm:gap-0 items-start lg:py-0 pt-8 pb-5 sm:items-center lg:justify-between justify-center">
+              <div className="apartment text-sm sm:text-lg">{apartmentTypes}</div>
+              <div className="w-[1px] hidden sm:block h-full bg-black/50" />
+              <div className="status text-sm sm:text-lg">{status}</div>
+              <div className="w-[1px] hidden sm:block h-full bg-black/50" />
+              <div className="rera flex gap-2 items-center text-sm sm:text-lg">
+                {reraId}
+                {reraLogoSrc && (
+                  <Image
+                    src={reraLogoSrc}
+                    alt="RERA logo"
+                    width={60}
+                    height={30}
+                    className="object-contain"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pattern Background */}
+      <Image
+        src={patternBgSrc}
+        alt="pattern background"
+        width={1920}
+        height={70}
+        className="h-[70px] bg-[#FBF6F6] relative sm:absolute left-0 bottom-0 w-full object-cover"
+        sizes="100vw"
       />
-        </section>
-    );
+    </section>
+  );
 };
 
 export default ProjectOverview;
