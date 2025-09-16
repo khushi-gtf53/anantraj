@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
-import TownshipExperience from "@/src/components/township/experience/Experience";
-import TownshipHero from "@/src/components/township/hero/Hero";
-import TownshipOverview from "@/src/components/township/overview/Overview";
-import TownshipProjects from "@/src/components/township/projects/Projects";
-import TownshipAmenities from "@/src/components/township/amenities/Amenities";
-import TownshipLocationmap from "@/src/components/township/location-map/LocationMap";
-import Footer from "@/src/components/common/Footer";
+import TownshipExperience from "@/src/website/components/township/experience/Experience";
+import TownshipHero from "@/src/website/components/township/hero/Hero";
+import TownshipOverview from "@/src/website/components/township/overview/Overview";
+import TownshipProjects from "@/src/website/components/township/projects/Projects";
+import TownshipAmenities from "@/src/website/components/township/amenities/Amenities";
+import TownshipLocationmap from "@/src/website/components/township/location-map/LocationMap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import Footer from "@/src/website/components/common/Footer";
 
 const Township = () => {
   // Refs to the wrapper and content divs
@@ -57,7 +57,7 @@ const Township = () => {
          <TownshipExperience /> 
         <TownshipProjects />
         <TownshipAmenities />
-      <TownshipLocationmap />
+       <TownshipLocationmap />
         <Footer showFooter={true} />
       </div>
     </div>
