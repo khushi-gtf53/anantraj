@@ -13,17 +13,17 @@ const ProjectOverview = ({
   patternBgSrc = "/assets/pattern-bg.png",
 }) => {
   return (
-    <section className="project_overview relative bg-[#FBF6F6] w-full sm:h-[50vh] lg:text-left text-center">
+    <section className="project_overview relative bg-[#FBF6F6] w-full sm:h-[50vh]">
       <div className="grid grid-cols-12 border-t lg:border-y lg:border-black border-gray-300 w-full h-auto sm:h-[25vh]">
         {/* Left: Logo */}
         <div className="col-span-12 sm:col-span-3 lg:border-r border-black">
-          <div className="project-logo flex justify-center py-5 sm:py-0 items-center h-full">
+          <div className="project-logo lg:flex justify-center py-5 sm:py-0 items-center h-full">
             <Image
               src={logoSrc}
               alt="Project logo"
               width={400}
               height={200}
-              className="lg:w-[80%] w-[70%] h-auto object-contain"
+              className="lg:w-[80%] w-[52%] h-auto object-contain"
               priority
             />
           </div>
@@ -43,7 +43,7 @@ const ProjectOverview = ({
             </div>
 
             {/* Details */}
-            <div className="project-details uppercase tracking-wider grid lg:flex flex-col sm:flex-row gap-3 sm:gap-0 items-start lg:py-4 pt-8 pb-5 sm:items-center lg:justify-between justify-center">
+            <div className="project-details uppercase tracking-wider flex flex-col sm:flex-row gap-3 sm:gap-0 items-start lg:py-0 pt-8 pb-5 sm:items-center lg:justify-between justify-center">
               <div className="apartment text-sm sm:text-lg">{apartmentTypes}</div>
               <div className="w-[1px] hidden sm:block h-full bg-black/50" />
               <div className="status text-sm sm:text-lg">{status}</div>
