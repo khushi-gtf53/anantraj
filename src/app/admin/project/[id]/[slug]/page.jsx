@@ -65,7 +65,7 @@ const ProjectDetails = () => {
     })) || []; // map to dropdown options
   const floorPlanOptions =
     subTypologies?.map((item) => ({
-      label: item.sub_typologies, // check actual API response
+      label: item.name, // check actual API response
       value: item.id,
     })) || [];
   const destinationOptions =
@@ -111,7 +111,7 @@ const ProjectDetails = () => {
     {
       type: "dropdown",
       name: "sub_typologie_id",
-      label: "Amenities Logo",
+      label: "Sub Typology Id",
       options: floorPlanOptions,
       showIf: (formData) => formData.type === "floorplan",
     },
