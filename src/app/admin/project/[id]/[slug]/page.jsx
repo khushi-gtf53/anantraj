@@ -161,7 +161,7 @@ const ProjectDetails = () => {
         head: ["Title", "Image", "Alt Tag"],
         header: ["title", "image", "alt"],
       },
-      endpoint: "location_advantage",
+      endpoint: "project-location",
       label: "Location advantage",
     },
   };
