@@ -20,7 +20,7 @@ import { formatFormData } from "../../utils/formatFormData";
     { type: "text", name: "title", label: "Title" },
   ],
   "location_advantage": [
-    { type: "text", name: "heading", label: "Heading" },
+    { type: "text", name: "title", label: "Heading" },
   ],
   overview: [
     { type: "text", name: "title", label: "Title" },
