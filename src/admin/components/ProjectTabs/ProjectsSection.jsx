@@ -19,10 +19,8 @@ import { formatFormData } from "../../utils/formatFormData";
   amenities: [
     { type: "text", name: "title", label: "Title" },
   ],
-  "location-map": [
+  "location_advantage": [
     { type: "text", name: "heading", label: "Heading" },
-    { type: "text", name: "sub_heading", label: "Description" },
-    { type: "text", name: "description", label: "Location Map" },
   ],
   overview: [
     { type: "text", name: "title", label: "Title" },
