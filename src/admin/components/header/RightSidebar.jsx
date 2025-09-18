@@ -67,7 +67,7 @@ const RightSidebar = ({projectId,activeSlug}) => {
 
         {/* for banner */}
         
-        {/* <li
+        <li
         
             data-tooltip-id="right-sidebar-tooltip"
             data-tooltip-content="Banner"
@@ -81,7 +81,7 @@ const RightSidebar = ({projectId,activeSlug}) => {
             </span>
             <span className="title whitespace-nowrap">Banner</span>
           </Link>
-        </li> */}
+        </li>
            {/* Dynamic items from API */}
         {tableData?.map((item, index) => (
           <li

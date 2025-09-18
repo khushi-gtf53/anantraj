@@ -17,11 +17,12 @@ import "react-toastify/dist/ReactToastify.css";
 const staticSectionConfigs = {
   banner: {
     fields: [
-      { type: "image", name: "image", label: "Banner" },
-      { type: "text", name: "alt", label: "Alt Tag" },
+      { type: "image", name: "mobile_file", label: "Desktop Banner" },
+      { type: "image", name: "desktop_file", label: "Mobile Banner" },
+      { type: "text", name: "alt_text", label: "Alt Tag" },
     ],
-    table: { head: ["Banner", "Alt Tag"], header: ["image", "alt"] },
-    endpoint: "banner",
+    table: { head: ["Desktop Banner","Mobile Banner", "Alt Tag"], header: ["desktop_file","mobile_file", "alt_text"] },
+    endpoint: "project-banner",
     label: "Banner",
   },
   highlight: {
