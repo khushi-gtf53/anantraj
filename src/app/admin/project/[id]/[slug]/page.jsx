@@ -43,7 +43,7 @@ const staticSectionConfigs = {
       { type: "text", name: "alt", label: "Alt Tag" },
     ],
     table: { head: ["Image", "Alt Tag"], header: ["image", "alt"] },
-    endpoint: "galleries",
+    endpoint: "project-galleries",
     label: "Gallery",
   },
 };
@@ -54,6 +54,7 @@ const ProjectDetails = () => {
 
   const { tableData: amenitiesLogo } = useCrud(api, "amenities-logo");
   const { tableData: subTypologies } = useCrud(api, "sub-typologies");
+  const { tableData: destinationId } = useCrud(api, "projects/project-location-destination-list");
 
   // map to dropdown options
   const amenitiesLogoOptions =
@@ -64,6 +65,11 @@ const ProjectDetails = () => {
   const floorPlanOptions =
     subTypologies?.map((item) => ({
       label: item.sub_typologies, // check actual API response
+      value: item.id,
+    })) || [];
+  const destinationOptions =
+    destinationId?.map((item) => ({
+      label: item.name, // check actual API response
       value: item.id,
     })) || [];
 
@@ -91,24 +97,38 @@ const ProjectDetails = () => {
       label: "Amenities",
     },
     "floor_plan": {
-      fields: [
-        {
-          type: "dropdown",
-          name: "sub_typologie_id",
-          label: "Amenities Logo",
-          options: floorPlanOptions,
-        },
-        { type: "text", name: "title", label: "Title" },
-        { type: "image", name: "image", label: "Icon" },
-        { type: "text", name: "alt", label: "Alt Tag" },
+  fields: [
+    {
+      type: "dropdown",
+      name: "type",
+      label: "Type",
+      options: [
+        { label: "Floor Plan", value: "floorplan" },
+        { label: "Master Plan", value: "masterplan" },
       ],
-      table: {
-        head: ["Title", "image", "Alt Tag"],
-        header: ["title", "image", "alt"],
-      },
-      endpoint: "floor-plan",
-      label: "Floor Plan",
     },
+    {
+      type: "dropdown",
+      name: "sub_typologie_id",
+      label: "Amenities Logo",
+      options: floorPlanOptions,
+      showIf: (formData) => formData.type === "floorplan",
+    },
+    { 
+      type: "text", 
+      name: "title", 
+      label: "Title", 
+    },
+    { type: "image", name: "image", label: "Icon" },
+    { type: "text", name: "alt", label: "Alt Tag" },
+  ],
+  table: {
+    head: ["Type", "Title", "Image", "Alt Tag"],
+    header: ["type", "title", "image", "alt"],
+  },
+  endpoint: "project-floorplan",
+  label: "Floor Plan",
+},
     overview: {
       fields: [
         { type: "text", name: "title", label: "Title" },
@@ -125,7 +145,14 @@ const ProjectDetails = () => {
 
     location_advantage: {
       fields: [
+        {
+          type: "dropdown",
+          name: "destination_id",
+          label: "Destination",
+          options: destinationOptions,
+        },
         { type: "text", name: "title", label: "Title" },
+        { type: "text", name: "distance_time", label: "Distance Time" },
         { type: "image", name: "image", label: "Image" },
         { type: "text", name: "alt", label: "Alt Tag" },
       ],
@@ -159,7 +186,7 @@ const ProjectDetails = () => {
     fetchTableData,
   } = useCrud(
     api,
-    isEditableSection ? `projects/${config.endpoint}` : null,
+    isEditableSection ? `projects/${id}/${config.endpoint}` : null,
     config.table.header || []
   );
 
@@ -171,7 +198,7 @@ const ProjectDetails = () => {
   );
 
   const handleAddOrUpdateWithRefresh = async (formData) => {
-    await handleAddOrUpdate(formData,true);
+    await handleAddOrUpdate(formData, true);
     fetchTableData(currentPage); // 👈 refresh first hook’s table
   };
   const handleDeleteWithRefresh = async (id) => {
@@ -189,7 +216,6 @@ const ProjectDetails = () => {
 
     return normalized;
   };
-  console.log("editData on submit:", editData);
 
   return (
     <section key={slug}>
@@ -208,23 +234,23 @@ const ProjectDetails = () => {
         <div className="grid grid-cols-12 gap-[20px]">
           <div className="col-span-12">
             <DynamicForm
-  title={editData ? `Edit ${config.label}` : `Add ${config.label}`}
-  data={config.fields}
-  onSubmit={(formData) => {
-    const formattedData = formatFormData(formData, config.fields);
-    let payload = { ...formattedData };
+              title={editData ? `Edit ${config.label}` : `Add ${config.label}`}
+              data={config.fields}
+              onSubmit={(formData) => {
+                const formattedData = formatFormData(formData, config.fields);
+                let payload = { ...formattedData };
 
-    if (!editData) {
-      payload.project_id = id; 
-    } else {
-      delete payload.project_id; 
-    }
+                if (!editData) {
+                  payload.project_id = id;
+                } else {
+                  delete payload.project_id;
+                }
 
-    handleAddOrUpdateWithRefresh(payload); 
-  }}
-  defaultValues={normalizeApiResponse(editData, config.fields)}
-  col={6}
-/>
+                handleAddOrUpdateWithRefresh(payload);
+              }}
+              defaultValues={normalizeApiResponse(editData, config.fields)}
+              col={6}
+            />
 
           </div>
 

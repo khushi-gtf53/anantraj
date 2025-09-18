@@ -376,10 +376,10 @@ const normalizeApiResponse = (apiData, fields) => {
           <DynamicForm
             title={editData ? `Edit ${config.label}` : `Add ${config.label}`}
             data={dynamicFields}
-          onSubmit={(formData) => {
-  const formattedData = formatFormData(formData, dynamicFields);
-  handleAddOrUpdate(formattedData);
-}}
+            onSubmit={(formData) => {
+              const formattedData = formatFormData(formData, dynamicFields);
+              handleAddOrUpdate(formattedData);
+            }}
             defaultValues={normalizeApiResponse(editData, dynamicFields)}
             col={12}
           />

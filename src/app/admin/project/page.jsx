@@ -19,6 +19,7 @@ const Project = () => {
   const projectStatusCrud = useCrud(api, "project-statuses");
   const projectCrud = useCrud(api, "projects");
 
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -44,6 +45,7 @@ const Project = () => {
   const typologyOptions = typologyCrud.tableData.map((i) => ({ label: i.name, value: i.id }));
   const subTypologyOptions = subTypologyCrud.tableData.map((i) => ({ label: i.name, value: i.id }));
   const projectStatusOptions = projectStatusCrud.tableData.map((i) => ({ label: i.name, value: i.id }));
+console.log(platterOptions,"platterOptions")
 
   const fieldConfig = [
     { type: "dropdown", name: "platterId", label: "Select Platter", options: platterOptions },

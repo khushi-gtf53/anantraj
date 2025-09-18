@@ -82,9 +82,14 @@ const normalizeApiResponse = (apiData, fields) => {
                         const formattedData = formatFormData(
                           formData,
                           fieldConfig,
-                          project_slug
+                          project_slug,
+                          project_id
                         );
-                        handleAddOrUpdate(formattedData, true);
+                         const payload = {
+                          ...formattedData,
+                           project_id,       
+                            };
+                        handleAddOrUpdate(payload, true);
                       }}
             // onSubmit={handleSubmit}
             defaultValues={normalizeApiResponse(amenitiesHeading[0], fieldConfig)}

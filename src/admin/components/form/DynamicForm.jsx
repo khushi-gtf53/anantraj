@@ -127,15 +127,22 @@ const DynamicForm = ({
       <CardHeading>{title}</CardHeading>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-12 gap-x-[20px] gap-y-[30px]">
-          {data.map((field, idx) => (
-            <div
-              key={idx}
-              className={`col-span-12 ${field.col || "md:col-span-6"}`}
-            >
-              {renderField(field)}
-            </div>
-          ))}
-        </div>
+  {data
+    .filter((field) => {
+      // Always show if no showIf condition
+      if (!field.showIf) return true;
+      // Run conditional function with current formData
+      return field.showIf(formData);
+    })
+    .map((field, idx) => (
+      <div
+        key={idx}
+        className={`col-span-12 ${field.col || "md:col-span-6"}`}
+      >
+        {renderField(field)}
+      </div>
+    ))}
+</div>
         <div className="text-end mt-[20px]">
 
           <button
