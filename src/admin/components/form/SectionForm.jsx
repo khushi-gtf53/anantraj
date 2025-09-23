@@ -28,31 +28,72 @@ const normalizeApiResponse = (apiData, fields) => {
   return normalized;
 };
 
-const SectionForm = ({ api, sectionKey, config }) => {
-  // Fetch data for this section
-  const { tableData } = useCrud(api, `other-sections/get-bytype/${config.type}`);
+// const SectionForm = ({ api, sectionKey, config }) => {
+//   // Fetch data for this section
+//   const { tableData } = useCrud(api, `other-sections/get-bytype/${config.type}`);
 
-  // Add/update handler
+//   // Add/update handler
+//   const { handleAddOrUpdate } = useCrud(api, "other-sections", [], false);
+
+//   return (
+//       <div className="col-span-12 mb-5">
+//         <DynamicForm
+//           title={`${sectionKey}`}
+//           data={config.fields}
+//           defaultValues={normalizeApiResponse(tableData[0] || {}, config.fields)}
+//           onSubmit={(formData) => {
+//             const formattedData = formatFormData(
+//               formData,
+//               config.fields,
+//               config.type
+//             );
+//             handleAddOrUpdate(formattedData, true);
+//           }}
+//           col={12}  
+//         />
+//       </div>
+//   );
+// };
+
+const SectionForm = ({ api, sectionKey, config }) => {
+  const namespacedFields = config.fields.map(field => ({
+    ...field,
+    name: `${sectionKey}_${field.name}`,
+  }));
+
+  const { tableData } = useCrud(api, `other-sections/get-bytype/${config.type}`);
   const { handleAddOrUpdate } = useCrud(api, "other-sections", [], false);
 
+  // Prefill with namespaced keys
+  const prefixedDefaultValues = normalizeApiResponse(tableData[0] || {}, config.fields);
+  const namespacedDefaultValues = Object.fromEntries(
+    Object.entries(prefixedDefaultValues).map(([key, val]) => [`${sectionKey}_${key}`, val])
+  );
+
   return (
-      <div className="col-span-12 mb-5">
-        <DynamicForm
-          title={`${sectionKey}`}
-          data={config.fields}
-          defaultValues={normalizeApiResponse(tableData[0] || {}, config.fields)}
-          onSubmit={(formData) => {
-            const formattedData = formatFormData(
-              formData,
-              config.fields,
-              config.type
-            );
-            handleAddOrUpdate(formattedData, true);
-          }}
-          col={12}  
-        />
-      </div>
+    <div className="col-span-12 mb-5">
+      <DynamicForm
+        title={`${sectionKey}`}
+        data={namespacedFields}
+        defaultValues={namespacedDefaultValues}
+        onSubmit={(formData) => {
+          const formattedData = formatFormData(formData, namespacedFields, config.type);
+
+          const cleanedData = Object.fromEntries(
+            Object.entries(formattedData).map(([key, val]) => [
+              key.replace(`${sectionKey}_`, ""),
+              val
+            ])
+          );
+
+          handleAddOrUpdate(cleanedData, true);
+        }}
+        col={12}
+      />
+    </div>
   );
 };
+
+
 
 export default SectionForm;

@@ -58,6 +58,8 @@ export const pageSectionConfigs = {
       type: "about_us_overview",
       // endpoint: "/api/v1/home/hero",
       fields: [
+        { type: "image", name: "mobile_file", label: "Mobile File" },
+        { type: "image", name: "desktop_file", label: "Desktop File" },
         { type: "text", name: "title", label: "Heading" },
         { type: "text", name: "description", label: "Description" },
         {
@@ -66,6 +68,7 @@ export const pageSectionConfigs = {
           label: "Counter Items",
           multiple:false,
           fields: [
+            { type: "text", name: "sub_heading", label: "Sub Heading" },
             { type: "text", name: "short_description", label: "Short Descriptoin" },
           ],
         },
@@ -95,6 +98,8 @@ export const pageSectionConfigs = {
       type: "contact_info",
       // endpoint: "/api/v1/home/counter",
       fields: [
+        { type: "image", name: "mobile_file", label: "Mobile File" },
+        { type: "image", name: "desktop_file", label: "Desktop File" },
         {
           type: "array",
           name: "other",
@@ -104,6 +109,7 @@ export const pageSectionConfigs = {
             { type: "text", name: "title", label: "Heading" },
             { type: "text", name: "mail", label: "Mail" },
             { type: "text", name: "number", label: "Phone Number" },
+            { type: "text", name: "second_number", label: "Second Phone Number" },
           ],
         },
       ],
@@ -114,11 +120,25 @@ export const pageSectionConfigs = {
       type: "csr_overview",
       // endpoint: "/api/v1/home/counter",
       fields: [
+        { type: "image", name: "mobile_file", label: "Mobile File" },
+        { type: "image", name: "desktop_file", label: "Desktop File" },
         { type: "text", name: "title", label: "Heading" },
         { type: "text", name: "description", label: "Description" },
       ],
     },
   },
+  "media-center":{
+    media_center_overview: {
+      type: "media_center_overview",
+      fields: [
+        { type: "image", name: "mobile_file", label: "Mobile File" },
+        { type: "image", name: "desktop_file", label: "Desktop File" },
+        { type: "text", name: "title", label: "Heading" },
+        { type: "text", name: "description", label: "Description" },
+      ],
+    },
+    
+  }
 };
 
 const Homepage = () => {

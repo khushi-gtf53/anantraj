@@ -182,8 +182,6 @@ const sectionConfigs = {
   label: "Blogs",
   col: 12,
 },
-
-  
   testimonial: {
     fields: [
       { type: "text", name: "name", label: "Name" },
@@ -207,6 +205,24 @@ const sectionConfigs = {
     },
     endpoint: "testimonial",
     label: "Testimonial",
+  },
+  "our-story": {
+    fields: [
+      { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "alt_text", label: "Alt tag" },
+      {
+      type: "dropdown",
+      name: "type",
+      label: "Select Type",
+      options: [
+        { label: "Our Story", value: "story" },
+        { label: "our manifesto", value: "manifasto" },
+      ],
+    },
+    ],
+    table: { head: ["Image", "Alt Tag","Type"], header: ["image", "alt_text","type"] },
+    endpoint: "our-story-and-manifasto",
+    label: "Our Story",
   },
   pillar: {
     fields: [
@@ -243,8 +259,8 @@ const sectionConfigs = {
     },
     ],
     table: {
-      head: ["Name", "Image", "Alt Tag", "Designation"],
-      header: ["name","image","alt","designation"],
+      head: ["Name", "Image", "Alt Tag", "Designation","LeaderShip"],
+      header: ["name","image","alt","designation","is_leadership"],
     },
     endpoint: "team",
     label: "Our Team",
@@ -252,6 +268,7 @@ const sectionConfigs = {
   meta: {
     fields: [
       { type: "text", name: "name", label: "Name" },
+      { type: "text", name: "description", label: "Description" },
       { type: "image", name: "file", label: "Image" },
       {
         type: "dropdown",
@@ -369,6 +386,18 @@ const normalizeApiResponse = (apiData, fields) => {
 };
 
 
+const handleLeaderShip = async (id, body) => {
+  try {
+    // ✅ Use the correct method from useApi
+    const res = await api.update(`team/${id}/leadership`, body);
+    
+    console.log("Leadership updated", id, body);
+  } catch (err) {
+    console.error("Failed to update leadership:", err);
+  }
+};
+
+
   return <>
     <section key={slug}>
       <div className="grid grid-cols-12 gap-[20px]">
@@ -387,15 +416,17 @@ const normalizeApiResponse = (apiData, fields) => {
         <div className="col-span-12">
           <Card>
             <CardHeading>{config.label}</CardHeading>
-            <TableContainer
-              head={config.table.head}
-              data={tableData}
-              onDelete={handleDelete}
-              onEdit={handleEdit}
-              pagination={pagination}
-              currentPage={currentPage}
-              handlePageChange={handlePageChange}
-            />
+           <TableContainer
+  head={config.table.head}
+  data={tableData}
+  onDelete={handleDelete}
+  onLeaderShip={handleLeaderShip} // ✅ pass the function
+  onEdit={handleEdit}
+  pagination={pagination}
+  currentPage={currentPage}
+  handlePageChange={handlePageChange}
+/>
+
           </Card>
         </div>
       </div>

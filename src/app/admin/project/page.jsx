@@ -45,13 +45,18 @@ const Project = () => {
   const typologyOptions = typologyCrud.tableData.map((i) => ({ label: i.name, value: i.id }));
   const subTypologyOptions = subTypologyCrud.tableData.map((i) => ({ label: i.name, value: i.id }));
   const projectStatusOptions = projectStatusCrud.tableData.map((i) => ({ label: i.name, value: i.id }));
-console.log(platterOptions,"platterOptions")
+
 
   const fieldConfig = [
     { type: "dropdown", name: "platterId", label: "Select Platter", options: platterOptions },
     { type: "dropdown", name: "typologyId", label: "Select Typology", options: typologyOptions },
     { type: "dropdown", name: "subTypologyId", label: "Select Sub Typology", options: subTypologyOptions },
     { type: "dropdown", name: "projectStatusId", label: "Select Project Status", options: projectStatusOptions },
+    { type: "dropdown", name: "status", label: "Status", 
+      options: [
+        { label: "Active", value: "1" },
+        { label: "InActive", value: "0" },
+      ],},
     { type: "text", name: "name", label: "Project Name" },
     { type: "text", name: "address", label: "Address" },
     { type: "text", name: "rera_no", label: "Rera No." },

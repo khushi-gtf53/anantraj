@@ -10,6 +10,7 @@ import TextDropdown from "./TextDropdown";
 import RichTextEditor from "./RichTextEditor";
 import { useRouter } from "next/navigation"; 
 import ArrayField from "./ArrayField";
+import InfiniteDropdown from "./InfiniteDropdown";
 const DynamicForm = ({
   title,
   data,
@@ -79,15 +80,27 @@ const DynamicForm = ({
         );
 
       case "dropdown":
-        return (
-          <TextDropdown
-            {...commonProps}
-            options={field.options || []}
-            onChange={(fieldName, selectedValue) =>
-              handleChange(fieldName, selectedValue)
-            }
-          />
-        );
+  if (field.fetchOptions) {
+    return (
+      <InfiniteDropdown
+        {...commonProps}
+         defaultOptions={field.fetchOptions} 
+        onChange={(fieldName, selectedValue) =>
+          handleChange(fieldName, selectedValue)
+        }
+      />
+    );
+  }
+  return (
+    <TextDropdown
+      {...commonProps}
+      options={field.options || []}
+      onChange={(fieldName, selectedValue) =>
+        handleChange(fieldName, selectedValue)
+      }
+    />
+  );
+
       case "image":
         return (
           <ImageUpload

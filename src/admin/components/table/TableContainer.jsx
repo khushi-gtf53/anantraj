@@ -13,17 +13,16 @@ import { IoMdClose } from "react-icons/io";
 import { BASE_URL } from "@/config";
 import Link from "next/link";
 
-const TableContainer = ({ head, pagination, currentPage, handlePageChange, data, onDelete, onEdit }) => {
+const TableContainer = ({ head, pagination, currentPage, handlePageChange, data, onDelete, onEdit, onLeaderShip }) => {
   const [modalContent, setModalContent] = useState(null);
   const [isImage, setIsImage] = useState(false);
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null); 
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const itemsPerPage = 10;
-  console.log(pagination,'pagination')
   const truncateText = (text, length = 20) => {
     if (!text) return "";
     return text.length > length ? text.slice(0, length) + "..." : text;
   };
-  
+
   return (
     <div className="overflow-auto">
       <CustomTable>
@@ -45,20 +44,15 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
                 <TableRow key={rowIndex}>
                   <TableData>{rowIndex + 1}</TableData>
                   {row.slice(0, -1).map((cell, j) => {
+                    const isLast = j === row.length - 1; // id column
+
+                    if (isLast) return null; // skip ID
+
                     const headerName = head[j]?.toLowerCase();
+
+                    if (headerName?.includes("leadership")) return null;
                     const isCellImage = headerName?.includes("image") || headerName?.includes("banner") || headerName?.includes("icon");
                     const isCellText = typeof cell === "string";
-  //         const isAddSubTypologies =  headerName?.includes("add_sub_typologies"); // ✅ check for special column
-
-  // if (isAddSubTypologies) {
-  //   return (
-  //     <TableData key={`${rowIndex}-${j}`}>
-  //       <Link href={`/admin/sub-typologies/${row[row.length - 1]}`}>
-  //         Add Sub Typologies
-  //       </Link>
-  //     </TableData>
-  //   );
-  // }
 
                     return (
                       <TableData tableDataKey={`${rowIndex}-${j}`} key={`${rowIndex}-${j}`}>
@@ -90,14 +84,32 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
                       </TableData>
                     );
                   })}
-                  
-                    {head.includes("Add Sub Typologies") && (
-  <TableData>
-    <Link href={`/admin/sub-typologies/${row[row.length - 1]}`}>
-      Add Sub Typologies
-    </Link>
-  </TableData>
-)}
+
+                  {head.includes("Add Sub Typologies") && (
+                    <TableData>
+                      <Link href={`/admin/sub-typologies/${row[row.length - 1]}`}>
+                        Add Sub Typologies
+                      </Link>
+                    </TableData>
+                  )}
+
+                  {head.includes("LeaderShip") && (
+                    <TableData>
+                      <select
+                        className="border rounded px-2 py-1"
+                        value={row[row.length - 2]} // index where is_leadership exists
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value, 10);
+                          const id = row[row.length - 1]; // last element = id
+                          onLeaderShip(id, { is_leadership: value }); // ✅ calls backend
+                        }}
+                      >
+                        <option value={0}>No</option>
+                        <option value={1}>Yes</option>
+                      </select>
+                    </TableData>
+                  )}
+
 
                   <TableData>
                     <div className="flex items-center justify-center gap-[10px]">

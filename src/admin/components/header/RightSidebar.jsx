@@ -22,7 +22,6 @@ const RightSidebar = ({projectId,activeSlug}) => {
   const [activeIndex, setActiveIndex] = useState(0); // default: Basic is active
     const api = useApi(BASE_ADMIN);
     const { tableData } = useCrud(api, "projects/all-sections");
-  console.log(tableData,"sections")
   return (
     <div
       className={`fixed top-0 right-0 h-screen bg-[#13131d] text-white shadow-md z-50 transition-all duration-500 

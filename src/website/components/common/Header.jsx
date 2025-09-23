@@ -16,7 +16,6 @@ const Header = () => {
 
   const isTownshipPage = pathname.includes('township');
 
-  console.log('isTownshipPage',isTownshipPage);
   
 
   useEffect(() => {

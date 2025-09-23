@@ -22,7 +22,7 @@ const Login = () => {
         JSON.stringify({ email, password }),
         { "Content-Type": "application/json" }
       );
-      console.log(res)
+      // console.log(res)
       localStorage.setItem("adminToken", res.data.token);
       router.replace("/admin"); // same as navigate("/admin", { replace: true })
     } catch (err) {

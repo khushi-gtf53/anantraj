@@ -57,6 +57,7 @@ const ProjectDetails = () => {
   const { tableData: subTypologies } = useCrud(api, "sub-typologies");
   const { tableData: destinationId } = useCrud(api, "projects/project-location-destination-list");
 
+
   // map to dropdown options
   const amenitiesLogoOptions =
     amenitiesLogo?.map((item) => ({
@@ -83,7 +84,8 @@ const ProjectDetails = () => {
           type: "dropdown",
           name: "logo_id",
           label: "Amenities Logo",
-          options: amenitiesLogoOptions,
+          fetchOptions: amenitiesLogoOptions,
+          // options: amenitiesLogoOptions,
         },
         { type: "text", name: "title", label: "Title" },
         { type: "text", name: "short_description", label: "Description" },

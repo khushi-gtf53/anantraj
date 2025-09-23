@@ -14,7 +14,8 @@ const pages=[
   {name:"Home",slug:"home"},
   {name:"About",slug:"about"},
   {name:"Contact",slug:"contact"},
-  {name:"CSR",slug:"csr"}
+  {name:"CSR",slug:"csr"},
+  {name:"Media Center",slug:"media-center"}
 ]
 
 const ProjectsPages=[
@@ -30,6 +31,7 @@ const CMSPages=[
   {name:"Blogs",slug:"blog"},
   {name:"Our Team",slug:"our-team"},
   {name:"Testimonial",slug:"testimonial"},
+  {name:"Our Story",slug:"our-story"},
   {name:"Brand Pillars",slug:"pillar"},
   {name:"Meta",slug:"meta",},
   {name:"Csr List",slug:"csr-list"},

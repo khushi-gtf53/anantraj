@@ -13,8 +13,8 @@ import { formatFormData } from "../../utils/formatFormData";
     { type: "text", name: "title", label: "Title" },
   ],
   gallery: [
-    { type: "text", name: "heading", label: "Heading" },
-    { type: "text", name: "sub_heading", label: "Description" },
+    { type: "text", name: "title", label: "Heading" },
+    // { type: "text", name: "sub_heading", label: "Description" },
   ],
   amenities: [
     { type: "text", name: "title", label: "Title" },
