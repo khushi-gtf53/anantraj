@@ -11,22 +11,27 @@ import { formatFormData } from "../../utils/formatFormData";
 const normalizeApiResponse = (apiData, fields) => {
   let normalized = { ...apiData };
 
-  // Handle banner nesting
   if (apiData.banner) {
-    if (apiData.banner.desktop_file)
-      normalized.desktop_file = apiData.banner.desktop_file;
-    if (apiData.banner.mobile_file)
-      normalized.mobile_file = apiData.banner.mobile_file;
+    fields.forEach((field) => {
+      if (["image", "video", "file"].includes(field.type)) {
+        if (apiData.banner[field.name]) {
+          normalized[field.name] = apiData.banner[field.name];
+        }
+      }
+    });
   }
 
   // Remove keys not in fields
   const fieldNames = fields.map((f) => f.name);
+  console.log(fieldNames,"fieldNames")
   Object.keys(normalized).forEach((key) => {
     if (!fieldNames.includes(key)) delete normalized[key];
   });
 
   return normalized;
 };
+
+
 
 // const SectionForm = ({ api, sectionKey, config }) => {
 //   // Fetch data for this section

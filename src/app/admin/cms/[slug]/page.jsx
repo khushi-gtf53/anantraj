@@ -18,6 +18,10 @@ const sectionConfigs = {
       { type: "image", name: "image", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
       { type: "text", name: "short_description", label: "Short Description" },
+      { type: "image", name: "mobile_image", label: "Mobile Image" },
+      { type: "text", name: "heading", label: "Heading" },
+      { type: "text", name: "sub_heading", label: "Sub Heading" },
+      { type: "text", name: "platter_overview", label: "Overview" },
       {
       type: "dropdown",
       name: "status",
@@ -128,7 +132,7 @@ const sectionConfigs = {
       defaultValue: 1,
     },
     ],
-    table: { head: ["Title","Short Description","Year","Image", "Alt Tag"], header: ["title","description","year","file", "alt_txt"] },
+    table: { head: ["Title","Short Description","Year","Image", "Alt Tag","Awards"], header: ["title","description","year","file", "alt_txt"] },
     endpoint: "award",
     label: "Awards",
   },
@@ -187,6 +191,7 @@ const sectionConfigs = {
       { type: "text", name: "name", label: "Name" },
       { type: "text", name: "short_description", label: "Description" },
       { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "video_link", label: "Video Link" },
       { type: "text", name: "alt", label: "Alt Tag" },
       {
         type: "dropdown",
@@ -265,6 +270,64 @@ const sectionConfigs = {
     endpoint: "team",
     label: "Our Team",
   },
+  "csr-list": {
+    fields: [
+      { type: "text", name: "title", label: "Title" },
+      { type: "text", name: "description", label: "Description" },
+      { type: "image", name: "file", label: "Image" },
+      { type: "text", name: "alt_txt", label: "Alt" }
+
+    ],
+    table: { head: ["Title", "Description","Image"], header: ["title", "description","file"] },
+    endpoint: "csr-list",
+    label: "Csr List",
+  },
+  "csr-gallery": {
+    fields: [
+      { type: "text", name: "year", label: "Year" },
+      { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "alt", label: "Alt" }
+
+    ],
+    table: { head: ["Year", "Image","Alt"], header: ["year", "image","alt"] },
+    endpoint: "csr-galleries",
+    label: "Csr Gallery",
+  },
+  "career-galleries": {
+    fields: [
+      { type: "text", name: "year", label: "Year" },
+      { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "alt", label: "Alt" }
+
+    ],
+    table: { head: ["Year", "Image","Alt"], header: ["year", "image","alt"] },
+    endpoint: "career-galleries",
+    label: "Career Gallery",
+  },
+  jobs: {
+    fields: [
+      { type: "text", name: "job_title", label: "Job Title" },
+      { type: "text", name: "location", label: "Location" },
+      { type: "text", name: "education_required", label: "Education" },
+      { type: "text", name: "experience_required", label: "Experience" },
+      { type: "text", name: "skills_required", label: "Skills" }
+
+    ],
+    table: { head: ["Job Title", "Location","Education","Experience"], header: ["job_title", "location","education_required","experience_required"] },
+    endpoint: "jobs",
+    label: "Jobs",
+  },
+  "event-galleries":{
+    fields: [
+      { type: "text", name: "year", label: "Year" },
+      { type: "image", name: "image", label: "Image" },
+      { type: "text", name: "alt", label: "Alt" }
+
+    ],
+    table: { head: ["Year", "Image","Alt"], header: ["year", "image","alt"] },
+    endpoint: "event-galleries",
+    label: "Event Gallery",
+  },
   meta: {
     fields: [
       { type: "text", name: "name", label: "Name" },
@@ -293,30 +356,7 @@ const sectionConfigs = {
     },
     endpoint: "page",
     label: "Meta Page",
-  },
-  "csr-list": {
-    fields: [
-      { type: "text", name: "title", label: "Title" },
-      { type: "text", name: "description", label: "Description" },
-      { type: "image", name: "file", label: "Image" },
-      { type: "text", name: "alt_txt", label: "Alt" }
-
-    ],
-    table: { head: ["Title", "Description","Image"], header: ["title", "description","file"] },
-    endpoint: "csr-list",
-    label: "Csr List",
-  },
-  "csr-gallery": {
-    fields: [
-      { type: "text", name: "year", label: "Year" },
-      { type: "image", name: "image", label: "Image" },
-      { type: "text", name: "alt", label: "Alt" }
-
-    ],
-    table: { head: ["Year", "Image","Alt"], header: ["year", "image","alt"] },
-    endpoint: "csr-galleries",
-    label: "Csr Gallery",
-  },
+  }
 };
 
 const CmsSections = () => {

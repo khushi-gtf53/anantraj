@@ -11,6 +11,7 @@ import RichTextEditor from "./RichTextEditor";
 import { useRouter } from "next/navigation"; 
 import ArrayField from "./ArrayField";
 import InfiniteDropdown from "./InfiniteDropdown";
+import FileUpload from "./FileUpload";
 const DynamicForm = ({
   title,
   data,
@@ -78,6 +79,14 @@ const DynamicForm = ({
             onChange={(value) => handleChange(field.name, value)}
           />
         );
+        case "file":
+  return (
+    <FileUpload
+      {...commonProps}
+      reset={resetCounter}
+      onChange={(fieldName, file) => handleChange(fieldName, file)}
+    />
+  );
 
       case "dropdown":
   if (field.fetchOptions) {

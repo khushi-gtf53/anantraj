@@ -13,9 +13,9 @@ const menuItems = [
     href: '/admin',
   },
   {
-    label: 'About Us',
+    label: 'Investor',
     icon: <FaUser />,
-    href: '/admin/cms/about-us',
+    href: '/admin/investor',
   },
 ];
 

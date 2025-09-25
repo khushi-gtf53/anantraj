@@ -50,7 +50,7 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
 
                     const headerName = head[j]?.toLowerCase();
 
-                    if (headerName?.includes("leadership")) return null;
+                    if ((headerName?.includes("leadership"))) return null;
                     const isCellImage = headerName?.includes("image") || headerName?.includes("banner") || headerName?.includes("icon");
                     const isCellText = typeof cell === "string";
 
@@ -107,6 +107,16 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
                         <option value={0}>No</option>
                         <option value={1}>Yes</option>
                       </select>
+                    </TableData>
+                  )}
+                  {head.includes("Awards") && (
+                    <TableData>
+                     <Link href={`/admin/awards/${row[row.length - 1]}`}>Add Gallery</Link>
+                    </TableData>
+                  )}
+                  {head.includes("Investor") && (
+                    <TableData>
+                     <Link href={`/admin/investor/${row[row.length - 1]}`}>Add Child</Link>
                     </TableData>
                   )}
 

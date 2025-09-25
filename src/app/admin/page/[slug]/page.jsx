@@ -12,14 +12,16 @@ export const pageSectionConfigs = {
     hero: {
       type: "home_banner",
       fields: [
-        { type: "image", name: "mobile_file", label: "Mobile File" },
-        { type: "image", name: "desktop_file", label: "Desktop File" },
+        { type: "video", name: "mobile_file", label: "Mobile File" },
+        { type: "video", name: "desktop_file", label: "Desktop File" },
         // { type: "text", name: "alt_text", label: "Alt Tag" },
       ],
     },
     overview: {
       type: "home_page_overview",
       fields: [
+        { type: "text", name: "title", label: "Heading" },
+        { type: "text", name: "description", label: "Description" },
         {
           type: "array",
           name: "other",
@@ -27,7 +29,6 @@ export const pageSectionConfigs = {
           col:"md:col-span-12",
           multiple: false,
           fields: [
-        { type: "text", name: "heading", label: "Heading" },
             { type: "text", name: "short_description", label: "Short Description" },
             { type: "text", name: "year", label: "Year" },
           ],
@@ -138,7 +139,30 @@ export const pageSectionConfigs = {
       ],
     },
     
-  }
+  },
+  career: {
+    career_overview: {
+      type: "career_overview",
+      // endpoint: "/api/v1/home/counter",
+      fields: [
+        { type: "image", name: "mobile_file", label: "Mobile File" },
+        { type: "image", name: "desktop_file", label: "Desktop File" },
+        { type: "text", name: "title", label: "Heading" },
+        { type: "text", name: "description", label: "Description" },
+      ],
+    },
+  },
+  awards: {
+    awards_overview: {
+      type: "awards_overview",
+      // endpoint: "/api/v1/home/counter",
+      fields: [
+        { type: "image", name: "mobile_file", label: "Mobile File" },
+        { type: "image", name: "desktop_file", label: "Desktop File" },
+        { type: "text", name: "title", label: "Heading" },
+      ],
+    },
+  },
 };
 
 const Homepage = () => {

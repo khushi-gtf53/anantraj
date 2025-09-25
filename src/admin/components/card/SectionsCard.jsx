@@ -4,7 +4,7 @@ import CardHeading from "./CardHeading";
 import { RiPagesFill } from "react-icons/ri";
 import Link from "next/link";
 
-const SectionsCard = ({ title, icon,data,cms=false }) => {
+const SectionsCard = ({ title, icon,data,link }) => {
   
   return (
     <section className="py-[20px]" key={data?.slug}>
@@ -22,7 +22,7 @@ const SectionsCard = ({ title, icon,data,cms=false }) => {
                 </div>
                 <div>
                   <p className="leading-[20px] text-white text-[13px]">{item?.name}</p>
-                  <Link href={cms ? `/admin/cms/${item?.slug }`:`/admin/page/${item?.slug}`} ><p className="text-[var(--admin-secondary)] !text-[12px]">View Details</p></Link>
+                  <Link href={`/admin/${link}/${item?.slug }`} ><p className="text-[var(--admin-secondary)] !text-[12px]">View Details</p></Link>
                 </div>
               </div>
             </Card>

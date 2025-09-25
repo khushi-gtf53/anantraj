@@ -1,16 +1,17 @@
-// src/admin/utils/formatFormData.js
 export const formatFormData = (formData = {}, fields = [], type) => {
   const formattedData = {};
 
   Object.entries(formData || {}).forEach(([key, value]) => {
     const field = fields.find((f) => f.name === key);
 
-    if (field?.type === "image" || field?.type === "file") {
+    if (field?.type === "image" || field?.type === "file" || field?.type === "video") {
       if (value instanceof File || value instanceof Blob) {
-        // ✅ Only send if new upload
+        formattedData[key] = value; // upload new file
+      } 
+      // else keep old value (string path)
+      else if (typeof value === "string") {
         formattedData[key] = value;
       }
-      // ❌ Skip if it's just a string (old URL/path)
     } else if (Array.isArray(value) || (typeof value === "object" && value !== null)) {
       formattedData[key] = JSON.stringify(value);
     } else if (value !== undefined && value !== null && value !== "") {
@@ -18,7 +19,6 @@ export const formatFormData = (formData = {}, fields = [], type) => {
     }
   });
 
-  // ✅ Only add type when explicitly passed
   if (type) {
     formattedData.type = type;
   }
