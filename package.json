@@ -32,5 +32,18 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
     "tailwindcss": "^4"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khushi-gtf53/anantraj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khushi-gtf53/anantraj/issues"
+  },
+  "homepage": "https://github.com/khushi-gtf53/anantraj#readme"
 }

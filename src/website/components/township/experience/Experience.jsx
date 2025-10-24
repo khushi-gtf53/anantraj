@@ -18,23 +18,21 @@ const TownshipExperience = () => {
     gsap.registerPlugin(ScrollTrigger);
   
     const imageSection = document.querySelector(".images");
-    const projectSections = gsap.utils.toArray(".project_sec");
+    const projectSections = gsap.utils.toArray(".project_sec,.image_col:nth-child(3)");
   
     if (!imageSection || projectSections.length === 0) return;
   
-    // ---- Center image grow animation (same as before) ----
     const imageHeight = 10;
     const targetHeight = 100;
     const heightDifference = targetHeight - imageHeight;
-    const endValue = heightDifference * 50; // aapka multiplier
-  
-    // IMPORTANT: image ko itne lambe time tak pin rakho ki saare projects stack ho saken
-    const extraForProjects = window.innerHeight * projectSections.length + 200; // +buffer
-    const imagePin = gsap.to(".image_col:nth-child(3)", {
+    const endValue = heightDifference * 50;
+  const tl = gsap.timeline()
+    const extraForProjects = window.innerHeight * projectSections.length + 200
+    const imagePin = tl.to(".image_col:nth-child(3)", {
       scrollTrigger: {
         trigger: imageSection,
         start: "top top",
-        end: `+=${endValue + window.innerHeight + extraForProjects}`, // 🔴 yahi trick
+        end: `+=${endValue + window.innerHeight + extraForProjects}`,
         pin: true,
         scrub: 1,
         markers: false,
@@ -42,25 +40,25 @@ const TownshipExperience = () => {
       },
       width: "100vw",
       height: "100vh",
-      filter: "brightness(0.5)",
+      filter: "brightness(0.5)",  
       ease: "none",
-    });
-  
-    // ---- Project sections ko one-by-one stack pin ----
-    projectSections.forEach((section) => {
+      onComplete:()=>{
+        projectSections.forEach((section) => {
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: `+=${window.innerHeight}`, // har section ~1 viewport ke liye pin
+        end: `+=${window.innerHeight}`,
         pin: true,
-        pinSpacing: false, // stack effect
+        pinSpacing: false, 
         anticipatePin: 1,
         // markers: true,
       });
     });
+      }
+    },"<");
   
-    // Cleanup
-    return () => {
+    
+      return () => {
       imagePin?.scrollTrigger?.kill();
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
