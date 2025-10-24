@@ -6,9 +6,16 @@ import ProjectCard from "@/src/admin/components/card/ProjectCard";
 import TestimonialCard from "@/src/admin/components/card/TestimonialCard";
 import SectionsCard from "@/src/admin/components/card/SectionsCard";
 import ProjectList from "@/src/admin/components/card/ProjectList";
-import { useCrud } from "@/src/admin/hooks/useCrud";
-import { useApi } from "@/src/admin/hooks/useApi";
-import { BASE_ADMIN } from "@/config";
+// import { useCrud } from "@/src/admin/hooks/useCrud";
+// import { useApi } from "@/src/admin/hooks/useApi";
+// import { BASE_ADMIN } from "@/config";
+
+const pages=[
+  {name:"Home",slug:"home"},
+  {name:"About",slug:"about"},
+  {name:"Contact",slug:"contact"},
+  {name:"CSR",slug:"csr"}
+]
 
 const ProjectsPages=[
   {name:"Platter",slug:"platter"},
@@ -25,13 +32,14 @@ const CMSPages=[
   {name:"Testimonial",slug:"testimonial"},
   {name:"Brand Pillars",slug:"pillar"},
   {name:"Meta",slug:"meta",},
+  {name:"Csr List",slug:"csr-list"},
+  {name:"Csr Gallery",slug:"csr-gallery"},
 ];
 const Dashboard = () => {
   const [totalProject, setTotalProjects] = useState(0);
   
-      const api = useApi(BASE_ADMIN);
-      const { tableData : pages, } = useCrud(api, "distinct-all-pages");
-
+      // const api = useApi(BASE_ADMIN);
+      // const { tableData : pages, } = useCrud(api, "page");
   return (
     <section className=" grid grid-cols-12 gap-6 body-detail">
       <div className="col-span-8">

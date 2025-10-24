@@ -17,8 +17,13 @@ const Login = () => {
     setLocalError("");
 
     try {
-      const res = await post("login", { email, password });
-      localStorage.setItem("adminToken", res.token);
+      const res = await post(
+        "auth/login",
+        JSON.stringify({ email, password }),
+        { "Content-Type": "application/json" }
+      );
+      console.log(res)
+      localStorage.setItem("adminToken", res.data.token);
       router.replace("/admin"); // same as navigate("/admin", { replace: true })
     } catch (err) {
       setLocalError(err.message || "Invalid email or password");

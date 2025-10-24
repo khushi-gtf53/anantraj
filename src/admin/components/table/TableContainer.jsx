@@ -14,17 +14,15 @@ import { BASE_URL } from "@/config";
 import Link from "next/link";
 
 const TableContainer = ({ head, pagination, currentPage, handlePageChange, data, onDelete, onEdit }) => {
-  const [modalContent, setModalContent] = useState(null); // for text/image preview
+  const [modalContent, setModalContent] = useState(null);
   const [isImage, setIsImage] = useState(false);
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null); // new state
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null); 
   const itemsPerPage = 10;
-
+  console.log(pagination,'pagination')
   const truncateText = (text, length = 20) => {
     if (!text) return "";
     return text.length > length ? text.slice(0, length) + "..." : text;
   };
-
-
   
   return (
     <div className="overflow-auto">
@@ -67,7 +65,7 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
                         {isCellImage ? (
                           <div className="w-full h-full flex justify-center">
                             <img
-                              src={`${BASE_URL}${cell}`}
+                              src={`${cell}`}
                               alt="img"
                               className="w-12 h-12 object-cover rounded cursor-pointer"
                               onClick={() => {
@@ -138,7 +136,7 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
 
       <Pagination
         currentPage={currentPage}
-        totalPages={pagination?.pages || 1}
+        totalPages={pagination?.totalPages || 1}
         onPageChange={handlePageChange}
       />
 
@@ -160,7 +158,7 @@ const TableContainer = ({ head, pagination, currentPage, handlePageChange, data,
             </button>
             {isImage ? (
               <img
-                src={`${BASE_URL}${modalContent}`}
+                src={`${modalContent}`}
                 alt="modal"
                 className="object-contain max-h-[80vh] w-full"
               />

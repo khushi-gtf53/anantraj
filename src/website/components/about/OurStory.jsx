@@ -28,41 +28,47 @@ const OurStory = () => {
   };
 
   const tab1Pages = [
-    {
-      heading: "Where Stories Sing and Beliefs Belong.",
-      title: "our story",
-      subtitle: "Established in 1969… ",
-      subtitle2: "Yet our story runs far deeper.",
-      content: `It began over a century ago, when the Sarin family first took root in North India’s soil as custodians of land, as builders of trust, long before “real estate” was ever an industry.`,
-    },
-    {
-      image: "/assets/about/story/storybg.webp",
-      content: `In that era of honour, our founding patriarch was recognised with the title Rai Sahib and the symbolic takhti. A mark not of what was to come, but of principles already lived: honour, responsibility, and unwavering trust.`,
-    },
-    {
-      content: `The name we carry — Anant Raj — is itself a tribute to that legacy. Drawn from Lala Anant Ram Sarin and Smt. Raj Kumari Sarin, it is a name that binds family and future, heritage and horizon.`,
-      content2: `Through decades of transformation, the spirit endured — quietly, steadily, without noise or spectacle. Over 21 million sq. ft. built. 300 acres of land stewarded. Generations passing down not just assets, but values — like heirlooms.`,
-    },
-    {
-      image: "/assets/about/story/storybg2.webp",
-      content: `And today, with the fourth generation at the helm, we stand as more than developers. We are a gharana of real estate craftsmanship — an institution where tradition anchors ambition, and innovation carries heritage forward.`,
-    },
+    "/assets/about/story/book1/1.webp",
+    "/assets/about/story/book1/2.webp",
+    "/assets/about/story/book1/3.webp",
+    "/assets/about/story/book1/4.webp"
+    // {
+    //   heading: "Where Stories Sing and Beliefs Belong.",
+    //   title: "our story",
+    //   subtitle: "Established in 1969… ",
+    //   subtitle2: "Yet our story runs far deeper.",
+    //   content: `It began over a century ago, when the Sarin family first took root in North India’s soil as custodians of land, as builders of trust, long before “real estate” was ever an industry.`,
+    // },
+    // {
+    //   image: "/assets/about/story/storybg.webp",
+    //   content: `In that era of honour, our founding patriarch was recognised with the title Rai Sahib and the symbolic takhti. A mark not of what was to come, but of principles already lived: honour, responsibility, and unwavering trust.`,
+    // },
+    // {
+    //   content: `The name we carry — Anant Raj — is itself a tribute to that legacy. Drawn from Lala Anant Ram Sarin and Smt. Raj Kumari Sarin, it is a name that binds family and future, heritage and horizon.`,
+    //   content2: `Through decades of transformation, the spirit endured — quietly, steadily, without noise or spectacle. Over 21 million sq. ft. built. 300 acres of land stewarded. Generations passing down not just assets, but values — like heirlooms.`,
+    // },
+    // {
+    //   image: "/assets/about/story/storybg2.webp",
+    //   content: `And today, with the fourth generation at the helm, we stand as more than developers. We are a gharana of real estate craftsmanship — an institution where tradition anchors ambition, and innovation carries heritage forward.`,
+    // },
   ];
 
   const tab2points = [
-    "We are not builders of structures.",
-    "We are custodians of permanence.",
-    "For generations, we’ve stood on land that holds memory, meaning, and promise.",
-    "We don’t chase trends; we set a standard that endures.",
-    "Our homes are not displays of opulence.",
-    "They are sanctuaries of purpose designed with depth, rooted in culture, and imagined for tomorrow.",
-    "In a world that’s moving faster than ever, we believe in spaces that hold you still.",
-    "Still with pride. Still with peace. Still with presence.",
-    "Our legacy isn’t just about what we’ve built.",
-    "It’s about what we’ve upheld: ethics, scale, integrity, vision.",
-    "To the new Indian rooted in identity, rising in ambition.",
-    "We are your quiet certainty in a loud world.",
-    "A place where heritage breathes, innovation lives, and every square foot whispers dignity.",
+    "/assets/about/story/book2/1.webp",
+    "/assets/about/story/book2/2.webp",
+    // "We are not builders of structures.",
+    // "We are custodians of permanence.",
+    // "For generations, we’ve stood on land that holds memory, meaning, and promise.",
+    // "We don’t chase trends; we set a standard that endures.",
+    // "Our homes are not displays of opulence.",
+    // "They are sanctuaries of purpose designed with depth, rooted in culture, and imagined for tomorrow.",
+    // "In a world that’s moving faster than ever, we believe in spaces that hold you still.",
+    // "Still with pride. Still with peace. Still with presence.",
+    // "Our legacy isn’t just about what we’ve built.",
+    // "It’s about what we’ve upheld: ethics, scale, integrity, vision.",
+    // "To the new Indian rooted in identity, rising in ambition.",
+    // "We are your quiet certainty in a loud world.",
+    // "A place where heritage breathes, innovation lives, and every square foot whispers dignity.",
   ];
 
   useEffect(() => {
@@ -229,9 +235,14 @@ const OurStory = () => {
                     {tab1Pages.map((page, index) => (
                       <div
                         key={index}
-                        className="demoPage bg-white px-12 py-20 shadow-xl relative"
+                        className="demoPage bg-white  shadow-xl relative"
                       >
                         <img
+                        src={page}
+                        alt="book cover"
+                        className="object-cover w-[380px] h-[550px] sm:w-[450px] sm:h-[500px]"
+                      />
+                        {/* <img
                           src="/assets/about/story/bookbg.webp"
                           alt=""
                           className="absolute top-0 left-0 w-full h-full object-cover"
@@ -272,7 +283,7 @@ const OurStory = () => {
                               }}
                             />
                           )}
-                        </div>
+                        </div> */}
                       </div>
                     ))}
                     <div className="demoPage bg-white shadow-xl">
@@ -339,48 +350,58 @@ const OurStory = () => {
                       />
                     </div>
 
-                    {Array.from({
-                      length: Math.ceil(tab2points.length / 7),
-                    }).map((_, pageIndex) => (
+                  {tab2points.map((page, index) => (
                       <div
-                        key={pageIndex}
-                        className="demoPage bg-white px-12 py-20 shadow-xl relative"
+                        key={index}
+                        className="demoPage bg-white  shadow-xl relative"
                       >
                         <img
+                        src={page}
+                        alt="book cover"
+                        className="object-cover w-[380px] h-[550px] sm:w-[450px] sm:h-[500px]"
+                      />
+                        {/* <img
                           src="/assets/about/story/bookbg.webp"
                           alt=""
                           className="absolute top-0 left-0 w-full h-full object-cover"
                         />
-                        <div className="flex relative flex-col justify-center items-center w-full h-full gap-2">
-                          {pageIndex === 0 && (
-                            <div className="heading py-5 uppercase  text-red-800 tracking-widest text-center font-sangbleu text-2xl">
-                              Brand Manifesto
+                        <div className="flex relative flex-col justify-center items-center w-full h-full gap-4 text-[14px] text-center leading-relaxed">
+                          {page.heading && (
+                            <h3 className="uppercase text-red-800 tracking-widest text-center font-sangbleu mb-4">
+                              {page.heading}
+                            </h3>
+                          )}
+                          {page.title && (
+                            <div className="heading py-5 uppercase font-stringfree text-3xl">
+                              {page.title}
                             </div>
                           )}
-
-                          {tab2points
-                            .slice(pageIndex * 7, (pageIndex + 1) * 7)
-                            .map((point, i) => (
-                              <div
-                                key={i}
-                                className="storyline flex gap-2 items-center text-center text-[14px] leading-relaxed py-1"
-                              >
-                                {/* <GiJusticeStar
-                                    className="text-[#9b2c2c] min-w-[16px] min-h-[16px] mt-[2px]"
-                                    size={16}
-                                  /> */}
-                                <span>{point}</span>
-                              </div>
-                            ))}
-
-                          {pageIndex === Math.floor(tab2points.length / 7) && (
-                            <div className="story text-center text-[14px] mt-2">
-                              <strong>
-                                Anant Raj. <br />A Brand Built with Time
-                              </strong>
+                          {page.subtitle && (
+                            <div className="storyline italic pt-2">
+                              {page.subtitle}
                             </div>
                           )}
-                        </div>
+                          {page.subtitle2 && (
+                            <div className="storyline italic pb-2">
+                              {page.subtitle2}
+                            </div>
+                          )}
+                          {page.image && <img src={page.image} alt="story" />}
+                          {page.content && (
+                            <div
+                              className="story"
+                              dangerouslySetInnerHTML={{ __html: page.content }}
+                            />
+                          )}
+                          {page.content2 && (
+                            <div
+                              className="story"
+                              dangerouslySetInnerHTML={{
+                                __html: page.content2,
+                              }}
+                            />
+                          )}
+                        </div> */}
                       </div>
                     ))}
                     <div className="demoPage bg-white shadow-xl">

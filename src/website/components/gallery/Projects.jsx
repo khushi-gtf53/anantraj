@@ -35,7 +35,7 @@ const Projects = ({ tabs = [] }) => {
     if (!activeTabObj) return null;
     console.log('activeTabObj',activeTabObj);
 
-    const subTabs = Object.entries(activeTabObj.projects || {}).filter(([key, value])=>value.length > 0).map();
+    const subTabs = Object.entries(activeTabObj.projects || {}).filter(([key, value])=>value.length > 0).map(([key]) => key);;
     console.log('subTabs',subTabs);
     const subGallery = activeTabObj.projects[activeSubTab] || [];
 

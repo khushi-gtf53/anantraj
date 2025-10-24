@@ -3,11 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
-import { usePathname } from "next/navigation";
 
-const Footer = ({showFooter}) => {
+const Footer = () => {
   const [isExploreOpen, setIsExploreOpen] = useState(false);
-  const currentPathname = usePathname();
 
   const toggleExplore = () => setIsExploreOpen((prev) => !prev);
 
@@ -15,7 +13,7 @@ const Footer = ({showFooter}) => {
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "/about" },
+        { label: "About Us", href: "/aboutus" },
         { label: "Investors", href: "/investors" },
         // { label: "NRI Corner", href: "/nri-corner", expand: true },
         // { label: "NRI Investors", href: "/nri-investors", expand: true },
@@ -36,7 +34,7 @@ const Footer = ({showFooter}) => {
       title: "Projects",
       links: [
         { label: "Blogs", href: "/blogs" },
-        { label: "Contact Us", href: "/contact" },
+        { label: "Contact Us", href: "/contactus" },
         { label: "Career", href: "/career", expand: true },
         // { label: "Property Investment", href: "/property-investment", expand: true } 
       ],
@@ -53,11 +51,9 @@ const Footer = ({showFooter}) => {
     },
   ];
 
-  if(currentPathname.includes('township') && !showFooter) return;
-
   return (
     <footer>
-      
+
       <div
         className="pattern-div py-16"
         style={{ background: "#FBF6F6 url(assets/pattern-bg.png) center", }}></div>

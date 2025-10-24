@@ -7,7 +7,7 @@ import { useCrud } from '../../hooks/useCrud';
 
 const ProjectList = ({setTotalProjects}) => {
   const api = useApi(BASE_ADMIN);
-  const { tableData : projectList } = useCrud(api, "project");
+  const { tableData : projectList } = useCrud(api, "projects");
 
    // whenever projectList changes, update parent
   useEffect(() => {
